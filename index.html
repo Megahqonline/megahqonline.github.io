@@ -790,6 +790,39 @@ html.modo-leitor #areaLeitor {
 }
 
 
+
+/* =========================
+   ADSTERRA - NATIVE BANNER LATERAL
+========================= */
+
+#adsterraNativeSidebar {
+  position: fixed;
+  top: 70px;
+  right: 12px;
+  width: 160px;
+  max-height: calc(100vh - 82px);
+  overflow: hidden;
+  z-index: 500;
+  display: none;
+  text-align: left;
+}
+
+#adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  #adsterraNativeSidebar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  #adsterraNativeSidebar {
+    display: none !important;
+  }
+}
+
 </style>
 
 
@@ -806,6 +839,10 @@ html.modo-leitor #areaLeitor {
   }
 })();
 </script>
+
+
+<!-- ADSTERRA - POPUNDER -->
+<script src="https://pl31646544.profitableratecpmnetwork.com/70/ea/19/70ea19bd1ce5b130e70c30951cce8f83.js"></script>
 
 </head>
 
@@ -2403,6 +2440,74 @@ carregarPDF();
   src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524">
 </script>
 
+
+
+<!-- =========================
+     ADSTERRA - NATIVE BANNER 1:4
+     Sidebar apenas no desktop, quando houver espaço lateral livre.
+========================= -->
+<div id="adsterraNativeSidebar" aria-label="Publicidade">
+  <script async="async" data-cfasync="false" src="https://pl31646545.profitableratecpmnetwork.com/0b45e944d77e6fda9789af2b5d8f70fc/invoke.js"></script>
+  <div id="container-0b45e944d77e6fda9789af2b5d8f70fc"></div>
+</div>
+
+<!-- =========================
+     ADSTERRA - SOCIAL BAR
+========================= -->
+<script src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js">
+
+/* =========================
+   ADSTERRA - POSIÇÃO DO NATIVE BANNER
+========================= */
+
+(function () {
+  const sidebar = document.getElementById("adsterraNativeSidebar");
+
+  if (!sidebar) return;
+
+  function atualizarSidebarAdsterra() {
+    const modoLeitor = document.documentElement.classList.contains("modo-leitor");
+
+    if (!modoLeitor || window.innerWidth <= 1100 || window.innerWidth <= 700) {
+      sidebar.style.display = "none";
+      return;
+    }
+
+    const leitor = document.getElementById("leitor");
+    if (!leitor) {
+      sidebar.style.display = "none";
+      return;
+    }
+
+    const rect = leitor.getBoundingClientRect();
+    const larguraAnuncio = 160;
+    const margem = 18;
+    const espacoDireita = window.innerWidth - rect.right;
+
+    if (espacoDireita >= larguraAnuncio + margem) {
+      sidebar.style.display = "block";
+    } else {
+      sidebar.style.display = "none";
+    }
+  }
+
+  window.atualizarSidebarAdsterra = atualizarSidebarAdsterra;
+
+  window.addEventListener("resize", atualizarSidebarAdsterra);
+  window.addEventListener("scroll", atualizarSidebarAdsterra, { passive: true });
+
+  const observer = new MutationObserver(atualizarSidebarAdsterra);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
+
+  setTimeout(atualizarSidebarAdsterra, 300);
+  setTimeout(atualizarSidebarAdsterra, 1000);
+  setTimeout(atualizarSidebarAdsterra, 2500);
+})();
+
+</script>
 
 </body>
 </html>
