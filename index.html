@@ -215,6 +215,10 @@ body {
     height: calc(100% - 50px);
 
     overflow: auto;
+    overflow-x: hidden;
+
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
   }
 
   #mobileStage {
@@ -869,7 +873,7 @@ async function renderizarPagina(
 function atualizarZoom() {
 
   if (
-    window.innerWidth <= 700
+    (window.innerWidth <= 700 || window.innerHeight <= 700)
   ) {
 
     prepararZoomMobile();
@@ -977,6 +981,21 @@ function atualizarZoomDesktop() {
 
   }
 
+  /*
+    O transform do leitor é visual e não altera o
+    tamanho de layout do elemento. Por isso, no
+    desktop, ajustamos a altura do palco para que
+    a rolagem termine exatamente no final da HQ.
+  */
+  const alturaVisual =
+    leitor.getBoundingClientRect().height;
+
+  mobileStage.style.height =
+    Math.max(
+      areaLeitor.clientHeight,
+      alturaVisual + 40
+    ) + "px";
+
 }
 
 
@@ -1081,6 +1100,14 @@ function prepararZoomMobile() {
       )
     );
 
+  /*
+    No mobile o tamanho das páginas já participa
+    do layout, então não precisamos deixar uma
+    altura extra criada pelo zoom desktop.
+  */
+  mobileStage.style.height = "auto";
+  mobileStage.style.minHeight = "100%";
+
   atualizarZoomMobile();
 
 }
@@ -1094,7 +1121,7 @@ btnMenos.addEventListener(
   "click",
   () => {
 
-    if (window.innerWidth <= 700) {
+    if ((window.innerWidth <= 700 || window.innerHeight <= 700)) {
 
       escalaMobile =
         Math.max(
@@ -1126,7 +1153,7 @@ btnMais.addEventListener(
   "click",
   () => {
 
-    if (window.innerWidth <= 700) {
+    if ((window.innerWidth <= 700 || window.innerHeight <= 700)) {
 
       escalaMobile =
         Math.min(
@@ -1161,10 +1188,13 @@ btnReset.addEventListener(
     zoom = 1;
 
     if (
-      window.innerWidth <= 700
+      (window.innerWidth <= 700 || window.innerHeight <= 700)
     ) {
 
       escalaMobile = escalaMobileBase;
+
+      mobileStage.style.height = "auto";
+      mobileStage.style.minHeight = "100%";
 
       atualizarZoom();
 
@@ -1388,7 +1418,7 @@ areaLeitor.addEventListener(
   (evento) => {
 
     if (
-      window.innerWidth <= 700 &&
+      (window.innerWidth <= 700 || window.innerHeight <= 700) &&
       evento.touches.length === 2
     ) {
 
@@ -1421,7 +1451,7 @@ areaLeitor.addEventListener(
   (evento) => {
 
     if (
-      window.innerWidth <= 700 &&
+      (window.innerWidth <= 700 || window.innerHeight <= 700) &&
       evento.touches.length === 2 &&
       distanciaInicial
     ) {
@@ -1507,7 +1537,21 @@ window.addEventListener(
   "resize",
   () => {
 
-    atualizarZoom();
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
+
+      prepararZoomMobile();
+
+    } else {
+
+      mobileStage.style.height = "auto";
+      mobileStage.style.minHeight = "100%";
+
+      atualizarZoom();
+
+    }
 
   }
 );
