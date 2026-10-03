@@ -343,16 +343,8 @@ body {
     top: 50px;
     height: calc(100% - 50px);
 
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    /*
-      Um dedo continua rolando verticalmente.
-      O pinch de dois dedos é controlado pelo JavaScript.
-    */
+    overflow: auto;
     touch-action: pan-y;
-
-    -webkit-overflow-scrolling: touch;
   }
 
   #mobileStage {
@@ -360,39 +352,29 @@ body {
 
     width: 100%;
     min-width: 0;
-
     box-sizing: border-box;
 
     padding: 10px;
   }
 
   #leitor {
-    transform-origin: 0 0;
+    transform: none !important;
+    transform-origin: top center;
 
     display: block;
 
-    /*
-      Em 100% a HQ ocupa exatamente a largura
-      disponível no aparelho.
-    */
     width: 100%;
-    max-width: 100%;
-
+    min-width: 0;
     box-sizing: border-box;
   }
 
   #leitor canvas {
     display: block;
-
     width: 100% !important;
     height: auto !important;
-
     max-width: 100%;
-
-    margin-left: 0;
-    margin-right: 0;
-
-    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }
@@ -1848,19 +1830,16 @@ let distanciaInicial = null;
 function atualizarZoomMobile() {
 
   /*
-    No celular usamos transform para ampliar visualmente
-    a HQ sem alterar a largura estrutural da página.
-    Isso evita que o navegador crie uma área lateral
-    enorme e faça as páginas "andarem" horizontalmente.
+    No celular também usamos zoom para que o tamanho
+    ocupado pela HQ acompanhe visualmente a escala e
+    não crie espaço vazio após a última página.
   */
 
-  leitor.style.zoom = "1";
-
   leitor.style.transform =
-    `scale(${escalaMobile})`;
+    "none";
 
-  leitor.style.transformOrigin =
-    "0 0";
+  leitor.style.zoom =
+    escalaMobile;
 
 }
 
@@ -2129,32 +2108,25 @@ function distanciaToque(
     toque2.clientY;
 
   return Math.sqrt(
-    dx * dx + dy * dy
+    dx * dx +
+    dy * dy
   );
 
 }
 
-
 let escalaMobileAtual = 1;
 let distanciaInicial = null;
-let pinchAtivo = false;
+let scrollLeftPinch = 0;
+let scrollTopPinch = 0;
 
-
-/*
-  Dois dedos iniciam exclusivamente o pinch zoom.
-  O deslocamento dos dedos não é usado para mover
-  a HQ lateralmente.
-*/
 areaLeitor.addEventListener(
   "touchstart",
   (evento) => {
 
     if (
-      evento.touches.length === 2 &&
-      window.innerWidth <= 700
+      window.innerWidth <= 700 &&
+      evento.touches.length === 2
     ) {
-
-      pinchAtivo = true;
 
       distanciaInicial =
         distanciaToque(
@@ -2164,6 +2136,12 @@ areaLeitor.addEventListener(
 
       escalaMobileAtual =
         escalaMobile;
+
+      scrollLeftPinch =
+        areaLeitor.scrollLeft;
+
+      scrollTopPinch =
+        areaLeitor.scrollTop;
 
       evento.preventDefault();
 
@@ -2175,16 +2153,14 @@ areaLeitor.addEventListener(
   }
 );
 
-
 areaLeitor.addEventListener(
   "touchmove",
   (evento) => {
 
     if (
-      pinchAtivo &&
+      window.innerWidth <= 700 &&
       evento.touches.length === 2 &&
-      distanciaInicial &&
-      window.innerWidth <= 700
+      distanciaInicial
     ) {
 
       const distanciaAtual =
@@ -2209,9 +2185,15 @@ areaLeitor.addEventListener(
       atualizarZoomMobile();
 
       /*
-        Impede que o navegador transforme o pinch
-        em rolagem ou deslocamento lateral.
+        Impede que o movimento lateral dos dois dedos
+        seja interpretado como arraste da HQ.
       */
+      areaLeitor.scrollLeft =
+        scrollLeftPinch;
+
+      areaLeitor.scrollTop =
+        scrollTopPinch;
+
       evento.preventDefault();
 
     }
@@ -2222,43 +2204,30 @@ areaLeitor.addEventListener(
   }
 );
 
-
-function finalizarPinch(evento) {
-
-  if (
-    pinchAtivo &&
-    evento.touches.length < 2
-  ) {
-
-    pinchAtivo = false;
-    distanciaInicial = null;
-
-  }
-
-}
-
-
 areaLeitor.addEventListener(
   "touchend",
-  finalizarPinch,
-  {
-    passive: true
-  }
-);
+  (evento) => {
 
-
-areaLeitor.addEventListener(
-  "touchcancel",
-  () => {
-
-    pinchAtivo = false;
-    distanciaInicial = null;
+    if (evento.touches.length < 2) {
+      distanciaInicial = null;
+    }
 
   },
   {
     passive: true
   }
 );
+
+areaLeitor.addEventListener(
+  "touchcancel",
+  () => {
+    distanciaInicial = null;
+  },
+  {
+    passive: true
+  }
+);
+
 
 /* =========================
    REDIMENSIONAMENTO
