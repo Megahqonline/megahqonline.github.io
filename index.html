@@ -823,6 +823,51 @@ html.modo-leitor #areaLeitor {
   }
 }
 
+
+/* =========================
+   ADSTERRA - BANNERS
+========================= */
+#adsterraBanner160x300 {
+  position: fixed;
+  top: 70px;
+  right: 12px;
+  width: 160px;
+  height: 300px;
+  overflow: hidden;
+  z-index: 490;
+  display: none;
+}
+#adsterraBanner320x50 {
+  position: fixed;
+  left: 50%;
+  bottom: 6px;
+  width: 320px;
+  height: 50px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  z-index: 490;
+  display: none;
+}
+#adsterraBanner300x250 {
+  width: 300px;
+  height: 250px;
+  margin: 0 auto 30px;
+  overflow: hidden;
+}
+html.modo-leitor #adsterraBanner160x300 { display:block; }
+html.modo-leitor #adsterraBanner320x50,
+html.modo-leitor #adsterraBanner300x250 { display:none; }
+html:not(.modo-leitor) #adsterraBanner160x300,
+html:not(.modo-leitor) #adsterraBanner320x50 { display:none; }
+html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
+@media (max-width:1100px) {
+  html.modo-leitor #adsterraBanner160x300 { display:none; }
+}
+@media (max-width:700px) {
+  html.modo-leitor #adsterraBanner320x50 { display:block; }
+  html.modo-leitor #adsterraBanner160x300 { display:none; }
+}
+
 </style>
 
 
@@ -839,7 +884,6 @@ html.modo-leitor #areaLeitor {
   }
 })();
 </script>
-
 </head>
 
 <body>
@@ -895,7 +939,21 @@ html.modo-leitor #areaLeitor {
 
     </section>
 
-    <section id="projeto" class="home-secao">
+    
+<div id="adsterraBanner300x250" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : '124c5fc014c8b3ec4e0a6f0f7e034497',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/124c5fc014c8b3ec4e0a7f0f7e034497/invoke.js"></script>
+</div>
+
+<section id="projeto" class="home-secao">
 
       <h2>Sobre o MegaHQ Online</h2>
 
@@ -2437,6 +2495,35 @@ carregarPDF();
 </script>
 
 
+
+
+<!-- ADSTERRA - BANNER 160x300 -->
+<div id="adsterraBanner160x300" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : 'abba3974ab685a71f5e9a87a287fe98d',
+      'format' : 'iframe',
+      'height' : 300,
+      'width' : 160,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/abba3974ab685a71f5e9a87a287fe98d/invoke.js"></script>
+</div>
+
+<!-- ADSTERRA - BANNER 320x50 -->
+<div id="adsterraBanner320x50" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : 'cba5be04252c2b9e6476640e7a13439d',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/cba5be04252c2b9e6476640e7a13439d/invoke.js"></script>
+</div>
 
 <!-- =========================
      ADSTERRA - NATIVE BANNER 1:4
