@@ -344,37 +344,28 @@ body {
     height: calc(100% - 50px);
 
     overflow: auto;
-    touch-action: pan-y;
   }
 
   #mobileStage {
     display: block;
 
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
+    width: max-content;
+    min-width: 100%;
 
     padding: 10px;
   }
 
   #leitor {
-    transform: none !important;
-    transform-origin: top center;
+    transform-origin: 0 0;
 
     display: block;
 
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
+    width: max-content;
   }
 
   #leitor canvas {
-    display: block;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 
 }
@@ -2114,17 +2105,12 @@ function distanciaToque(
 
 }
 
-let escalaMobileAtual = 1;
-let distanciaInicial = null;
-let scrollLeftPinch = 0;
-let scrollTopPinch = 0;
 
 areaLeitor.addEventListener(
   "touchstart",
   (evento) => {
 
     if (
-      window.innerWidth <= 700 &&
       evento.touches.length === 2
     ) {
 
@@ -2137,79 +2123,6 @@ areaLeitor.addEventListener(
       escalaMobileAtual =
         escalaMobile;
 
-      scrollLeftPinch =
-        areaLeitor.scrollLeft;
-
-      scrollTopPinch =
-        areaLeitor.scrollTop;
-
-      evento.preventDefault();
-
-    }
-
-  },
-  {
-    passive: false
-  }
-);
-
-areaLeitor.addEventListener(
-  "touchmove",
-  (evento) => {
-
-    if (
-      window.innerWidth <= 700 &&
-      evento.touches.length === 2 &&
-      distanciaInicial
-    ) {
-
-      const distanciaAtual =
-        distanciaToque(
-          evento.touches[0],
-          evento.touches[1]
-        );
-
-      const fator =
-        distanciaAtual /
-        distanciaInicial;
-
-      escalaMobile =
-        Math.min(
-          4,
-          Math.max(
-            1,
-            escalaMobileAtual * fator
-          )
-        );
-
-      atualizarZoomMobile();
-
-      /*
-        Impede que o movimento lateral dos dois dedos
-        seja interpretado como arraste da HQ.
-      */
-      areaLeitor.scrollLeft =
-        scrollLeftPinch;
-
-      areaLeitor.scrollTop =
-        scrollTopPinch;
-
-      evento.preventDefault();
-
-    }
-
-  },
-  {
-    passive: false
-  }
-);
-
-areaLeitor.addEventListener(
-  "touchend",
-  (evento) => {
-
-    if (evento.touches.length < 2) {
-      distanciaInicial = null;
     }
 
   },
@@ -2218,10 +2131,65 @@ areaLeitor.addEventListener(
   }
 );
 
+
+let escalaMobileAtual = 1;
+
+
 areaLeitor.addEventListener(
-  "touchcancel",
+  "touchmove",
+  (evento) => {
+
+    if (
+      evento.touches.length === 2 &&
+      window.innerWidth <= 700
+    ) {
+
+      const distanciaAtual =
+        distanciaToque(
+          evento.touches[0],
+          evento.touches[1]
+        );
+
+      if (
+        distanciaInicial
+      ) {
+
+        const fator =
+          distanciaAtual /
+          distanciaInicial;
+
+        escalaMobile =
+          Math.min(
+            4,
+            Math.max(
+              1,
+              escalaMobileAtual *
+              fator
+            )
+          );
+
+        atualizarZoomMobile();
+
+      }
+
+      evento.preventDefault();
+
+    }
+
+  },
+  {
+    passive: false
+  }
+);
+
+
+areaLeitor.addEventListener(
+  "touchend",
   () => {
-    distanciaInicial = null;
+
+    distanciaInicial =
+      null;
+
   },
   {
     passive: true
