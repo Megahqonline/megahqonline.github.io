@@ -255,6 +255,7 @@ body {
 
 #carregandoHQ {
   position: fixed;
+  display: none !important;
   inset: 0;
   z-index: 200000;
 
@@ -272,7 +273,7 @@ body {
 }
 
 #carregandoHQ.visivel {
-  display: flex;
+  display: flex !important;
 }
 
 .carregando-caixa {
@@ -788,6 +789,10 @@ html.modo-leitor #areaLeitor {
   const temHQ = params.has("id") || params.has("pdf");
   if (temHQ) {
     document.documentElement.classList.add("modo-leitor");
+  } else {
+    document.documentElement.classList.remove("modo-leitor");
+    const esconder = document.getElementById("carregandoHQ");
+    if (esconder) esconder.style.setProperty("display", "none", "important");
   }
 })();
 </script>
