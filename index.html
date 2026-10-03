@@ -1007,82 +1007,104 @@ let escalaMobileBase = 1;
 let escalaMobile = 1;
 let distanciaInicial = null;
 let escalaMobileAtual = 1;
+let pontoZoomX = 0;
+let pontoZoomY = 0;
 let scrollLeftInicial = 0;
 let scrollTopInicial = 0;
 
-
 function calcularEscalaMobileBase() {
-
-  const canvases =
-    leitor.querySelectorAll("canvas");
-
-  if (!canvases.length) {
-    return 1;
-  }
+  const canvases = leitor.querySelectorAll("canvas");
+  if (!canvases.length) return 1;
 
   let maiorLargura = 0;
 
   canvases.forEach((canvas) => {
-
     const largura =
-      Number(canvas.dataset.originalWidth) ||
-      canvas.width;
-
-    maiorLargura =
-      Math.max(maiorLargura, largura);
-
+      Number(canvas.dataset.originalWidth) || canvas.width;
+    maiorLargura = Math.max(maiorLargura, largura);
   });
 
   const larguraDisponivel =
     Math.max(1, areaLeitor.clientWidth - 20);
 
   return Math.min(1, larguraDisponivel / maiorLargura);
-
 }
 
-
 function aplicarEscalaMobile() {
-
-  const canvases =
-    leitor.querySelectorAll("canvas");
+  const canvases = leitor.querySelectorAll("canvas");
 
   canvases.forEach((canvas) => {
-
     const larguraOriginal =
-      Number(canvas.dataset.originalWidth) ||
-      canvas.width;
+      Number(canvas.dataset.originalWidth) || canvas.width;
 
     const alturaOriginal =
-      Number(canvas.dataset.originalHeight) ||
-      canvas.height;
+      Number(canvas.dataset.originalHeight) || canvas.height;
 
     canvas.style.width =
       `${larguraOriginal * escalaMobile}px`;
 
     canvas.style.height =
       `${alturaOriginal * escalaMobile}px`;
-
   });
 
   leitor.style.transform = "none";
-
 }
 
+function aplicarZoomMobileAncorado(
+  novaEscala,
+  pontoX,
+  pontoY,
+  scrollLeftBase,
+  scrollTopBase
+) {
+  const escalaAnterior = escalaMobile;
+
+  if (
+    !Number.isFinite(novaEscala) ||
+    novaEscala <= 0 ||
+    escalaAnterior <= 0
+  ) {
+    return;
+  }
+
+  const conteudoX =
+    (scrollLeftBase + pontoX) / escalaAnterior;
+
+  const conteudoY =
+    (scrollTopBase + pontoY) / escalaAnterior;
+
+  escalaMobile = novaEscala;
+
+  aplicarEscalaMobile();
+
+  areaLeitor.scrollLeft =
+    Math.max(
+      0,
+      conteudoX * escalaMobile - pontoX
+    );
+
+  areaLeitor.scrollTop =
+    Math.max(
+      0,
+      conteudoY * escalaMobile - pontoY
+    );
+
+  zoomTexto.textContent =
+    Math.round(
+      (escalaMobile / escalaMobileBase) * 100
+    ) + "%";
+}
 
 function atualizarZoomMobile() {
-
   aplicarEscalaMobile();
 
   zoomTexto.textContent =
     Math.round(
       (escalaMobile / escalaMobileBase) * 100
     ) + "%";
-
 }
 
-
 function prepararZoomMobile() {
-
   const proporcaoAnterior =
     escalaMobileBase > 0
       ? escalaMobile / escalaMobileBase
@@ -1100,18 +1122,18 @@ function prepararZoomMobile() {
       )
     );
 
-  /*
-    No mobile o tamanho das páginas já participa
-    do layout, então não precisamos deixar uma
-    altura extra criada pelo zoom desktop.
-  */
   mobileStage.style.height = "auto";
   mobileStage.style.minHeight = "100%";
 
   atualizarZoomMobile();
-
 }
 
+function pontoCentralToque(toque1, toque2) {
+  return {
+    x: (toque1.clientX + toque2.clientX) / 2,
+    y: (toque1.clientY + toque2.clientY) / 2
+  };
+}
 
 /* =========================
    BOTÕES DE ZOOM
@@ -1121,30 +1143,38 @@ btnMenos.addEventListener(
   "click",
   () => {
 
-    if ((window.innerWidth <= 700 || window.innerHeight <= 700)) {
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
 
-      escalaMobile =
+      const novaEscala =
         Math.max(
           escalaMobileBase,
           escalaMobile -
           escalaMobileBase * passoZoom
         );
 
-    } else {
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        areaLeitor.clientWidth / 2,
+        areaLeitor.clientHeight / 2,
+        areaLeitor.scrollLeft,
+        areaLeitor.scrollTop
+      );
 
-      zoom =
-        Math.max(
-          zoomMinimo,
-          Number(
-            (zoom - passoZoom)
-            .toFixed(2)
-          )
-        );
-
+      return;
     }
 
-    atualizarZoom();
+    zoom =
+      Math.max(
+        zoomMinimo,
+        Number(
+          (zoom - passoZoom).toFixed(2)
+        )
+      );
 
+    atualizarZoom();
   }
 );
 
@@ -1153,30 +1183,38 @@ btnMais.addEventListener(
   "click",
   () => {
 
-    if ((window.innerWidth <= 700 || window.innerHeight <= 700)) {
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
 
-      escalaMobile =
+      const novaEscala =
         Math.min(
           escalaMobileBase * 4,
           escalaMobile +
           escalaMobileBase * passoZoom
         );
 
-    } else {
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        areaLeitor.clientWidth / 2,
+        areaLeitor.clientHeight / 2,
+        areaLeitor.scrollLeft,
+        areaLeitor.scrollTop
+      );
 
-      zoom =
-        Math.min(
-          zoomMaximo,
-          Number(
-            (zoom + passoZoom)
-            .toFixed(2)
-          )
-        );
-
+      return;
     }
 
-    atualizarZoom();
+    zoom =
+      Math.min(
+        zoomMaximo,
+        Number(
+          (zoom + passoZoom).toFixed(2)
+        )
+      );
 
+    atualizarZoom();
   }
 );
 
@@ -1392,33 +1430,23 @@ btnDownload.addEventListener(
    PINCH ZOOM MOBILE
 ========================= */
 
-function distanciaToque(
-  toque1,
-  toque2
-) {
-
+function distanciaToque(toque1, toque2) {
   const dx =
-    toque1.clientX -
-    toque2.clientX;
+    toque1.clientX - toque2.clientX;
 
   const dy =
-    toque1.clientY -
-    toque2.clientY;
+    toque1.clientY - toque2.clientY;
 
-  return Math.sqrt(
-    dx * dx +
-    dy * dy
-  );
-
+  return Math.sqrt(dx * dx + dy * dy);
 }
-
 
 areaLeitor.addEventListener(
   "touchstart",
   (evento) => {
 
     if (
-      (window.innerWidth <= 700 || window.innerHeight <= 700) &&
+      (window.innerWidth <= 700 ||
+       window.innerHeight <= 700) &&
       evento.touches.length === 2
     ) {
 
@@ -1431,27 +1459,38 @@ areaLeitor.addEventListener(
       escalaMobileAtual =
         escalaMobile;
 
+      const centro =
+        pontoCentralToque(
+          evento.touches[0],
+          evento.touches[1]
+        );
+
+      const rect =
+        areaLeitor.getBoundingClientRect();
+
+      pontoZoomX =
+        centro.x - rect.left;
+
+      pontoZoomY =
+        centro.y - rect.top;
+
       scrollLeftInicial =
         areaLeitor.scrollLeft;
 
       scrollTopInicial =
         areaLeitor.scrollTop;
-
     }
-
   },
-  {
-    passive: true
-  }
+  { passive: true }
 );
-
 
 areaLeitor.addEventListener(
   "touchmove",
   (evento) => {
 
     if (
-      (window.innerWidth <= 700 || window.innerHeight <= 700) &&
+      (window.innerWidth <= 700 ||
+       window.innerHeight <= 700) &&
       evento.touches.length === 2 &&
       distanciaInicial
     ) {
@@ -1463,10 +1502,9 @@ areaLeitor.addEventListener(
         );
 
       const fator =
-        distanciaAtual /
-        distanciaInicial;
+        distanciaAtual / distanciaInicial;
 
-      escalaMobile =
+      const novaEscala =
         Math.min(
           escalaMobileBase * 4,
           Math.max(
@@ -1475,57 +1513,36 @@ areaLeitor.addEventListener(
           )
         );
 
-      atualizarZoomMobile();
-
-      /*
-        O gesto de dois dedos controla somente o zoom.
-        Isso impede que a página seja deslocada
-        lateralmente durante o pinch.
-      */
-      areaLeitor.scrollLeft =
-        scrollLeftInicial;
-
-      areaLeitor.scrollTop =
-        scrollTopInicial;
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        pontoZoomX,
+        pontoZoomY,
+        scrollLeftInicial,
+        scrollTopInicial
+      );
 
       evento.preventDefault();
-
     }
-
   },
-  {
-    passive: false
-  }
+  { passive: false }
 );
-
 
 areaLeitor.addEventListener(
   "touchend",
   (evento) => {
-
     if (evento.touches.length < 2) {
-
       distanciaInicial = null;
-
     }
-
   },
-  {
-    passive: true
-  }
+  { passive: true }
 );
-
 
 areaLeitor.addEventListener(
   "touchcancel",
   () => {
-
     distanciaInicial = null;
-
   },
-  {
-    passive: true
-  }
+  { passive: true }
 );
 
 
