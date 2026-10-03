@@ -134,6 +134,116 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* =========================
+   CARREGAMENTO DA HQ
+========================= */
+
+#carregandoHQ {
+  position: absolute;
+  inset: 0;
+  z-index: 5000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(circle at 50% 35%, #222 0%, #151515 45%, #0d0d0d 100%);
+
+  color: white;
+  text-align: center;
+}
+
+#carregandoHQ.visivel {
+  display: flex;
+}
+
+.carregando-caixa {
+  width: min(430px, calc(100% - 30px));
+  padding: 30px 26px;
+
+  border: 1px solid #333;
+  border-radius: 14px;
+
+  background: rgba(20,20,20,.96);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+
+.carregando-icone {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 18px;
+
+  border: 4px solid #3b3b3b;
+  border-top-color: #fff;
+  border-radius: 50%;
+
+  animation: megaGirar .9s linear infinite;
+}
+
+.carregando-titulo {
+  margin: 0 0 10px;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.carregando-texto {
+  margin: 0;
+
+  color: #bdbdbd;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.carregando-progresso {
+  width: 100%;
+  height: 5px;
+
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  border-radius: 99px;
+  background: #303030;
+}
+
+#barraProgressoHQ {
+  width: 0%;
+  height: 100%;
+
+  border-radius: inherit;
+  background: #e8e8e8;
+
+  transition: width .2s ease;
+}
+
+#textoProgressoHQ {
+  min-height: 18px;
+  margin-top: 9px;
+
+  color: #888;
+  font-size: 12px;
+}
+
+@keyframes megaGirar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carregando-icone {
+    animation: none;
+  }
+
+  #barraProgressoHQ {
+    transition: none;
+  }
+}
+
 #mobileStage {
   width: max-content;
   min-width: 100%;
@@ -1113,6 +1223,30 @@ html.modo-leitor #areaLeitor {
 
 <div id="areaLeitor">
 
+  <div id="carregandoHQ" aria-live="polite" aria-busy="true">
+    <div class="carregando-caixa">
+
+      <div class="carregando-icone" aria-hidden="true"></div>
+
+      <p class="carregando-titulo">
+        Carregando HQ, por favor aguarde...
+      </p>
+
+      <p id="textoCarregandoHQ" class="carregando-texto">
+        Estamos preparando as páginas para leitura.
+      </p>
+
+      <div class="carregando-progresso" aria-hidden="true">
+        <div id="barraProgressoHQ"></div>
+      </div>
+
+      <div id="textoProgressoHQ">
+        Iniciando...
+      </div>
+
+    </div>
+  </div>
+
   <div id="mobileStage">
 
     <div id="leitor"></div>
@@ -1155,6 +1289,18 @@ document.getElementById("areaLeitor");
 
 const mobileStage =
 document.getElementById("mobileStage");
+
+const carregandoHQ =
+document.getElementById("carregandoHQ");
+
+const textoCarregandoHQ =
+document.getElementById("textoCarregandoHQ");
+
+const barraProgressoHQ =
+document.getElementById("barraProgressoHQ");
+
+const textoProgressoHQ =
+document.getElementById("textoProgressoHQ");
 
 const zoomTexto =
 document.getElementById("zoomTexto");
@@ -1273,6 +1419,116 @@ function obterPDF() {
 
 
 /* =========================
+   STATUS DE CARREGAMENTO
+========================= */
+
+function mostrarCarregamento() {
+
+  carregandoHQ.classList.add("visivel");
+
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "true"
+  );
+
+  barraProgressoHQ.style.width = "0%";
+
+  textoCarregandoHQ.textContent =
+    "Estamos preparando as páginas para leitura.";
+
+  textoProgressoHQ.textContent =
+    "Conectando ao arquivo...";
+
+}
+
+function atualizarProgressoCarregamento(
+  carregado,
+  total
+) {
+
+  if (
+    Number.isFinite(total) &&
+    total > 0
+  ) {
+
+    const porcentagem =
+      Math.min(
+        100,
+        Math.round(
+          (carregado / total) * 100
+        )
+      );
+
+    barraProgressoHQ.style.width =
+      porcentagem + "%";
+
+    textoProgressoHQ.textContent =
+      "Baixando HQ: " +
+      porcentagem +
+      "%";
+
+  } else {
+
+    barraProgressoHQ.style.width =
+      "35%";
+
+    textoProgressoHQ.textContent =
+      "Baixando HQ...";
+
+  }
+
+}
+
+function atualizarStatusPrimeiraPagina() {
+
+  barraProgressoHQ.style.width =
+    "100%";
+
+  textoCarregandoHQ.textContent =
+    "Primeira página pronta. As demais páginas continuam sendo preparadas.";
+
+  textoProgressoHQ.textContent =
+    "Abrindo a leitura...";
+
+}
+
+function esconderCarregamento() {
+
+  carregandoHQ.classList.remove(
+    "visivel"
+  );
+
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "false"
+  );
+
+}
+
+function mostrarErroCarregamento() {
+
+  carregandoHQ.classList.add(
+    "visivel"
+  );
+
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "false"
+  );
+
+  barraProgressoHQ.style.width =
+    "0%";
+
+  textoCarregandoHQ.textContent =
+    "Não foi possível carregar esta HQ.";
+
+  textoProgressoHQ.textContent =
+    "Verifique sua conexão ou tente novamente.";
+
+}
+
+
+/* =========================
    CARREGAR PDF
 ========================= */
 
@@ -1290,13 +1546,34 @@ async function carregarPDF() {
 
   leitor.innerHTML = "";
 
+  mostrarCarregamento();
+
   try {
 
     const loadingTask =
     pdfjsLib.getDocument({
       url: dados.url,
-      withCredentials: false
+      withCredentials: false,
+
+      /*
+        Mantemos Range e streaming habilitados.
+        Isso permite que o PDF.js solicite apenas
+        partes do arquivo quando o servidor suporta.
+      */
+      disableRange: false,
+      disableStream: false,
+      disableAutoFetch: false
     });
+
+    loadingTask.onProgress =
+      function(progresso) {
+
+        atualizarProgressoCarregamento(
+          progresso.loaded,
+          progresso.total
+        );
+
+      };
 
     pdfAtual =
     await loadingTask.promise;
@@ -1307,8 +1584,44 @@ async function carregarPDF() {
       "páginas"
     );
 
+    /*
+      Primeiro renderizamos somente a primeira página.
+      Assim o usuário começa a leitura mais rapidamente,
+      enquanto as demais páginas continuam sendo renderizadas.
+    */
+
+    textoProgressoHQ.textContent =
+      "Preparando a primeira página...";
+
+    barraProgressoHQ.style.width =
+      "80%";
+
+    await renderizarPagina(1);
+
+    atualizarZoom();
+
+    atualizarStatusPrimeiraPagina();
+
+    /*
+      Pequeno intervalo para permitir que o navegador
+      apresente a primeira página antes de continuar
+      o processamento das demais.
+    */
+
+    await new Promise(
+      resolver =>
+        requestAnimationFrame(resolver)
+    );
+
+    esconderCarregamento();
+
+    /*
+      As páginas restantes são renderizadas em segundo
+      plano, sem bloquear a abertura da HQ.
+    */
+
     for (
-      let numeroPagina = 1;
+      let numeroPagina = 2;
       numeroPagina <= pdfAtual.numPages;
       numeroPagina++
     ) {
@@ -1325,33 +1638,11 @@ async function carregarPDF() {
 
     console.error(erro);
 
-    leitor.innerHTML = `
-
-      <div style="
-        color:white;
-        padding:40px;
-        max-width:700px;
-        margin:auto;
-        font-family:Arial;
-      ">
-
-        <h2>
-          Não foi possível carregar a HQ.
-        </h2>
-
-        <p>
-          Verifique se o arquivo está disponível
-          e se o link do Google Drive está correto.
-        </p>
-
-      </div>
-
-    `;
+    mostrarErroCarregamento();
 
   }
 
 }
-
 
 /* =========================
    RENDERIZAR PÁGINA
