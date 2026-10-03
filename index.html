@@ -636,34 +636,20 @@ function atualizarZoom() {
 
 function atualizarZoomDesktop() {
 
+  /*
+    Usamos zoom em vez de transform no desktop.
+    O zoom altera também o tamanho ocupado no layout,
+    evitando que fique uma grande área preta depois da última página.
+  */
+
   const scrollTopAntes =
     areaLeitor.scrollTop;
 
   const scrollLeftAntes =
     areaLeitor.scrollLeft;
 
-  const larguraAntes =
-    leitor.getBoundingClientRect().width;
-
-  const alturaAntes =
-    leitor.getBoundingClientRect().height;
-
-
-  leitor.style.transform =
-    `scale(${zoom})`;
-
-
-  const larguraDepois =
-    leitor.getBoundingClientRect().width;
-
-  const alturaDepois =
-    leitor.getBoundingClientRect().height;
-
-
-  /*
-    Mantém aproximadamente o ponto
-    que estava no centro da tela.
-  */
+  const zoomAnterior =
+    Number(leitor.dataset.zoomAnterior || 1);
 
   const centroX =
     scrollLeftAntes +
@@ -673,51 +659,63 @@ function atualizarZoomDesktop() {
     scrollTopAntes +
     areaLeitor.clientHeight / 2;
 
+  leitor.style.transform =
+    "none";
 
-  if (larguraAntes > 0) {
+  leitor.style.zoom =
+    zoom;
 
-    const proporcaoX =
-      larguraDepois /
-      larguraAntes;
-
-    areaLeitor.scrollLeft =
-      centroX * proporcaoX -
-      areaLeitor.clientWidth / 2;
-
-  }
-
-
-  if (alturaAntes > 0) {
-
-    const proporcaoY =
-      alturaDepois /
-      alturaAntes;
-
-    areaLeitor.scrollTop =
-      centroY * proporcaoY -
-      areaLeitor.clientHeight / 2;
-
-  }
-
+  leitor.dataset.zoomAnterior =
+    zoom;
 
   /*
-    Centraliza horizontalmente quando
-    a HQ é menor que a área disponível.
+    Centraliza horizontalmente quando a HQ é menor
+    que a área disponível e preserva a posição quando
+    ela é maior.
   */
 
   const larguraHQ =
-    leitor.scrollWidth *
-    zoom;
+    leitor.getBoundingClientRect().width;
+
+  const alturaHQ =
+    leitor.getBoundingClientRect().height;
 
   const larguraTela =
     areaLeitor.clientWidth;
 
-
-  if (
-    larguraHQ <= larguraTela
-  ) {
+  if (larguraHQ <= larguraTela) {
 
     areaLeitor.scrollLeft = 0;
+
+  } else {
+
+    const fator =
+      zoomAnterior > 0
+        ? zoom / zoomAnterior
+        : zoom;
+
+    areaLeitor.scrollLeft =
+      Math.max(
+        0,
+        centroX * fator -
+        areaLeitor.clientWidth / 2
+      );
+
+  }
+
+  if (alturaHQ > areaLeitor.clientHeight) {
+
+    const fator =
+      zoomAnterior > 0
+        ? zoom / zoomAnterior
+        : zoom;
+
+    areaLeitor.scrollTop =
+      Math.max(
+        0,
+        centroY * fator -
+        areaLeitor.clientHeight / 2
+      );
 
   }
 
@@ -737,8 +735,17 @@ let distanciaInicial = null;
 
 function atualizarZoomMobile() {
 
+  /*
+    No celular também usamos zoom para que o tamanho
+    ocupado pela HQ acompanhe visualmente a escala e
+    não crie espaço vazio após a última página.
+  */
+
   leitor.style.transform =
-    `scale(${escalaMobile})`;
+    "none";
+
+  leitor.style.zoom =
+    escalaMobile;
 
 }
 
