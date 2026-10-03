@@ -221,33 +221,30 @@ body {
     display: block;
 
     width: 100%;
-    min-width: 0;
+    min-width: 100%;
 
     padding: 10px;
     overflow: visible;
   }
 
   #leitor {
-    transform-origin: 0 0;
-
     display: block;
 
-    width: 100%;
-    max-width: 100%;
+    width: max-content;
+    max-width: none;
 
-    touch-action: pan-y;
+    margin: 0 auto;
+
+    transform: none !important;
   }
 
   #leitor canvas {
     display: block;
-
-    width: 100%;
+    max-width: none;
     height: auto;
 
-    margin-left: 0;
-    margin-right: 0;
-
-    touch-action: pan-y;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }
@@ -614,17 +611,16 @@ async function renderizarPagina(
 
 function atualizarZoom() {
 
-  zoomTexto.textContent =
-    Math.round(zoom * 100) + "%";
-
-
   if (
     window.innerWidth <= 700
   ) {
 
-    atualizarZoomMobile();
+    prepararZoomMobile();
 
   } else {
+
+    zoomTexto.textContent =
+      Math.round(zoom * 100) + "%";
 
     atualizarZoomDesktop();
 
@@ -731,157 +727,106 @@ function atualizarZoomDesktop() {
    ZOOM MOBILE
 ========================= */
 
+let escalaMobileBase = 1;
 let escalaMobile = 1;
-let escalaMobileAtual = 1;
 let distanciaInicial = null;
+let escalaMobileAtual = 1;
+let scrollLeftInicial = 0;
+let scrollTopInicial = 0;
+
+
+function calcularEscalaMobileBase() {
+
+  const canvases =
+    leitor.querySelectorAll("canvas");
+
+  if (!canvases.length) {
+    return 1;
+  }
+
+  let maiorLargura = 0;
+
+  canvases.forEach((canvas) => {
+
+    const largura =
+      Number(canvas.dataset.originalWidth) ||
+      canvas.width;
+
+    maiorLargura =
+      Math.max(maiorLargura, largura);
+
+  });
+
+  const larguraDisponivel =
+    Math.max(1, areaLeitor.clientWidth - 20);
+
+  return Math.min(1, larguraDisponivel / maiorLargura);
+
+}
+
+
+function aplicarEscalaMobile() {
+
+  const canvases =
+    leitor.querySelectorAll("canvas");
+
+  canvases.forEach((canvas) => {
+
+    const larguraOriginal =
+      Number(canvas.dataset.originalWidth) ||
+      canvas.width;
+
+    const alturaOriginal =
+      Number(canvas.dataset.originalHeight) ||
+      canvas.height;
+
+    canvas.style.width =
+      `${larguraOriginal * escalaMobile}px`;
+
+    canvas.style.height =
+      `${alturaOriginal * escalaMobile}px`;
+
+  });
+
+  leitor.style.transform = "none";
+
+}
+
 
 function atualizarZoomMobile() {
 
-  leitor.style.transform =
-    `scale(${escalaMobile})`;
+  aplicarEscalaMobile();
 
-  /*
-    O leitor visualmente aumenta com o transform,
-    mas o layout continua ocupando a largura original.
-    Ajustamos a altura do palco para acompanhar o
-    tamanho visual e evitamos que o gesto de dois dedos
-    seja interpretado como arraste horizontal.
-  */
-  if (pdfAtual) {
-
-    const primeiraCanvas =
-      leitor.querySelector("canvas");
-
-    if (primeiraCanvas) {
-
-      const alturaBase =
-        leitor.scrollHeight;
-
-      mobileStage.style.minHeight =
-        `${Math.max(
-          areaLeitor.clientHeight,
-          alturaBase * escalaMobile + 20
-        )}px`;
-
-    }
-
-  }
+  zoomTexto.textContent =
+    Math.round(
+      (escalaMobile / escalaMobileBase) * 100
+    ) + "%";
 
 }
 
 
-function distanciaToque(
-  toque1,
-  toque2
-) {
+function prepararZoomMobile() {
 
-  const dx =
-    toque1.clientX -
-    toque2.clientX;
+  const proporcaoAnterior =
+    escalaMobileBase > 0
+      ? escalaMobile / escalaMobileBase
+      : 1;
 
-  const dy =
-    toque1.clientY -
-    toque2.clientY;
+  escalaMobileBase =
+    calcularEscalaMobileBase();
 
-  return Math.sqrt(
-    dx * dx +
-    dy * dy
-  );
+  escalaMobile =
+    Math.min(
+      escalaMobileBase * 4,
+      Math.max(
+        escalaMobileBase,
+        escalaMobileBase * proporcaoAnterior
+      )
+    );
+
+  atualizarZoomMobile();
 
 }
-
-
-areaLeitor.addEventListener(
-  "touchstart",
-  (evento) => {
-
-    if (
-      window.innerWidth <= 700 &&
-      evento.touches.length === 2
-    ) {
-
-      distanciaInicial =
-        distanciaToque(
-          evento.touches[0],
-          evento.touches[1]
-        );
-
-      escalaMobileAtual =
-        escalaMobile;
-
-    }
-
-  },
-  {
-    passive: true
-  }
-);
-
-
-areaLeitor.addEventListener(
-  "touchmove",
-  (evento) => {
-
-    if (
-      window.innerWidth <= 700 &&
-      evento.touches.length === 2 &&
-      distanciaInicial
-    ) {
-
-      const distanciaAtual =
-        distanciaToque(
-          evento.touches[0],
-          evento.touches[1]
-        );
-
-      const fator =
-        distanciaAtual /
-        distanciaInicial;
-
-      escalaMobile =
-        Math.min(
-          4,
-          Math.max(
-            1,
-            escalaMobileAtual *
-            fator
-          )
-        );
-
-      atualizarZoomMobile();
-
-      /*
-        Impede que o navegador transforme o
-        movimento dos dois dedos em rolagem.
-      */
-      evento.preventDefault();
-
-    }
-
-  },
-  {
-    passive: false
-  }
-);
-
-
-areaLeitor.addEventListener(
-  "touchend",
-  (evento) => {
-
-    if (
-      evento.touches.length < 2
-    ) {
-
-      distanciaInicial = null;
-
-    }
-
-  },
-  {
-    passive: true
-  }
-);
 
 
 /* =========================
@@ -892,14 +837,27 @@ btnMenos.addEventListener(
   "click",
   () => {
 
-    zoom =
-      Math.max(
-        zoomMinimo,
-        Number(
-          (zoom - passoZoom)
-          .toFixed(2)
-        )
-      );
+    if (window.innerWidth <= 700) {
+
+      escalaMobile =
+        Math.max(
+          escalaMobileBase,
+          escalaMobile -
+          escalaMobileBase * passoZoom
+        );
+
+    } else {
+
+      zoom =
+        Math.max(
+          zoomMinimo,
+          Number(
+            (zoom - passoZoom)
+            .toFixed(2)
+          )
+        );
+
+    }
 
     atualizarZoom();
 
@@ -911,14 +869,27 @@ btnMais.addEventListener(
   "click",
   () => {
 
-    zoom =
-      Math.min(
-        zoomMaximo,
-        Number(
-          (zoom + passoZoom)
-          .toFixed(2)
-        )
-      );
+    if (window.innerWidth <= 700) {
+
+      escalaMobile =
+        Math.min(
+          escalaMobileBase * 4,
+          escalaMobile +
+          escalaMobileBase * passoZoom
+        );
+
+    } else {
+
+      zoom =
+        Math.min(
+          zoomMaximo,
+          Number(
+            (zoom + passoZoom)
+            .toFixed(2)
+          )
+        );
+
+    }
 
     atualizarZoom();
 
@@ -936,9 +907,7 @@ btnReset.addEventListener(
       window.innerWidth <= 700
     ) {
 
-      escalaMobile = 1;
-
-      mobileStage.style.minHeight = "100%";
+      escalaMobile = escalaMobileBase;
 
       atualizarZoom();
 
@@ -1162,6 +1131,7 @@ areaLeitor.addEventListener(
   (evento) => {
 
     if (
+      window.innerWidth <= 700 &&
       evento.touches.length === 2
     ) {
 
@@ -1174,6 +1144,12 @@ areaLeitor.addEventListener(
       escalaMobileAtual =
         escalaMobile;
 
+      scrollLeftInicial =
+        areaLeitor.scrollLeft;
+
+      scrollTopInicial =
+        areaLeitor.scrollTop;
+
     }
 
   },
@@ -1183,16 +1159,14 @@ areaLeitor.addEventListener(
 );
 
 
-let escalaMobileAtual = 1;
-
-
 areaLeitor.addEventListener(
   "touchmove",
   (evento) => {
 
     if (
+      window.innerWidth <= 700 &&
       evento.touches.length === 2 &&
-      window.innerWidth <= 700
+      distanciaInicial
     ) {
 
       const distanciaAtual =
@@ -1201,27 +1175,31 @@ areaLeitor.addEventListener(
           evento.touches[1]
         );
 
-      if (
-        distanciaInicial
-      ) {
+      const fator =
+        distanciaAtual /
+        distanciaInicial;
 
-        const fator =
-          distanciaAtual /
-          distanciaInicial;
+      escalaMobile =
+        Math.min(
+          escalaMobileBase * 4,
+          Math.max(
+            escalaMobileBase,
+            escalaMobileAtual * fator
+          )
+        );
 
-        escalaMobile =
-          Math.min(
-            4,
-            Math.max(
-              1,
-              escalaMobileAtual *
-              fator
-            )
-          );
+      atualizarZoomMobile();
 
-        atualizarZoomMobile();
+      /*
+        O gesto de dois dedos controla somente o zoom.
+        Isso impede que a página seja deslocada
+        lateralmente durante o pinch.
+      */
+      areaLeitor.scrollLeft =
+        scrollLeftInicial;
 
-      }
+      areaLeitor.scrollTop =
+        scrollTopInicial;
 
       evento.preventDefault();
 
@@ -1236,10 +1214,26 @@ areaLeitor.addEventListener(
 
 areaLeitor.addEventListener(
   "touchend",
+  (evento) => {
+
+    if (evento.touches.length < 2) {
+
+      distanciaInicial = null;
+
+    }
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+areaLeitor.addEventListener(
+  "touchcancel",
   () => {
 
-    distanciaInicial =
-      null;
+    distanciaInicial = null;
 
   },
   {
@@ -1256,17 +1250,7 @@ window.addEventListener(
   "resize",
   () => {
 
-    if (window.innerWidth <= 700) {
-
-      atualizarZoomMobile();
-
-    } else {
-
-      mobileStage.style.minHeight = "100%";
-
-      atualizarZoomDesktop();
-
-    }
+    atualizarZoom();
 
   }
 );
