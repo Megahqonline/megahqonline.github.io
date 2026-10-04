@@ -348,6 +348,56 @@ body {
 }
 
 
+
+/* =========================
+   PROGRESSO CONTÍNUO DA RENDERIZAÇÃO
+========================= */
+
+#progressoRenderizacaoHQ {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 99998;
+  display: none;
+  background: #303030;
+  pointer-events: none;
+}
+
+#progressoRenderizacaoHQ.visivel {
+  display: block;
+}
+
+#barraRenderizacaoHQ {
+  width: 0%;
+  height: 100%;
+  background: #e8e8e8;
+  transition: width .18s ease;
+}
+
+#textoRenderizacaoHQ {
+  position: fixed;
+  top: 62px;
+  right: 10px;
+  z-index: 99997;
+  display: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: rgba(0,0,0,.72);
+  color: #aaa;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+#textoRenderizacaoHQ.visivel {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #barraRenderizacaoHQ { transition: none; }
+}
+
 /* =========================
    PÁGINA INICIAL
 ========================= */
@@ -1240,6 +1290,13 @@ html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
 </main>
 
 
+
+<div id="progressoRenderizacaoHQ" aria-hidden="true">
+  <div id="barraRenderizacaoHQ"></div>
+</div>
+
+<div id="textoRenderizacaoHQ" aria-live="polite"></div>
+
 <!-- =========================
      BARRA
 ========================= -->
@@ -1384,6 +1441,15 @@ document.getElementById("barraProgressoHQ");
 const textoProgressoHQ =
 document.getElementById("textoProgressoHQ");
 
+const progressoRenderizacaoHQ =
+document.getElementById("progressoRenderizacaoHQ");
+
+const barraRenderizacaoHQ =
+document.getElementById("barraRenderizacaoHQ");
+
+const textoRenderizacaoHQ =
+document.getElementById("textoRenderizacaoHQ");
+
 const zoomTexto =
 document.getElementById("zoomTexto");
 
@@ -1421,6 +1487,10 @@ let zoom = 0.5;
 let pdfAtual = null;
 
 let urlPDFAtual = "";
+
+let paginasRenderizadasHQ = 0;
+
+let totalPaginasHQ = 0;
 
 
 /* =========================
@@ -1526,6 +1596,14 @@ function mostrarCarregamento() {
   textoProgressoHQ.textContent =
     "Conectando ao arquivo...";
 
+  progressoRenderizacaoHQ.classList.remove("visivel");
+  textoRenderizacaoHQ.classList.remove("visivel");
+  barraRenderizacaoHQ.style.width = "0%";
+  textoRenderizacaoHQ.textContent = "";
+
+  paginasRenderizadasHQ = 0;
+  totalPaginasHQ = 0;
+
 }
 
 
@@ -1534,36 +1612,144 @@ function atualizarProgressoCarregamento(
   total
 ) {
 
+  /*
+    Esta etapa representa somente a transferência do arquivo.
+    Ela ocupa 0–60% do carregamento total.
+    Assim, quando a rede chega a 100%, a barra NÃO mente: ainda
+    existem o processamento do PDF e a renderização das páginas.
+  */
+
   if (
     Number.isFinite(total) &&
     total > 0
   ) {
 
-    const porcentagem =
-      Math.min(
-        100,
-        Math.round(
-          (carregado / total) * 100
-        )
+    const rede =
+      Math.max(
+        0,
+        Math.min(1, carregado / total)
       );
+
+    const porcentagem =
+      Math.round(rede * 60);
 
     barraProgressoHQ.style.width =
       porcentagem + "%";
 
     textoProgressoHQ.textContent =
-      "Baixando HQ: " +
+      "Carregando: " +
       porcentagem +
       "%";
 
   } else {
 
-    barraProgressoHQ.style.width =
-      "35%";
+    /*
+      Quando o servidor não informa Content-Length, não inventamos
+      uma porcentagem. Mantemos uma indicação indeterminada.
+    */
+
+    barraProgressoHQ.style.width = "35%";
 
     textoProgressoHQ.textContent =
-      "Baixando HQ...";
+      "Carregando...";
 
   }
+
+}
+
+
+function atualizarProgressoEtapaPDF() {
+
+  barraProgressoHQ.style.width = "65%";
+
+  textoProgressoHQ.textContent =
+    "Carregando: processando o PDF...";
+
+}
+
+
+function atualizarProgressoPagina(
+  numeroPagina
+) {
+
+  if (!totalPaginasHQ) {
+    return;
+  }
+
+  paginasRenderizadasHQ = Math.max(
+    paginasRenderizadasHQ,
+    numeroPagina
+  );
+
+  /*
+    Os últimos 35% representam a renderização das páginas:
+    65% → PDF processado
+    100% → todas as páginas renderizadas
+  */
+
+  const progresso =
+    65 +
+    Math.round(
+      (paginasRenderizadasHQ / totalPaginasHQ) * 35
+    );
+
+  barraProgressoHQ.style.width =
+    Math.min(100, progresso) + "%";
+
+  textoProgressoHQ.textContent =
+    "Carregando páginas: " +
+    paginasRenderizadasHQ +
+    " de " +
+    totalPaginasHQ;
+
+}
+
+
+function mostrarProgressoRenderizacao() {
+
+  progressoRenderizacaoHQ.classList.add("visivel");
+  textoRenderizacaoHQ.classList.add("visivel");
+
+}
+
+
+function atualizarProgressoRenderizacao() {
+
+  if (!totalPaginasHQ) {
+    return;
+  }
+
+  const porcentagem =
+    Math.min(
+      100,
+      Math.round(
+        (paginasRenderizadasHQ / totalPaginasHQ) * 100
+      )
+    );
+
+  barraRenderizacaoHQ.style.width =
+    porcentagem + "%";
+
+  textoRenderizacaoHQ.textContent =
+    "Carregando páginas: " +
+    paginasRenderizadasHQ +
+    " de " +
+    totalPaginasHQ;
+
+}
+
+
+function esconderProgressoRenderizacao() {
+
+  barraRenderizacaoHQ.style.width = "100%";
+
+  textoRenderizacaoHQ.textContent =
+    "Carregamento concluído";
+
+  setTimeout(function () {
+    progressoRenderizacaoHQ.classList.remove("visivel");
+    textoRenderizacaoHQ.classList.remove("visivel");
+  }, 450);
 
 }
 
@@ -1602,8 +1788,10 @@ function mostrarErroCarregamento() {
   textoProgressoHQ.textContent =
     "Verifique se o arquivo está disponível e se o link do Google Drive está correto.";
 
-}
+  progressoRenderizacaoHQ.classList.remove("visivel");
+  textoRenderizacaoHQ.classList.remove("visivel");
 
+}
 
 
 async function carregarPDF() {
@@ -1648,14 +1836,54 @@ async function carregarPDF() {
     pdfAtual =
     await loadingTask.promise;
 
+    totalPaginasHQ =
+      pdfAtual.numPages;
+
     console.log(
       "PDF carregado:",
       pdfAtual.numPages,
       "páginas"
     );
 
+    atualizarProgressoEtapaPDF();
+
+    /*
+      A primeira página é priorizada.
+      O visitante não precisa esperar todas as páginas serem
+      rasterizadas para começar a ler.
+    */
+
+    const paginasIniciais =
+      Math.min(2, pdfAtual.numPages);
+
     for (
       let numeroPagina = 1;
+      numeroPagina <= paginasIniciais;
+      numeroPagina++
+    ) {
+
+      await renderizarPagina(
+        numeroPagina
+      );
+
+      atualizarProgressoPagina(
+        numeroPagina
+      );
+    }
+
+    atualizarZoom();
+
+    /*
+      A HQ já pode ser lida enquanto as páginas restantes
+      continuam sendo processadas em segundo plano.
+    */
+
+    esconderCarregamento();
+    mostrarProgressoRenderizacao();
+    atualizarProgressoRenderizacao();
+
+    for (
+      let numeroPagina = paginasIniciais + 1;
       numeroPagina <= pdfAtual.numPages;
       numeroPagina++
     ) {
@@ -1664,11 +1892,24 @@ async function carregarPDF() {
         numeroPagina
       );
 
+      atualizarProgressoPagina(
+        numeroPagina
+      );
+
+      atualizarProgressoRenderizacao();
+
+      /*
+        Devolve o controle ao navegador entre páginas.
+        Isso evita que uma HQ longa congele a interface.
+      */
+      await new Promise(function(resolve) {
+        setTimeout(resolve, 0);
+      });
+
     }
 
     atualizarZoom();
-
-    esconderCarregamento();
+    esconderProgressoRenderizacao();
 
   } catch (erro) {
 
