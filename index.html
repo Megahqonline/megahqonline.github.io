@@ -348,56 +348,6 @@ body {
 }
 
 
-
-/* =========================
-   PROGRESSO CONTÍNUO DA RENDERIZAÇÃO
-========================= */
-
-#progressoRenderizacaoHQ {
-  position: fixed;
-  top: 55px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  z-index: 99998;
-  display: none;
-  background: #303030;
-  pointer-events: none;
-}
-
-#progressoRenderizacaoHQ.visivel {
-  display: block;
-}
-
-#barraRenderizacaoHQ {
-  width: 0%;
-  height: 100%;
-  background: #e8e8e8;
-  transition: width .18s ease;
-}
-
-#textoRenderizacaoHQ {
-  position: fixed;
-  top: 62px;
-  right: 10px;
-  z-index: 99997;
-  display: none;
-  padding: 4px 8px;
-  border-radius: 5px;
-  background: rgba(0,0,0,.72);
-  color: #aaa;
-  font-size: 10px;
-  pointer-events: none;
-}
-
-#textoRenderizacaoHQ.visivel {
-  display: block;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #barraRenderizacaoHQ { transition: none; }
-}
-
 /* =========================
    PÁGINA INICIAL
 ========================= */
@@ -873,51 +823,6 @@ html.modo-leitor #areaLeitor {
   }
 }
 
-
-/* =========================
-   ADSTERRA - BANNERS
-========================= */
-#adsterraBanner160x300 {
-  position: fixed;
-  top: 70px;
-  right: 12px;
-  width: 160px;
-  height: 300px;
-  overflow: hidden;
-  z-index: 490;
-  display: none;
-}
-#adsterraBanner320x50 {
-  position: fixed;
-  left: 50%;
-  bottom: 6px;
-  width: 320px;
-  height: 50px;
-  transform: translateX(-50%);
-  overflow: hidden;
-  z-index: 490;
-  display: none;
-}
-#adsterraBanner300x250 {
-  width: 300px;
-  height: 250px;
-  margin: 0 auto 30px;
-  overflow: hidden;
-}
-html.modo-leitor #adsterraBanner160x300 { display:block; }
-html.modo-leitor #adsterraBanner320x50,
-html.modo-leitor #adsterraBanner300x250 { display:none; }
-html:not(.modo-leitor) #adsterraBanner160x300,
-html:not(.modo-leitor) #adsterraBanner320x50 { display:none; }
-html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
-@media (max-width:1100px) {
-  html.modo-leitor #adsterraBanner160x300 { display:none; }
-}
-@media (max-width:700px) {
-  html.modo-leitor #adsterraBanner320x50 { display:block; }
-  html.modo-leitor #adsterraBanner160x300 { display:none; }
-}
-
 </style>
 
 
@@ -934,6 +839,11 @@ html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
   }
 })();
 </script>
+
+
+<!-- ADSTERRA - POPUNDER -->
+<script src="https://pl31646544.profitableratecpmnetwork.com/70/ea/19/70ea19bd1ce5b130e70c30951cce8f83.js"></script>
+
 </head>
 
 <body>
@@ -989,21 +899,7 @@ html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
 
     </section>
 
-    
-<div id="adsterraBanner300x250" aria-label="Publicidade">
-  <script>
-    atOptions = {
-      'key' : '124c5fc014c8b3ec4e0a6f0f7e034497',
-      'format' : 'iframe',
-      'height' : 250,
-      'width' : 300,
-      'params' : {}
-    };
-  </script>
-  <script src="https://www.highrevenueformat.com/124c5fc014c8b3ec4e0a7f0f7e034497/invoke.js"></script>
-</div>
-
-<section id="projeto" class="home-secao">
+    <section id="projeto" class="home-secao">
 
       <h2>Sobre o MegaHQ Online</h2>
 
@@ -1290,13 +1186,6 @@ html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
 </main>
 
 
-
-<div id="progressoRenderizacaoHQ" aria-hidden="true">
-  <div id="barraRenderizacaoHQ"></div>
-</div>
-
-<div id="textoRenderizacaoHQ" aria-live="polite"></div>
-
 <!-- =========================
      BARRA
 ========================= -->
@@ -1441,15 +1330,6 @@ document.getElementById("barraProgressoHQ");
 const textoProgressoHQ =
 document.getElementById("textoProgressoHQ");
 
-const progressoRenderizacaoHQ =
-document.getElementById("progressoRenderizacaoHQ");
-
-const barraRenderizacaoHQ =
-document.getElementById("barraRenderizacaoHQ");
-
-const textoRenderizacaoHQ =
-document.getElementById("textoRenderizacaoHQ");
-
 const zoomTexto =
 document.getElementById("zoomTexto");
 
@@ -1488,10 +1368,6 @@ let pdfAtual = null;
 
 let urlPDFAtual = "";
 
-let paginasRenderizadasHQ = 0;
-
-let totalPaginasHQ = 0;
-
 
 /* =========================
    URL DO WORKER
@@ -1513,6 +1389,9 @@ function obterPDF() {
   const id =
   parametros.get("id");
 
+  const resourceKey =
+  parametros.get("resourcekey");
+
   const pdf =
   parametros.get("pdf");
 
@@ -1526,11 +1405,19 @@ function obterPDF() {
     return {
       url:
         workerURL +
-        encodeURIComponent(id),
+        encodeURIComponent(id) +
+        (resourceKey
+          ? "&resourcekey=" +
+            encodeURIComponent(resourceKey)
+          : ""),
 
       download:
         workerURL +
-        encodeURIComponent(id),
+        encodeURIComponent(id) +
+        (resourceKey
+          ? "&resourcekey=" +
+            encodeURIComponent(resourceKey)
+          : ""),
 
       tipo:
         "worker"
@@ -1596,14 +1483,6 @@ function mostrarCarregamento() {
   textoProgressoHQ.textContent =
     "Conectando ao arquivo...";
 
-  progressoRenderizacaoHQ.classList.remove("visivel");
-  textoRenderizacaoHQ.classList.remove("visivel");
-  barraRenderizacaoHQ.style.width = "0%";
-  textoRenderizacaoHQ.textContent = "";
-
-  paginasRenderizadasHQ = 0;
-  totalPaginasHQ = 0;
-
 }
 
 
@@ -1612,144 +1491,36 @@ function atualizarProgressoCarregamento(
   total
 ) {
 
-  /*
-    Esta etapa representa somente a transferência do arquivo.
-    Ela ocupa 0–60% do carregamento total.
-    Assim, quando a rede chega a 100%, a barra NÃO mente: ainda
-    existem o processamento do PDF e a renderização das páginas.
-  */
-
   if (
     Number.isFinite(total) &&
     total > 0
   ) {
 
-    const rede =
-      Math.max(
-        0,
-        Math.min(1, carregado / total)
-      );
-
     const porcentagem =
-      Math.round(rede * 60);
+      Math.min(
+        100,
+        Math.round(
+          (carregado / total) * 100
+        )
+      );
 
     barraProgressoHQ.style.width =
       porcentagem + "%";
 
     textoProgressoHQ.textContent =
-      "Carregando: " +
+      "Baixando HQ: " +
       porcentagem +
       "%";
 
   } else {
 
-    /*
-      Quando o servidor não informa Content-Length, não inventamos
-      uma porcentagem. Mantemos uma indicação indeterminada.
-    */
-
-    barraProgressoHQ.style.width = "35%";
+    barraProgressoHQ.style.width =
+      "35%";
 
     textoProgressoHQ.textContent =
-      "Carregando...";
+      "Baixando HQ...";
 
   }
-
-}
-
-
-function atualizarProgressoEtapaPDF() {
-
-  barraProgressoHQ.style.width = "65%";
-
-  textoProgressoHQ.textContent =
-    "Carregando: processando o PDF...";
-
-}
-
-
-function atualizarProgressoPagina(
-  numeroPagina
-) {
-
-  if (!totalPaginasHQ) {
-    return;
-  }
-
-  paginasRenderizadasHQ = Math.max(
-    paginasRenderizadasHQ,
-    numeroPagina
-  );
-
-  /*
-    Os últimos 35% representam a renderização das páginas:
-    65% → PDF processado
-    100% → todas as páginas renderizadas
-  */
-
-  const progresso =
-    65 +
-    Math.round(
-      (paginasRenderizadasHQ / totalPaginasHQ) * 35
-    );
-
-  barraProgressoHQ.style.width =
-    Math.min(100, progresso) + "%";
-
-  textoProgressoHQ.textContent =
-    "Carregando páginas: " +
-    paginasRenderizadasHQ +
-    " de " +
-    totalPaginasHQ;
-
-}
-
-
-function mostrarProgressoRenderizacao() {
-
-  progressoRenderizacaoHQ.classList.add("visivel");
-  textoRenderizacaoHQ.classList.add("visivel");
-
-}
-
-
-function atualizarProgressoRenderizacao() {
-
-  if (!totalPaginasHQ) {
-    return;
-  }
-
-  const porcentagem =
-    Math.min(
-      100,
-      Math.round(
-        (paginasRenderizadasHQ / totalPaginasHQ) * 100
-      )
-    );
-
-  barraRenderizacaoHQ.style.width =
-    porcentagem + "%";
-
-  textoRenderizacaoHQ.textContent =
-    "Carregando páginas: " +
-    paginasRenderizadasHQ +
-    " de " +
-    totalPaginasHQ;
-
-}
-
-
-function esconderProgressoRenderizacao() {
-
-  barraRenderizacaoHQ.style.width = "100%";
-
-  textoRenderizacaoHQ.textContent =
-    "Carregamento concluído";
-
-  setTimeout(function () {
-    progressoRenderizacaoHQ.classList.remove("visivel");
-    textoRenderizacaoHQ.classList.remove("visivel");
-  }, 450);
 
 }
 
@@ -1788,10 +1559,8 @@ function mostrarErroCarregamento() {
   textoProgressoHQ.textContent =
     "Verifique se o arquivo está disponível e se o link do Google Drive está correto.";
 
-  progressoRenderizacaoHQ.classList.remove("visivel");
-  textoRenderizacaoHQ.classList.remove("visivel");
-
 }
+
 
 
 async function carregarPDF() {
@@ -1836,54 +1605,14 @@ async function carregarPDF() {
     pdfAtual =
     await loadingTask.promise;
 
-    totalPaginasHQ =
-      pdfAtual.numPages;
-
     console.log(
       "PDF carregado:",
       pdfAtual.numPages,
       "páginas"
     );
 
-    atualizarProgressoEtapaPDF();
-
-    /*
-      A primeira página é priorizada.
-      O visitante não precisa esperar todas as páginas serem
-      rasterizadas para começar a ler.
-    */
-
-    const paginasIniciais =
-      Math.min(2, pdfAtual.numPages);
-
     for (
       let numeroPagina = 1;
-      numeroPagina <= paginasIniciais;
-      numeroPagina++
-    ) {
-
-      await renderizarPagina(
-        numeroPagina
-      );
-
-      atualizarProgressoPagina(
-        numeroPagina
-      );
-    }
-
-    atualizarZoom();
-
-    /*
-      A HQ já pode ser lida enquanto as páginas restantes
-      continuam sendo processadas em segundo plano.
-    */
-
-    esconderCarregamento();
-    mostrarProgressoRenderizacao();
-    atualizarProgressoRenderizacao();
-
-    for (
-      let numeroPagina = paginasIniciais + 1;
       numeroPagina <= pdfAtual.numPages;
       numeroPagina++
     ) {
@@ -1892,24 +1621,11 @@ async function carregarPDF() {
         numeroPagina
       );
 
-      atualizarProgressoPagina(
-        numeroPagina
-      );
-
-      atualizarProgressoRenderizacao();
-
-      /*
-        Devolve o controle ao navegador entre páginas.
-        Isso evita que uma HQ longa congele a interface.
-      */
-      await new Promise(function(resolve) {
-        setTimeout(resolve, 0);
-      });
-
     }
 
     atualizarZoom();
-    esconderProgressoRenderizacao();
+
+    esconderCarregamento();
 
   } catch (erro) {
 
@@ -2736,35 +2452,6 @@ carregarPDF();
 </script>
 
 
-
-
-<!-- ADSTERRA - BANNER 160x300 -->
-<div id="adsterraBanner160x300" aria-label="Publicidade">
-  <script>
-    atOptions = {
-      'key' : 'abba3974ab685a71f5e9a87a287fe98d',
-      'format' : 'iframe',
-      'height' : 300,
-      'width' : 160,
-      'params' : {}
-    };
-  </script>
-  <script src="https://www.highrevenueformat.com/abba3974ab685a71f5e9a87a287fe98d/invoke.js"></script>
-</div>
-
-<!-- ADSTERRA - BANNER 320x50 -->
-<div id="adsterraBanner320x50" aria-label="Publicidade">
-  <script>
-    atOptions = {
-      'key' : 'cba5be04252c2b9e6476640e7a13439d',
-      'format' : 'iframe',
-      'height' : 50,
-      'width' : 320,
-      'params' : {}
-    };
-  </script>
-  <script src="https://www.highrevenueformat.com/cba5be04252c2b9e6476640e7a13439d/invoke.js"></script>
-</div>
 
 <!-- =========================
      ADSTERRA - NATIVE BANNER 1:4
