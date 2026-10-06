@@ -10,7 +10,7 @@
 >
 
 <title>MegaHQ Online</title>
-<!-- MegaHQ Reader V3 - carregamento otimizado e páginas sob demanda -->
+<!-- MegaHQ Reader V4 - nome real do Drive + carregamento otimizado -->
 
 <!-- ADMAVEN - VERIFICAÇÃO -->
 <meta name="admaven-placement" content="BrHr6rTs4">
@@ -324,18 +324,19 @@ body {
 /* Espaço reservado para páginas que ainda serão renderizadas. */
 .paginaPlaceholder {
   display: block;
-  width: 794px;
-  height: 1123px;
+  width: var(--pagina-placeholder-width, 612px);
+  height: var(--pagina-placeholder-height, 792px);
   margin: 0 auto 12px auto;
-  background: #181818;
+  background: #111;
+  flex: 0 0 auto;
 }
 
 
 
 @media (max-width: 700px) {
   .paginaPlaceholder {
-    width: calc(100vw - 20px);
-    height: calc((100vw - 20px) * 1.414);
+    width: var(--pagina-placeholder-width-mobile, calc(100vw - 20px));
+    height: var(--pagina-placeholder-height-mobile, calc((100vw - 20px) * 1.414));
     margin-left: 0;
     margin-right: 0;
   }
@@ -630,6 +631,48 @@ function nomeDoPDFLocal(url) {
   }
 }
 
+async function obterNomeArquivoWorker(dados) {
+  if (!dados || dados.tipo !== "worker") return "";
+
+  try {
+    const separador = dados.url.includes("?") ? "&" : "?";
+    const resposta = await fetch(
+      dados.url + separador + "metadata=1",
+      { method: "GET", cache: "no-store" }
+    );
+
+    if (!resposta.ok) return "";
+
+    const dadosNome = await resposta.json();
+    const nome = dadosNome && dadosNome.name ? String(dadosNome.name).trim() : "";
+
+    if (nome) {
+      aplicarTitulo(nome);
+      return nome;
+    }
+  } catch (e) {
+    console.debug("Não foi possível obter o nome do arquivo no Worker.", e);
+  }
+
+  return "";
+}
+
+function definirTamanhoDosPlaceholders(viewport) {
+  if (!viewport) return;
+
+  const largura = Math.max(1, Number(viewport.width) || 612);
+  const altura = Math.max(1, Number(viewport.height) || 792);
+
+  leitor.style.setProperty("--pagina-placeholder-width", largura + "px");
+  leitor.style.setProperty("--pagina-placeholder-height", altura + "px");
+
+  const larguraMobile = Math.max(1, window.innerWidth - 20);
+  const alturaMobile = larguraMobile * (altura / largura);
+
+  leitor.style.setProperty("--pagina-placeholder-width-mobile", larguraMobile + "px");
+  leitor.style.setProperty("--pagina-placeholder-height-mobile", alturaMobile + "px");
+}
+
 function aplicarTitulo(nome) {
   if (!nome) return;
   nome = String(nome).trim();
@@ -693,6 +736,11 @@ async function carregarPDF() {
 
   try {
 
+    const nomeArquivoPromise =
+      dados.tipo === "worker"
+        ? obterNomeArquivoWorker(dados)
+        : Promise.resolve("");
+
     const loadingTask = pdfjsLib.getDocument({
       url: dados.url,
       withCredentials: false,
@@ -717,11 +765,18 @@ async function carregarPDF() {
       }
     };
 
-    pdfAtual = await loadingTask.promise;
+    const resultados = await Promise.all([
+      loadingTask.promise,
+      nomeArquivoPromise
+    ]);
+
+    pdfAtual = resultados[0];
     totalPaginas = pdfAtual.numPages;
 
-    /* O título do PDF, se existir, não exige outra requisição. */
-    await tentarTituloDosMetadados();
+    /* Só usa o título interno se o Worker não forneceu o nome real. */
+    if (!nomeArquivoAtual) {
+      await tentarTituloDosMetadados();
+    }
 
     atualizarProgresso(93, "Preparando a primeira página...");
 
@@ -729,6 +784,10 @@ async function carregarPDF() {
       A primeira página é prioridade absoluta.
       Não esperamos nenhuma outra página antes de liberar a leitura.
     */
+    const paginaModelo = await pdfAtual.getPage(1);
+    const viewportModelo = paginaModelo.getViewport({ scale: 1 });
+    definirTamanhoDosPlaceholders(viewportModelo);
+
     const primeiraPagina = document.createElement("div");
     primeiraPagina.className = "paginaPlaceholder";
     primeiraPagina.dataset.page = "1";
@@ -1370,6 +1429,14 @@ areaLeitor.addEventListener(
 window.addEventListener(
   "resize",
   () => {
+
+    if (pdfAtual) {
+      pdfAtual.getPage(1).then(pagina => {
+        definirTamanhoDosPlaceholders(
+          pagina.getViewport({ scale: 1 })
+        );
+      }).catch(() => {});
+    }
 
     atualizarZoom();
 
