@@ -974,100 +974,80 @@ function atualizarZoom() {
 
 function atualizarZoomDesktop() {
 
-  const scrollTopAntes =
-    areaLeitor.scrollTop;
-
-  const scrollLeftAntes =
-    areaLeitor.scrollLeft;
-
-  const larguraAntes =
-    leitor.getBoundingClientRect().width;
-
-  const alturaAntes =
-    leitor.getBoundingClientRect().height;
-
-
-  leitor.style.transform =
-    `scale(${zoom})`;
-
   /*
-    TRANSFORM não altera o tamanho de layout do elemento.
-    Sem esta compensação, o navegador mantém a altura original
-    da HQ e cria uma área preta depois da última página quando
-    o zoom é menor que 100%.
-  */
-  const alturaLayout = leitor.scrollHeight;
-  leitor.style.marginBottom =
-    ((zoom - 1) * alturaLayout) + "px";
+    No desktop não usamos transform:scale().
+    O transform mantém o tamanho de layout original do leitor,
+    mesmo quando a imagem visual fica menor, criando uma área
+    vertical vazia depois da última página.
 
-
-  const larguraDepois =
-    leitor.getBoundingClientRect().width;
-
-  const alturaDepois =
-    leitor.getBoundingClientRect().height;
-
-
-  /*
-    Mantém aproximadamente o ponto
-    que estava no centro da tela.
+    Aqui o zoom é aplicado diretamente ao tamanho visual de cada
+    canvas e à sua linha. Assim, a área rolável termina exatamente
+    onde termina a última página.
   */
 
-  const centroX =
-    scrollLeftAntes +
-    areaLeitor.clientWidth / 2;
+  leitor.style.transform = "none";
+  leitor.style.marginBottom = "0";
+  leitor.style.height = "auto";
 
-  const centroY =
-    scrollTopAntes +
-    areaLeitor.clientHeight / 2;
+  const linhas = leitor.querySelectorAll(".paginaLinha");
 
+  linhas.forEach(linha => {
 
-  if (larguraAntes > 0) {
+    const canvas = linha.querySelector("canvas");
 
-    const proporcaoX =
-      larguraDepois /
-      larguraAntes;
+    if (!canvas) {
+      return;
+    }
 
-    areaLeitor.scrollLeft =
-      centroX * proporcaoX -
-      areaLeitor.clientWidth / 2;
+    const larguraOriginal =
+      Number(canvas.dataset.originalWidth || canvas.width || 0);
 
-  }
+    const alturaOriginal =
+      Number(canvas.dataset.originalHeight || canvas.height || 0);
 
+    if (!larguraOriginal || !alturaOriginal) {
+      return;
+    }
 
-  if (alturaAntes > 0) {
+    const largura = larguraOriginal * zoom;
+    const altura = alturaOriginal * zoom;
 
-    const proporcaoY =
-      alturaDepois /
-      alturaAntes;
+    canvas.style.width = largura + "px";
+    canvas.style.height = altura + "px";
 
-    areaLeitor.scrollTop =
-      centroY * proporcaoY -
-      areaLeitor.clientHeight / 2;
+    /*
+      A própria linha passa a ter exatamente a altura da página
+      ampliada/reduzida, mais o espaçamento entre páginas.
+    */
+    linha.style.height = (altura + 12) + "px";
 
-  }
+    /*
+      Cada página continua independente horizontalmente.
+      Se ficar maior que a tela, sua própria linha ganha rolagem.
+    */
+    if (largura > areaLeitor.clientWidth + 1) {
+      linha.style.overflowX = "auto";
+      linha.style.justifyContent = "flex-start";
 
+      /* Centraliza inicialmente a página larga. */
+      requestAnimationFrame(() => {
+        linha.scrollLeft =
+          Math.max(0, (largura - linha.clientWidth) / 2);
+      });
+    } else {
+      linha.style.overflowX = "hidden";
+      linha.style.justifyContent = "center";
+      linha.scrollLeft = 0;
+    }
+
+  });
 
   /*
-    Centraliza horizontalmente quando
-    a HQ é menor que a área disponível.
+    Garante que não exista uma sobra artificial depois da última
+    página. O padding do mobileStage é mantido apenas como margem
+    visual superior/inferior.
   */
-
-  const larguraHQ =
-    leitor.scrollWidth *
-    zoom;
-
-  const larguraTela =
-    areaLeitor.clientWidth;
-
-
-  if (
-    larguraHQ <= larguraTela
-  ) {
-
-    areaLeitor.scrollLeft = 0;
-
-  }
+  mobileStage.style.height = "auto";
 
 }
 
