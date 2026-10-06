@@ -117,35 +117,42 @@ body {
 }
 
 #mobileStage {
-  width: max-content;
+  width: 100%;
   min-width: 100%;
-
   min-height: 100%;
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  padding: 20px;
+  display: block;
+  padding: 20px 0;
 }
 
 #leitor {
   transform-origin: center top;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  width: 100%;
+  min-width: 100%;
+}
 
-  width: max-content;
+/*
+   Cada página possui sua própria linha de centralização.
+   Assim, uma página muito larga não desloca as demais.
+*/
+.paginaLinha {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  margin: 0 0 12px 0;
 }
 
 #leitor canvas {
   display: block;
-
-  margin: 0 auto 12px auto;
-
+  flex: 0 0 auto;
   background: white;
-
   box-shadow: 0 2px 8px rgba(0,0,0,.45);
 }
 
@@ -220,19 +227,22 @@ body {
 
   #mobileStage {
     display: block;
-
     width: max-content;
     min-width: 100%;
-
     padding: 10px;
   }
 
   #leitor {
     transform-origin: 0 0;
-
     display: block;
-
     width: max-content;
+  }
+
+  .paginaLinha {
+    width: max-content;
+    min-width: 0;
+    display: block;
+    margin-bottom: 12px;
   }
 
   #leitor canvas {
@@ -326,7 +336,6 @@ body {
   display: block;
   width: var(--pagina-placeholder-width, 612px);
   height: var(--pagina-placeholder-height, 792px);
-  margin: 0 auto 12px auto;
   background: #111;
   flex: 0 0 auto;
 }
@@ -788,10 +797,16 @@ async function carregarPDF() {
     const viewportModelo = paginaModelo.getViewport({ scale: 1 });
     definirTamanhoDosPlaceholders(viewportModelo);
 
+    const primeiraLinha = document.createElement("div");
+    primeiraLinha.className = "paginaLinha";
+    primeiraLinha.dataset.page = "1";
+
     const primeiraPagina = document.createElement("div");
     primeiraPagina.className = "paginaPlaceholder";
     primeiraPagina.dataset.page = "1";
-    leitor.appendChild(primeiraPagina);
+
+    primeiraLinha.appendChild(primeiraPagina);
+    leitor.appendChild(primeiraLinha);
 
     await renderizarPagina(1, primeiraPagina);
     paginasRenderizadas = 1;
@@ -831,10 +846,16 @@ function criarPaginasLazy() {
   if (totalPaginas <= 1) return;
 
   for (let numero = 2; numero <= totalPaginas; numero++) {
+    const linha = document.createElement("div");
+    linha.className = "paginaLinha";
+    linha.dataset.page = String(numero);
+
     const placeholder = document.createElement("div");
     placeholder.className = "paginaPlaceholder";
     placeholder.dataset.page = String(numero);
-    leitor.appendChild(placeholder);
+
+    linha.appendChild(placeholder);
+    leitor.appendChild(linha);
   }
 
   observadorPaginas = new IntersectionObserver(
