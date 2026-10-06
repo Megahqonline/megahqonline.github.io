@@ -969,6 +969,16 @@ function atualizarZoomDesktop() {
   leitor.style.transform =
     `scale(${zoom})`;
 
+  /*
+    TRANSFORM não altera o tamanho de layout do elemento.
+    Sem esta compensação, o navegador mantém a altura original
+    da HQ e cria uma área preta depois da última página quando
+    o zoom é menor que 100%.
+  */
+  const alturaLayout = leitor.scrollHeight;
+  leitor.style.marginBottom =
+    ((zoom - 1) * alturaLayout) + "px";
+
 
   const larguraDepois =
     leitor.getBoundingClientRect().width;
@@ -1056,6 +1066,14 @@ function atualizarZoomMobile() {
 
   leitor.style.transform =
     `scale(${escalaMobile})`;
+
+  /*
+    Corrige a altura de layout criada pelo transform:
+    a área rolável passa a terminar junto com a última página.
+  */
+  const alturaLayout = leitor.scrollHeight;
+  leitor.style.marginBottom =
+    ((escalaMobile - 1) * alturaLayout) + "px";
 
 }
 
