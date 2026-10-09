@@ -4,25 +4,17 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3420442790755894"
      crossorigin="anonymous"></script>
 
-
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
 >
 
 <title>MegaHQ Online</title>
-<!-- MegaHQ Reader V4 - nome real do Drive + carregamento otimizado -->
 
 <!-- ADMAVEN - VERIFICAÇÃO -->
-<meta name="admaven-placement" content="BrHr6rTs4">
-
-<!-- MONETAG - VERIFICAÇÃO -->
-<meta
-  name="monetag"
-  content="c0572af66e0fb19fa53dc55faaca3da8"
->
+<meta name='admaven-placement' content='BrHr6rTs4'>
 
 <style>
 
@@ -120,42 +112,35 @@ body {
 }
 
 #mobileStage {
-  width: 100%;
+  width: max-content;
   min-width: 100%;
+
   min-height: 100%;
 
-  display: block;
-  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 20px;
 }
 
 #leitor {
   transform-origin: center top;
+
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  min-width: 100%;
-}
+  align-items: center;
 
-/*
-   Cada página possui sua própria linha de centralização.
-   Assim, uma página muito larga não desloca as demais.
-*/
-.paginaLinha {
-  position: relative;
-  width: 100%;
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex: 0 0 auto;
-  margin: 0 0 12px 0;
+  width: max-content;
 }
 
 #leitor canvas {
   display: block;
-  flex: 0 0 auto;
+
+  margin: 0 auto 12px auto;
+
   background: white;
+
   box-shadow: 0 2px 8px rgba(0,0,0,.45);
 }
 
@@ -226,134 +211,142 @@ body {
     height: calc(100% - 50px);
 
     overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+
+    touch-action: pan-x pan-y;
+    overscroll-behavior: none;
   }
 
   #mobileStage {
-    display: block;
-    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100%;
     min-width: 100%;
     padding: 10px;
+    overflow: visible;
   }
 
   #leitor {
-    transform-origin: 0 0;
-    display: block;
-    width: max-content;
-  }
-
-  .paginaLinha {
-    width: 100%;
-    min-width: 100%;
     display: flex;
-    margin-bottom: 12px;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    max-width: none;
+    margin: 0 auto;
+    transform: none !important;
   }
 
   #leitor canvas {
-    margin-left: 0;
-    margin-right: 0;
+    display: block;
+    flex: 0 0 auto;
+    max-width: none;
+    height: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
 }
-
 
 
 /* =========================
    CARREGAMENTO DA HQ
 ========================= */
-#telaCarregamento {
+
+#carregandoHQ {
   position: fixed;
+  display: none !important;
   inset: 0;
-  z-index: 100001;
-  display: flex;
+  z-index: 200000;
+
+  display: none;
   align-items: center;
   justify-content: center;
-  background: #111;
-  transition: opacity .2s ease, visibility .2s ease;
-}
 
-#telaCarregamento.oculta {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+  padding: 24px;
 
-.carregamentoCaixa {
-  width: min(430px, calc(100% - 32px));
-  padding: 28px 26px 24px;
-  border: 1px solid #333;
-  border-radius: 14px;
-  background: #181818;
-  color: #fff;
+  background:
+    radial-gradient(circle at 50% 35%, #222 0%, #151515 45%, #0d0d0d 100%);
+
+  color: white;
   text-align: center;
 }
 
-.carregamentoSpinner {
-  width: 52px;
-  height: 52px;
+#carregandoHQ.visivel {
+  display: flex !important;
+}
+
+.carregando-caixa {
+  width: min(430px, calc(100% - 30px));
+  padding: 30px 26px;
+
+  border: 1px solid #333;
+  border-radius: 14px;
+
+  background: rgba(20,20,20,.96);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+
+.carregando-icone {
+  width: 46px;
+  height: 46px;
   margin: 0 auto 18px;
-  border: 4px solid #3a3a3a;
+
+  border: 4px solid #3b3b3b;
   border-top-color: #fff;
   border-radius: 50%;
-  animation: megaSpinner .8s linear infinite;
+
+  animation: megaGirar .9s linear infinite;
 }
 
-@keyframes megaSpinner {
-  to { transform: rotate(360deg); }
-}
-
-#carregamentoTitulo {
+.carregando-titulo {
   margin: 0 0 10px;
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: 700;
 }
 
-#carregamentoMensagem {
-  margin: 0 0 18px;
-  color: #bbb;
+.carregando-texto {
+  margin: 0;
+  color: #bdbdbd;
   font-size: 14px;
+  line-height: 1.55;
 }
 
-.carregamentoBarraFundo {
+.carregando-progresso {
   width: 100%;
   height: 5px;
+  margin-top: 20px;
   overflow: hidden;
-  border-radius: 999px;
-  background: #333;
+  border-radius: 99px;
+  background: #303030;
 }
 
-#carregamentoBarra {
+#barraProgressoHQ {
   width: 0%;
   height: 100%;
-  background: #fff;
   border-radius: inherit;
-  transition: width .12s ease;
+  background: #e8e8e8;
+  transition: width .2s ease;
 }
 
-#carregamentoPorcentagem {
+#textoProgressoHQ {
+  min-height: 18px;
   margin-top: 9px;
-  color: #999;
+  color: #888;
   font-size: 12px;
 }
 
-/* Espaço reservado para páginas que ainda serão renderizadas. */
-.paginaPlaceholder {
-  display: block;
-  width: var(--pagina-placeholder-width, 612px);
-  height: var(--pagina-placeholder-height, 792px);
-  background: #111;
-  flex: 0 0 auto;
+@keyframes megaGirar {
+  to { transform: rotate(360deg); }
 }
 
-
-
-@media (max-width: 700px) {
-  .paginaPlaceholder {
-    width: var(--pagina-placeholder-width-mobile, calc(100vw - 20px));
-    height: var(--pagina-placeholder-height-mobile, calc((100vw - 20px) * 1.414));
-    margin-left: 0;
-    margin-right: 0;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .carregando-icone { animation: none; }
+  #barraProgressoHQ { transition: none; }
 }
-
 
 
 /* =========================
@@ -799,20 +792,42 @@ html.modo-leitor #areaLeitor {
 
 
 
+/* =========================
+   ADSTERRA - NATIVE BANNER LATERAL
+========================= */
 
+#adsterraNativeSidebar {
+  position: fixed;
+  top: 70px;
+  right: 12px;
+  width: 160px;
+  max-height: calc(100vh - 82px);
+  overflow: hidden;
+  z-index: 500;
+  display: none;
+  text-align: left;
+}
+
+#adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  #adsterraNativeSidebar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  #adsterraNativeSidebar {
+    display: none !important;
+  }
+}
 
 
 /* =========================
-   PUBLICIDADE ADSTERRA
+   ADSTERRA - BANNERS
 ========================= */
-#adsterraBanner300x250 {
-  width: 300px;
-  height: 250px;
-  max-width: 100%;
-  margin: 0 auto 30px;
-  overflow: hidden;
-  text-align: center;
-}
 #adsterraBanner160x300 {
   position: fixed;
   top: 70px;
@@ -834,41 +849,25 @@ html.modo-leitor #areaLeitor {
   z-index: 490;
   display: none;
 }
-#adsterraNativeSidebar {
-  position: fixed;
-  top: 390px;
-  right: 12px;
-  width: 160px;
-  max-height: calc(100vh - 400px);
+#adsterraBanner300x250 {
+  width: 300px;
+  height: 250px;
+  margin: 0 auto 30px;
   overflow: hidden;
-  z-index: 489;
-  display: none;
-  text-align: left;
 }
-#adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc {
-  width: 100%;
-}
-html:not(.modo-leitor) #adsterraBanner300x250 { display: block; }
-html.modo-leitor #adsterraBanner300x250 { display: none; }
-@media (max-width: 1100px) {
-  #adsterraBanner160x300, #adsterraNativeSidebar { display: none !important; }
-}
-@media (max-width: 700px) {
-  html.modo-leitor #adsterraBanner320x50 { display: block; }
-  html.modo-leitor #areaLeitor { padding-bottom: 58px; }
-}
+html.modo-leitor #adsterraBanner160x300 { display:block; }
+html.modo-leitor #adsterraBanner320x50,
+html.modo-leitor #adsterraBanner300x250 { display:none; }
 html:not(.modo-leitor) #adsterraBanner160x300,
-html:not(.modo-leitor) #adsterraBanner320x50,
-html:not(.modo-leitor) #adsterraNativeSidebar { display: none !important; }
-
-
-html:not(.modo-leitor) { height: auto; min-height: 100%; overflow: auto; }
-html:not(.modo-leitor) body { height: auto; min-height: 100%; overflow: auto; background: #0d0d0d; }
-html.modo-leitor body { overflow: hidden; }
-html.modo-leitor #home { display: none; }
-html:not(.modo-leitor) #barra, html:not(.modo-leitor) #areaLeitor, html:not(.modo-leitor) #btnSairFullscreen, html:not(.modo-leitor) #telaCarregamento { display: none !important; }
-html.modo-leitor #barra { display: flex; }
-html.modo-leitor #areaLeitor { display: block; }
+html:not(.modo-leitor) #adsterraBanner320x50 { display:none; }
+html:not(.modo-leitor) #adsterraBanner300x250 { display:block; }
+@media (max-width:1100px) {
+  html.modo-leitor #adsterraBanner160x300 { display:none; }
+}
+@media (max-width:700px) {
+  html.modo-leitor #adsterraBanner320x50 { display:block; }
+  html.modo-leitor #adsterraBanner160x300 { display:none; }
+}
 
 </style>
 
@@ -877,13 +876,20 @@ html.modo-leitor #areaLeitor { display: block; }
 (function () {
   const params = new URLSearchParams(window.location.search);
   const temHQ = params.has("id") || params.has("pdf");
-  document.documentElement.classList.toggle("modo-leitor", temHQ);
+  if (temHQ) {
+    document.documentElement.classList.add("modo-leitor");
+  } else {
+    document.documentElement.classList.remove("modo-leitor");
+    const esconder = document.getElementById("carregandoHQ");
+    if (esconder) esconder.style.setProperty("display", "none", "important");
+  }
 })();
 </script>
-
 </head>
 
 <body>
+
+<!-- PÁGINA INICIAL RECUPERADA -->
 
 <main id="home">
 
@@ -945,7 +951,7 @@ html.modo-leitor #areaLeitor { display: block; }
       'params' : {}
     };
   </script>
-  <script src="https://www.highrevenueformat.com/124c5fc014c8b3ec4e0a6f0f7e034497/invoke.js"></script>
+  <script src="https://www.highrevenueformat.com/124c5fc014c8b3ec4e0a7f0f7e034497/invoke.js"></script>
 </div>
 
 <section id="projeto" class="home-secao">
@@ -1236,24 +1242,39 @@ html.modo-leitor #areaLeitor { display: block; }
 
 
 <!-- =========================
-     CARREGAMENTO
+     BARRA
 ========================= -->
-<div id="telaCarregamento">
-  <div class="carregamentoCaixa">
-    <div class="carregamentoSpinner"></div>
-    <h2 id="carregamentoTitulo">Carregando HQ...</h2>
-    <p id="carregamentoMensagem">Preparando a primeira página para leitura.</p>
-    <div class="carregamentoBarraFundo">
-      <div id="carregamentoBarra"></div>
-    </div>
-    <div id="carregamentoPorcentagem">0%</div>
-  </div>
-</div>
 
 
 <!-- =========================
-     BARRA
+     CARREGAMENTO DA HQ
 ========================= -->
+
+<div id="carregandoHQ" aria-busy="false">
+
+  <div class="carregando-caixa">
+
+    <div class="carregando-icone" aria-hidden="true"></div>
+
+    <h2 class="carregando-titulo">
+      Carregando HQ...
+    </h2>
+
+    <p class="carregando-texto" id="textoCarregandoHQ">
+      Estamos preparando as páginas para leitura.
+    </p>
+
+    <div class="carregando-progresso" aria-hidden="true">
+      <div id="barraProgressoHQ"></div>
+    </div>
+
+    <div id="textoProgressoHQ">
+      Conectando ao arquivo...
+    </div>
+
+  </div>
+
+</div>
 
 <div id="barra">
 
@@ -1352,6 +1373,18 @@ document.getElementById("areaLeitor");
 const mobileStage =
 document.getElementById("mobileStage");
 
+const carregandoHQ =
+document.getElementById("carregandoHQ");
+
+const textoCarregandoHQ =
+document.getElementById("textoCarregandoHQ");
+
+const barraProgressoHQ =
+document.getElementById("barraProgressoHQ");
+
+const textoProgressoHQ =
+document.getElementById("textoProgressoHQ");
+
 const zoomTexto =
 document.getElementById("zoomTexto");
 
@@ -1373,18 +1406,6 @@ document.getElementById("btnFullscreen");
 const btnSairFullscreen =
 document.getElementById("btnSairFullscreen");
 
-const telaCarregamento =
-document.getElementById("telaCarregamento");
-
-const carregamentoMensagem =
-document.getElementById("carregamentoMensagem");
-
-const carregamentoBarra =
-document.getElementById("carregamentoBarra");
-
-const carregamentoPorcentagem =
-document.getElementById("carregamentoPorcentagem");
-
 
 /* =========================
    CONFIGURAÇÕES
@@ -1401,12 +1422,6 @@ let zoom = 0.5;
 let pdfAtual = null;
 
 let urlPDFAtual = "";
-
-let totalPaginas = 0;
-let paginasRenderizadas = 0;
-let paginasEmRenderizacao = new Set();
-let observadorPaginas = null;
-let nomeArquivoAtual = "";
 
 
 /* =========================
@@ -1429,9 +1444,6 @@ function obterPDF() {
   const id =
   parametros.get("id");
 
-  const resourcekey =
-  parametros.get("resourcekey");
-
   const pdf =
   parametros.get("pdf");
 
@@ -1445,17 +1457,11 @@ function obterPDF() {
     return {
       url:
         workerURL +
-        encodeURIComponent(id) +
-        (resourcekey
-          ? "&resourcekey=" + encodeURIComponent(resourcekey)
-          : ""),
+        encodeURIComponent(id),
 
       download:
         workerURL +
-        encodeURIComponent(id) +
-        (resourcekey
-          ? "&resourcekey=" + encodeURIComponent(resourcekey)
-          : ""),
+        encodeURIComponent(id),
 
       tipo:
         "worker"
@@ -1486,352 +1492,331 @@ function obterPDF() {
 
 
   /*
-    Caso não exista parâmetro,
-    abre o PDF padrão.
+    Sem ?id= ou ?pdf=, esta é a página inicial.
+    Não existe HQ para carregar.
   */
 
-  return {
-
-    url:
-      "UBS CIDADE LUZ PREVIAS.pdf",
-
-    download:
-      "UBS CIDADE LUZ PREVIAS.pdf",
-
-    tipo:
-      "local"
-  };
+  return null;
 
 }
 
 
 /* =========================
-   CARREGAMENTO / TÍTULO
+   CARREGAR PDF
 ========================= */
-function atualizarProgresso(valor, mensagem) {
-  valor = Math.max(0, Math.min(100, Math.round(valor)));
-  carregamentoBarra.style.width = valor + "%";
-  carregamentoPorcentagem.textContent = valor + "%";
-  if (mensagem) carregamentoMensagem.textContent = mensagem;
-}
 
-function ocultarCarregamento() {
-  telaCarregamento.classList.add("oculta");
-}
-
-function nomeDoPDFLocal(url) {
-  try {
-    return decodeURIComponent(url.split("/").pop().split("?")[0]);
-  } catch (e) {
-    return "";
-  }
-}
-
-async function obterNomeArquivoWorker(dados) {
-  if (!dados || dados.tipo !== "worker") return "";
-
-  try {
-    const separador = dados.url.includes("?") ? "&" : "?";
-    const resposta = await fetch(
-      dados.url + separador + "metadata=1",
-      { method: "GET", cache: "no-store" }
-    );
-
-    if (!resposta.ok) return "";
-
-    const dadosNome = await resposta.json();
-    const nome = dadosNome && dadosNome.name ? String(dadosNome.name).trim() : "";
-
-    if (nome) {
-      aplicarTitulo(nome);
-      return nome;
-    }
-  } catch (e) {
-    console.debug("Não foi possível obter o nome do arquivo no Worker.", e);
-  }
-
-  return "";
-}
-
-function definirTamanhoDosPlaceholders(viewport) {
-  if (!viewport) return;
-
-  const largura = Math.max(1, Number(viewport.width) || 612);
-  const altura = Math.max(1, Number(viewport.height) || 792);
-
-  leitor.style.setProperty("--pagina-placeholder-width", largura + "px");
-  leitor.style.setProperty("--pagina-placeholder-height", altura + "px");
-
-  const larguraMobile = Math.max(1, window.innerWidth - 20);
-  const alturaMobile = larguraMobile * (altura / largura);
-
-  leitor.style.setProperty("--pagina-placeholder-width-mobile", larguraMobile + "px");
-  leitor.style.setProperty("--pagina-placeholder-height-mobile", alturaMobile + "px");
-}
-
-function aplicarTitulo(nome) {
-  if (!nome) return;
-  nome = String(nome).trim();
-  if (!nome) return;
-  nomeArquivoAtual = nome;
-  document.title = nome;
-}
-
-async function tentarTituloDosMetadados() {
-  try {
-    const metadata = await pdfAtual.getMetadata();
-    const info = metadata && metadata.info ? metadata.info : {};
-    const xmp = metadata && metadata.metadata ? metadata.metadata : null;
-
-    let titulo = info.Title ? String(info.Title).trim() : "";
-
-    if (!titulo && xmp) {
-      try {
-        titulo = String(xmp.get("dc:title") || "").trim();
-      } catch (e) {}
-    }
-
-    if (titulo) aplicarTitulo(titulo);
-  } catch (e) {
-    console.debug("Metadados do PDF sem título utilizável.");
-  }
-}
 
 /* =========================
-   CARREGAR PDF — V3
+   STATUS DE CARREGAMENTO
 ========================= */
-async function carregarPDF() {
 
-  const dados = obterPDF();
-  urlPDFAtual = dados.url;
-  leitor.innerHTML = "";
-  paginasRenderizadas = 0;
-  totalPaginas = 0;
-  paginasEmRenderizacao = new Set();
+function mostrarCarregamento() {
 
-  if (observadorPaginas) {
-    observadorPaginas.disconnect();
-    observadorPaginas = null;
-  }
+  carregandoHQ.classList.add("visivel");
 
-  telaCarregamento.classList.remove("oculta");
-  atualizarProgresso(0, "Preparando a primeira página para leitura.");
-
-  /* Para PDF local, o nome já está disponível na própria URL. */
-  if (dados.tipo === "local") {
-    aplicarTitulo(nomeDoPDFLocal(dados.url));
-  } else {
-    /*
-      Não fazemos HEAD/Range extra aqui.
-      Essas requisições duplicavam o tráfego e podiam deixar
-      o carregamento mais lento. O título será obtido dos
-      metadados do próprio PDF quando disponíveis.
-    */
-    document.title = "MegaHQ Online";
-  }
-
-  try {
-
-    const nomeArquivoPromise =
-      dados.tipo === "worker"
-        ? obterNomeArquivoWorker(dados)
-        : Promise.resolve("");
-
-    const loadingTask = pdfjsLib.getDocument({
-      url: dados.url,
-      withCredentials: false,
-      disableAutoFetch: false,
-      disableStream: false,
-      rangeChunkSize: 262144
-    });
-
-    /*
-      IMPORTANTE: nunca mostramos 100% durante o download.
-      100% só aparece depois que a primeira página está na tela.
-    */
-    loadingTask.onProgress = function(progresso) {
-      if (progresso && progresso.total > 0) {
-        const percentual = Math.min(
-          90,
-          Math.round((progresso.loaded / progresso.total) * 90)
-        );
-        atualizarProgresso(percentual, "Carregando o arquivo...");
-      } else {
-        atualizarProgresso(15, "Carregando o arquivo...");
-      }
-    };
-
-    const resultados = await Promise.all([
-      loadingTask.promise,
-      nomeArquivoPromise
-    ]);
-
-    pdfAtual = resultados[0];
-    totalPaginas = pdfAtual.numPages;
-
-    /* Só usa o título interno se o Worker não forneceu o nome real. */
-    if (!nomeArquivoAtual) {
-      await tentarTituloDosMetadados();
-    }
-
-    atualizarProgresso(93, "Preparando a primeira página...");
-
-    /*
-      A primeira página é prioridade absoluta.
-      Não esperamos nenhuma outra página antes de liberar a leitura.
-    */
-    const paginaModelo = await pdfAtual.getPage(1);
-    const viewportModelo = paginaModelo.getViewport({ scale: 1 });
-    definirTamanhoDosPlaceholders(viewportModelo);
-
-    if (window.innerWidth <= 700) {
-      const larguraDisponivel = Math.max(180, areaLeitor.clientWidth - 20);
-      zoom = Math.min(1, larguraDisponivel / viewportModelo.width);
-    }
-
-    const primeiraLinha = document.createElement("div");
-    primeiraLinha.className = "paginaLinha";
-    primeiraLinha.dataset.page = "1";
-
-    const primeiraPagina = document.createElement("div");
-    primeiraPagina.className = "paginaPlaceholder";
-    primeiraPagina.dataset.page = "1";
-
-    primeiraLinha.appendChild(primeiraPagina);
-    leitor.appendChild(primeiraLinha);
-
-    await renderizarPagina(1, primeiraPagina);
-    paginasRenderizadas = 1;
-
-    /* Agora, e somente agora, 100% e leitura liberada. */
-    atualizarProgresso(100, "HQ pronta para leitura.");
-    atualizarZoom();
-    ocultarCarregamento();
-
-    /*
-      As demais páginas são criadas como espaços reservados e
-      só viram canvas quando estiverem próximas da área visível.
-      Isso elimina a espera de renderizar a HQ inteira antes de ler.
-    */
-    criarPaginasLazy();
-
-  } catch (erro) {
-
-    console.error(erro);
-    carregamentoMensagem.textContent = "Não foi possível carregar a HQ.";
-    carregamentoPorcentagem.textContent = "";
-
-    leitor.innerHTML = `
-      <div style="color:white;padding:40px;max-width:700px;margin:auto;font-family:Arial;">
-        <h2>Não foi possível carregar a HQ.</h2>
-        <p>Verifique se o arquivo está disponível e se o link do Google Drive está correto.</p>
-      </div>
-    `;
-  }
-}
-
-/* =========================
-   PÁGINAS SOB DEMANDA
-========================= */
-function criarPaginasLazy() {
-
-  if (totalPaginas <= 1) return;
-
-  for (let numero = 2; numero <= totalPaginas; numero++) {
-    const linha = document.createElement("div");
-    linha.className = "paginaLinha";
-    linha.dataset.page = String(numero);
-
-    const placeholder = document.createElement("div");
-    placeholder.className = "paginaPlaceholder";
-    placeholder.dataset.page = String(numero);
-
-    linha.appendChild(placeholder);
-    leitor.appendChild(linha);
-  }
-
-  observadorPaginas = new IntersectionObserver(
-    entradas => {
-      for (const entrada of entradas) {
-        if (!entrada.isIntersecting) continue;
-
-        const elemento = entrada.target;
-        const numero = Number(elemento.dataset.page);
-
-        if (!numero || numero === 1) continue;
-
-        /* Renderiza a página atual e as duas seguintes. */
-        for (let n = numero; n <= Math.min(numero + 2, totalPaginas); n++) {
-          const alvo = leitor.querySelector(
-            `.paginaPlaceholder[data-page="${n}"]`
-          );
-
-          if (alvo) renderizarPaginaSeNecessaria(n, alvo);
-        }
-      }
-    },
-    {
-      root: areaLeitor,
-      rootMargin: "1200px 0px 1200px 0px",
-      threshold: 0
-    }
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "true"
   );
 
-  const placeholders = leitor.querySelectorAll(".paginaPlaceholder");
-  placeholders.forEach(p => observadorPaginas.observe(p));
+  barraProgressoHQ.style.width = "0%";
+
+  textoCarregandoHQ.textContent =
+    "Estamos preparando as páginas para leitura.";
+
+  textoProgressoHQ.textContent =
+    "Conectando ao arquivo...";
+
 }
 
-async function renderizarPaginaSeNecessaria(numeroPagina, elemento) {
 
-  if (!elemento || paginasEmRenderizacao.has(numeroPagina)) return;
-  if (elemento.dataset.renderizada === "1") return;
+function atualizarProgressoCarregamento(
+  carregado,
+  total
+) {
 
-  paginasEmRenderizacao.add(numeroPagina);
+  if (
+    Number.isFinite(total) &&
+    total > 0
+  ) {
 
-  try {
-    await renderizarPagina(numeroPagina, elemento);
-    paginasRenderizadas++;
-    elemento.dataset.renderizada = "1";
-  } catch (erro) {
-    console.error("Erro ao renderizar página", numeroPagina, erro);
-  } finally {
-    paginasEmRenderizacao.delete(numeroPagina);
+    const porcentagem =
+      Math.min(
+        100,
+        Math.round(
+          (carregado / total) * 100
+        )
+      );
+
+    barraProgressoHQ.style.width =
+      porcentagem + "%";
+
+    textoProgressoHQ.textContent =
+      "Baixando HQ: " +
+      porcentagem +
+      "%";
+
+  } else {
+
+    barraProgressoHQ.style.width =
+      "35%";
+
+    textoProgressoHQ.textContent =
+      "Baixando HQ...";
+
+  }
+
+}
+
+
+function esconderCarregamento() {
+
+  carregandoHQ.classList.remove(
+    "visivel"
+  );
+
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "false"
+  );
+
+}
+
+
+function mostrarErroCarregamento() {
+
+  carregandoHQ.classList.add(
+    "visivel"
+  );
+
+  carregandoHQ.setAttribute(
+    "aria-busy",
+    "false"
+  );
+
+  barraProgressoHQ.style.width =
+    "0%";
+
+  textoCarregandoHQ.textContent =
+    "Não foi possível carregar esta HQ.";
+
+  textoProgressoHQ.textContent =
+    "Verifique se o arquivo está disponível e se o link do Google Drive está correto.";
+
+}
+
+
+
+let tituloHQDefinido = "MegaHQ Online";
+let observadorTituloHQ = null;
+
+async function definirTituloDaHQ() {
+  let titulo = "";
+  const parametros = new URLSearchParams(window.location.search);
+  const idDrive = parametros.get("id");
+
+  // Primeiro tenta obter o nome real do arquivo enviado pelo Worker/Drive.
+  // Se o Worker não expuser Content-Disposition via CORS, usa os metadados do PDF.
+  if (idDrive) {
+    try {
+      const resposta = await fetch(
+        workerURL + encodeURIComponent(idDrive),
+        { method: "HEAD", cache: "no-store", credentials: "omit" }
+      );
+      const disposicao = resposta.headers.get("content-disposition") || "";
+      const nomeCodificado = disposicao.match(/filename\*=UTF-8''([^;]+)/i);
+      const nomeSimples = disposicao.match(/filename="?([^";]+)"?/i);
+      const nomeResposta = nomeCodificado
+        ? decodeURIComponent(nomeCodificado[1].trim())
+        : (nomeSimples ? nomeSimples[1].trim() : "");
+      if (nomeResposta) {
+        titulo = nomeResposta.replace(/\.(pdf)$/i, "").trim();
+      }
+    } catch (erro) {
+      console.info("Nome do arquivo não disponível no cabeçalho do Worker; usando metadados do PDF.");
+    }
+  }
+
+  if (!titulo) {
+    try {
+      const metadados = await pdfAtual.getMetadata();
+      titulo = String(
+        metadados?.info?.Title ||
+        metadados?.metadata?.get("dc:title") ||
+        ""
+      ).trim();
+    } catch (erro) {
+      console.warn("Não foi possível ler o título da HQ nos metadados do PDF.", erro);
+    }
+  }
+
+  // A barra social de anúncios não deve substituir o título da aba.
+  if (!titulo) {
+    const nomeParametro = parametros.get("nome") || parametros.get("filename") || "";
+    titulo = nomeParametro.trim();
+  }
+  tituloHQDefinido = titulo || "MegaHQ Online";
+  document.title = tituloHQDefinido;
+
+  if (observadorTituloHQ) observadorTituloHQ.disconnect();
+  const elementoTitulo = document.querySelector("title");
+  if (elementoTitulo && "MutationObserver" in window) {
+    observadorTituloHQ = new MutationObserver(() => {
+      if (document.title !== tituloHQDefinido) {
+        document.title = tituloHQDefinido;
+      }
+    });
+    observadorTituloHQ.observe(elementoTitulo, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
   }
 }
+
+async function carregarPDF() {
+
+  const dados =
+  obterPDF();
+
+  /*
+    A página inicial não possui HQ.
+    Portanto, não mostramos carregamento e
+    não inicializamos nenhum PDF.
+  */
+  if (!dados) {
+    return;
+  }
+
+  urlPDFAtual =
+  dados.url;
+
+  leitor.innerHTML = "";
+
+  mostrarCarregamento();
+
+  try {
+
+    const loadingTask =
+    pdfjsLib.getDocument({
+      url: dados.url,
+      withCredentials: false
+    });
+
+    loadingTask.onProgress =
+      function(progresso) {
+
+        atualizarProgressoCarregamento(
+          progresso.loaded,
+          progresso.total
+        );
+
+      };
+
+    pdfAtual =
+    await loadingTask.promise;
+
+    await definirTituloDaHQ();
+
+    console.log(
+      "PDF carregado:",
+      pdfAtual.numPages,
+      "páginas"
+    );
+
+    for (
+      let numeroPagina = 1;
+      numeroPagina <= pdfAtual.numPages;
+      numeroPagina++
+    ) {
+
+      await renderizarPagina(
+        numeroPagina
+      );
+
+    }
+
+    atualizarZoom();
+
+    esconderCarregamento();
+
+  } catch (erro) {
+
+    mostrarErroCarregamento();
+
+    console.error(erro);
+
+    leitor.innerHTML = `
+
+      <div style="
+        color:white;
+        padding:40px;
+        max-width:700px;
+        margin:auto;
+        font-family:Arial;
+      ">
+
+        <h2>
+          Não foi possível carregar a HQ.
+        </h2>
+
+        <p>
+          Verifique se o arquivo está disponível
+          e se o link do Google Drive está correto.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
 
 /* =========================
    RENDERIZAR PÁGINA
 ========================= */
-async function renderizarPagina(numeroPagina, destino) {
 
-  const pagina = await pdfAtual.getPage(numeroPagina);
-  const viewport = pagina.getViewport({ scale: 1 });
+async function renderizarPagina(
+  numeroPagina
+) {
 
-  const canvas = document.createElement("canvas");
-  const contexto = canvas.getContext("2d", { alpha: false });
+  const pagina =
+  await pdfAtual.getPage(
+    numeroPagina
+  );
 
-  canvas.width = viewport.width;
-  canvas.height = viewport.height;
-  canvas.dataset.originalWidth = viewport.width;
-  canvas.dataset.originalHeight = viewport.height;
+  const viewport =
+  pagina.getViewport({
+    scale: 1
+  });
 
-  if (destino) {
-    destino.style.width = viewport.width + "px";
-    destino.style.height = viewport.height + "px";
-    destino.replaceWith(canvas);
-  } else {
-    leitor.appendChild(canvas);
-  }
+  const canvas =
+  document.createElement("canvas");
 
-  canvas.style.display = "block";
-  canvas.style.margin = "0 auto 12px auto";
-  canvas.style.background = "white";
-  canvas.style.boxShadow = "0 2px 8px rgba(0,0,0,.45)";
+  const contexto =
+  canvas.getContext("2d");
+
+  canvas.width =
+  viewport.width;
+
+  canvas.height =
+  viewport.height;
+
+  canvas.dataset.originalWidth =
+  viewport.width;
+
+  canvas.dataset.originalHeight =
+  viewport.height;
+
+  leitor.appendChild(canvas);
 
   await pagina.render({
     canvasContext: contexto,
     viewport: viewport
   }).promise;
+
 }
 
 
@@ -1841,17 +1826,16 @@ async function renderizarPagina(numeroPagina, destino) {
 
 function atualizarZoom() {
 
-  zoomTexto.textContent =
-    Math.round(zoom * 100) + "%";
-
-
   if (
-    window.innerWidth <= 700
+    (window.innerWidth <= 700 || window.innerHeight <= 700)
   ) {
 
-    atualizarZoomMobile();
+    prepararZoomMobile();
 
   } else {
+
+    zoomTexto.textContent =
+      Math.round(zoom * 100) + "%";
 
     atualizarZoomDesktop();
 
@@ -1866,80 +1850,105 @@ function atualizarZoom() {
 
 function atualizarZoomDesktop() {
 
-  /*
-    No desktop não usamos transform:scale().
-    O transform mantém o tamanho de layout original do leitor,
-    mesmo quando a imagem visual fica menor, criando uma área
-    vertical vazia depois da última página.
+  const scrollTopAntes =
+    areaLeitor.scrollTop;
 
-    Aqui o zoom é aplicado diretamente ao tamanho visual de cada
-    canvas e à sua linha. Assim, a área rolável termina exatamente
-    onde termina a última página.
-  */
+  const scrollLeftAntes =
+    areaLeitor.scrollLeft;
 
-  leitor.style.transform = "none";
-  leitor.style.marginBottom = "0";
-  leitor.style.height = "auto";
+  const larguraAntes =
+    leitor.getBoundingClientRect().width;
 
-  const linhas = leitor.querySelectorAll(".paginaLinha");
+  const alturaAntes =
+    leitor.getBoundingClientRect().height;
 
-  linhas.forEach(linha => {
 
-    const canvas = linha.querySelector("canvas");
+  leitor.style.transform =
+    `scale(${zoom})`;
 
-    if (!canvas) {
-      return;
-    }
 
-    const larguraOriginal =
-      Number(canvas.dataset.originalWidth || canvas.width || 0);
+  const larguraDepois =
+    leitor.getBoundingClientRect().width;
 
-    const alturaOriginal =
-      Number(canvas.dataset.originalHeight || canvas.height || 0);
+  const alturaDepois =
+    leitor.getBoundingClientRect().height;
 
-    if (!larguraOriginal || !alturaOriginal) {
-      return;
-    }
-
-    const largura = larguraOriginal * zoom;
-    const altura = alturaOriginal * zoom;
-
-    canvas.style.width = largura + "px";
-    canvas.style.height = altura + "px";
-
-    /*
-      A própria linha passa a ter exatamente a altura da página
-      ampliada/reduzida, mais o espaçamento entre páginas.
-    */
-    linha.style.height = (altura + 12) + "px";
-
-    /*
-      Cada página continua independente horizontalmente.
-      Se ficar maior que a tela, sua própria linha ganha rolagem.
-    */
-    if (largura > areaLeitor.clientWidth + 1) {
-      linha.style.overflowX = "auto";
-      linha.style.justifyContent = "flex-start";
-
-      /* Centraliza inicialmente a página larga. */
-      requestAnimationFrame(() => {
-        linha.scrollLeft =
-          Math.max(0, (largura - linha.clientWidth) / 2);
-      });
-    } else {
-      linha.style.overflowX = "hidden";
-      linha.style.justifyContent = "center";
-      linha.scrollLeft = 0;
-    }
-
-  });
 
   /*
-    Garante que não exista uma sobra artificial depois da última
-    página. O padding do mobileStage é mantido apenas como margem
-    visual superior/inferior.
+    Mantém aproximadamente o ponto
+    que estava no centro da tela.
   */
-  mobileStage.style.height = "auto";
+
+  const centroX =
+    scrollLeftAntes +
+    areaLeitor.clientWidth / 2;
+
+  const centroY =
+    scrollTopAntes +
+    areaLeitor.clientHeight / 2;
+
+
+  if (larguraAntes > 0) {
+
+    const proporcaoX =
+      larguraDepois /
+      larguraAntes;
+
+    areaLeitor.scrollLeft =
+      centroX * proporcaoX -
+      areaLeitor.clientWidth / 2;
+
+  }
+
+
+  if (alturaAntes > 0) {
+
+    const proporcaoY =
+      alturaDepois /
+      alturaAntes;
+
+    areaLeitor.scrollTop =
+      centroY * proporcaoY -
+      areaLeitor.clientHeight / 2;
+
+  }
+
+
+  /*
+    Centraliza horizontalmente quando
+    a HQ é menor que a área disponível.
+  */
+
+  const larguraHQ =
+    leitor.scrollWidth *
+    zoom;
+
+  const larguraTela =
+    areaLeitor.clientWidth;
+
+
+  if (
+    larguraHQ <= larguraTela
+  ) {
+
+    areaLeitor.scrollLeft = 0;
+
+  }
+
+  /*
+    O transform do leitor é visual e não altera o
+    tamanho de layout do elemento. Por isso, no
+    desktop, ajustamos a altura do palco para que
+    a rolagem termine exatamente no final da HQ.
+  */
+  const alturaVisual =
+    leitor.getBoundingClientRect().height;
+
+  mobileStage.style.height =
+    Math.max(
+      areaLeitor.clientHeight,
+      alturaVisual + 40
+    ) + "px";
 
 }
 
@@ -1948,47 +1957,165 @@ function atualizarZoomDesktop() {
    ZOOM MOBILE
 ========================= */
 
+let escalaMobileBase = 1;
+let escalaMobile = 1;
 let distanciaInicial = null;
-let zoomInicialToque = 1;
+let escalaMobileAtual = 1;
+let pontoZoomX = 0;
+let pontoZoomY = 0;
+let scrollLeftInicial = 0;
+let scrollTopInicial = 0;
 
+function calcularEscalaMobileBase() {
+  const canvases = leitor.querySelectorAll("canvas");
+  if (!canvases.length) return 1;
 
-function atualizarZoomMobile() {
+  let maiorLargura = 0;
 
-  /* Usa o mesmo zoom dos botões, ajustando o tamanho real das páginas. */
-  leitor.style.transform = "none";
-  leitor.style.marginBottom = "0";
-  leitor.style.height = "auto";
-
-  const linhas = leitor.querySelectorAll(".paginaLinha");
-  linhas.forEach(linha => {
-    const canvas = linha.querySelector("canvas");
-    if (!canvas) return;
-
-    const larguraOriginal = Number(canvas.dataset.originalWidth || canvas.width || 0);
-    const alturaOriginal = Number(canvas.dataset.originalHeight || canvas.height || 0);
-    if (!larguraOriginal || !alturaOriginal) return;
-
-    const largura = larguraOriginal * zoom;
-    const altura = alturaOriginal * zoom;
-    canvas.style.width = largura + "px";
-    canvas.style.height = altura + "px";
-    linha.style.height = (altura + 12) + "px";
-    linha.style.width = "100%";
-    linha.style.minWidth = "100%";
-
-    if (largura > areaLeitor.clientWidth + 1) {
-      linha.style.overflowX = "auto";
-      linha.style.justifyContent = "flex-start";
-    } else {
-      linha.style.overflowX = "hidden";
-      linha.style.justifyContent = "center";
-      linha.scrollLeft = 0;
-    }
+  canvases.forEach((canvas) => {
+    const largura =
+      Number(canvas.dataset.originalWidth) || canvas.width;
+    maiorLargura = Math.max(maiorLargura, largura);
   });
 
-  mobileStage.style.height = "auto";
+  const larguraDisponivel =
+    Math.max(1, areaLeitor.clientWidth - 20);
+
+  return Math.min(1, larguraDisponivel / maiorLargura);
 }
 
+function aplicarEscalaMobile() {
+  const canvases = leitor.querySelectorAll("canvas");
+
+  canvases.forEach((canvas) => {
+    const larguraOriginal =
+      Number(canvas.dataset.originalWidth) || canvas.width;
+
+    const alturaOriginal =
+      Number(canvas.dataset.originalHeight) || canvas.height;
+
+    canvas.style.width =
+      `${larguraOriginal * escalaMobile}px`;
+
+    canvas.style.height =
+      `${alturaOriginal * escalaMobile}px`;
+  });
+
+  leitor.style.transform = "none";
+
+  /*
+    O Stage precisa acompanhar o tamanho visual do leitor.
+    Assim, quando houver zoom, os dois eixos passam a
+    ter área real de rolagem e o conteúdo pode ser movido
+    tanto vertical quanto horizontalmente.
+  */
+  const larguraVisual = leitor.scrollWidth;
+  const alturaVisual = leitor.scrollHeight;
+
+  mobileStage.style.width =
+    Math.max(
+      areaLeitor.clientWidth,
+      larguraVisual + 20
+    ) + "px";
+  mobileStage.style.justifyContent = "center";
+
+  mobileStage.style.height =
+    Math.max(
+      areaLeitor.clientHeight,
+      alturaVisual + 20
+    ) + "px";
+}
+
+function aplicarZoomMobileAncorado(
+  novaEscala,
+  pontoX,
+  pontoY,
+  scrollLeftBase,
+  scrollTopBase
+) {
+  const escalaAnterior = escalaMobile;
+
+  if (
+    !Number.isFinite(novaEscala) ||
+    novaEscala <= 0 ||
+    escalaAnterior <= 0
+  ) {
+    return;
+  }
+
+  const areaRectAntes = areaLeitor.getBoundingClientRect();
+  const leitorRectAntes = leitor.getBoundingClientRect();
+  const origemXAntes = leitorRectAntes.left - areaRectAntes.left;
+  const origemYAntes = leitorRectAntes.top - areaRectAntes.top;
+
+  // Converte o ponto tocado para coordenadas do conteúdo, descontando
+  // a margem de centralização do leitor.
+  const conteudoX =
+    (scrollLeftBase + pontoX - origemXAntes) / escalaAnterior;
+  const conteudoY =
+    (scrollTopBase + pontoY - origemYAntes) / escalaAnterior;
+
+  escalaMobile = novaEscala;
+  aplicarEscalaMobile();
+
+  const areaRectDepois = areaLeitor.getBoundingClientRect();
+  const leitorRectDepois = leitor.getBoundingClientRect();
+  const origemXDepois = leitorRectDepois.left - areaRectDepois.left;
+  const origemYDepois = leitorRectDepois.top - areaRectDepois.top;
+
+  areaLeitor.scrollLeft = Math.max(
+    0,
+    conteudoX * escalaMobile + origemXDepois - pontoX
+  );
+  areaLeitor.scrollTop = Math.max(
+    0,
+    conteudoY * escalaMobile + origemYDepois - pontoY
+  );
+
+  zoomTexto.textContent =
+    Math.round(
+      (escalaMobile / escalaMobileBase) * 100
+    ) + "%";
+}
+
+function atualizarZoomMobile() {
+  aplicarEscalaMobile();
+
+  zoomTexto.textContent =
+    Math.round(
+      (escalaMobile / escalaMobileBase) * 100
+    ) + "%";
+}
+
+function prepararZoomMobile() {
+  const proporcaoAnterior =
+    escalaMobileBase > 0
+      ? escalaMobile / escalaMobileBase
+      : 1;
+
+  escalaMobileBase =
+    calcularEscalaMobileBase();
+
+  escalaMobile =
+    Math.min(
+      escalaMobileBase * 4,
+      Math.max(
+        escalaMobileBase,
+        escalaMobileBase * proporcaoAnterior
+      )
+    );
+
+  mobileStage.style.minHeight = "100%";
+
+  atualizarZoomMobile();
+}
+
+function pontoCentralToque(toque1, toque2) {
+  return {
+    x: (toque1.clientX + toque2.clientX) / 2,
+    y: (toque1.clientY + toque2.clientY) / 2
+  };
+}
 
 /* =========================
    BOTÕES DE ZOOM
@@ -1998,17 +2125,38 @@ btnMenos.addEventListener(
   "click",
   () => {
 
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
+
+      const novaEscala =
+        Math.max(
+          escalaMobileBase,
+          escalaMobile -
+          escalaMobileBase * passoZoom
+        );
+
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        areaLeitor.clientWidth / 2,
+        areaLeitor.clientHeight / 2,
+        areaLeitor.scrollLeft,
+        areaLeitor.scrollTop
+      );
+
+      return;
+    }
+
     zoom =
       Math.max(
         zoomMinimo,
         Number(
-          (zoom - passoZoom)
-          .toFixed(2)
+          (zoom - passoZoom).toFixed(2)
         )
       );
 
     atualizarZoom();
-
   }
 );
 
@@ -2017,17 +2165,38 @@ btnMais.addEventListener(
   "click",
   () => {
 
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
+
+      const novaEscala =
+        Math.min(
+          escalaMobileBase * 4,
+          escalaMobile +
+          escalaMobileBase * passoZoom
+        );
+
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        areaLeitor.clientWidth / 2,
+        areaLeitor.clientHeight / 2,
+        areaLeitor.scrollLeft,
+        areaLeitor.scrollTop
+      );
+
+      return;
+    }
+
     zoom =
       Math.min(
         zoomMaximo,
         Number(
-          (zoom + passoZoom)
-          .toFixed(2)
+          (zoom + passoZoom).toFixed(2)
         )
       );
 
     atualizarZoom();
-
   }
 );
 
@@ -2038,7 +2207,21 @@ btnReset.addEventListener(
 
     zoom = 1;
 
-    atualizarZoom();
+    if (
+      (window.innerWidth <= 700 || window.innerHeight <= 700)
+    ) {
+
+      escalaMobile = escalaMobileBase;
+
+      mobileStage.style.minHeight = "100%";
+
+      atualizarZoom();
+
+    } else {
+
+      atualizarZoom();
+
+    }
 
   }
 );
@@ -2228,32 +2411,23 @@ btnDownload.addEventListener(
    PINCH ZOOM MOBILE
 ========================= */
 
-function distanciaToque(
-  toque1,
-  toque2
-) {
-
+function distanciaToque(toque1, toque2) {
   const dx =
-    toque1.clientX -
-    toque2.clientX;
+    toque1.clientX - toque2.clientX;
 
   const dy =
-    toque1.clientY -
-    toque2.clientY;
+    toque1.clientY - toque2.clientY;
 
-  return Math.sqrt(
-    dx * dx +
-    dy * dy
-  );
-
+  return Math.sqrt(dx * dx + dy * dy);
 }
-
 
 areaLeitor.addEventListener(
   "touchstart",
   (evento) => {
 
     if (
+      (window.innerWidth <= 700 ||
+       window.innerHeight <= 700) &&
       evento.touches.length === 2
     ) {
 
@@ -2263,24 +2437,43 @@ areaLeitor.addEventListener(
           evento.touches[1]
         );
 
-      zoomInicialToque = zoom;
+      escalaMobileAtual =
+        escalaMobile;
 
+      const centro =
+        pontoCentralToque(
+          evento.touches[0],
+          evento.touches[1]
+        );
+
+      const rect =
+        areaLeitor.getBoundingClientRect();
+
+      pontoZoomX =
+        centro.x - rect.left;
+
+      pontoZoomY =
+        centro.y - rect.top;
+
+      scrollLeftInicial =
+        areaLeitor.scrollLeft;
+
+      scrollTopInicial =
+        areaLeitor.scrollTop;
     }
-
   },
-  {
-    passive: true
-  }
+  { passive: true }
 );
-
 
 areaLeitor.addEventListener(
   "touchmove",
   (evento) => {
 
     if (
+      (window.innerWidth <= 700 ||
+       window.innerHeight <= 700) &&
       evento.touches.length === 2 &&
-      window.innerWidth <= 700
+      distanciaInicial
     ) {
 
       const distanciaAtual =
@@ -2289,49 +2482,48 @@ areaLeitor.addEventListener(
           evento.touches[1]
         );
 
-      if (
-        distanciaInicial
-      ) {
+      const fator =
+        distanciaAtual / distanciaInicial;
 
-        const fator =
-          distanciaAtual /
-          distanciaInicial;
+      const novaEscala =
+        Math.min(
+          escalaMobileBase * 4,
+          Math.max(
+            escalaMobileBase,
+            escalaMobileAtual * fator
+          )
+        );
 
-        zoom =
-          Math.min(
-            zoomMaximo,
-            Math.max(
-              zoomMinimo,
-              zoomInicialToque * fator
-            )
-          );
-
-        atualizarZoom();
-
-      }
+      aplicarZoomMobileAncorado(
+        novaEscala,
+        pontoZoomX,
+        pontoZoomY,
+        scrollLeftInicial,
+        scrollTopInicial
+      );
 
       evento.preventDefault();
-
     }
-
   },
-  {
-    passive: false
-  }
+  { passive: false }
 );
-
 
 areaLeitor.addEventListener(
   "touchend",
-  () => {
-
-    distanciaInicial =
-      null;
-
+  (evento) => {
+    if (evento.touches.length < 2) {
+      distanciaInicial = null;
+    }
   },
-  {
-    passive: true
-  }
+  { passive: true }
+);
+
+areaLeitor.addEventListener(
+  "touchcancel",
+  () => {
+    distanciaInicial = null;
+  },
+  { passive: true }
 );
 
 
@@ -2343,15 +2535,20 @@ window.addEventListener(
   "resize",
   () => {
 
-    if (pdfAtual) {
-      pdfAtual.getPage(1).then(pagina => {
-        definirTamanhoDosPlaceholders(
-          pagina.getViewport({ scale: 1 })
-        );
-      }).catch(() => {});
-    }
+    if (
+      window.innerWidth <= 700 ||
+      window.innerHeight <= 700
+    ) {
 
-    atualizarZoom();
+      prepararZoomMobile();
+
+    } else {
+
+      mobileStage.style.minHeight = "100%";
+
+      atualizarZoom();
+
+    }
 
   }
 );
@@ -2361,12 +2558,7 @@ window.addEventListener(
    INICIAR
 ========================= */
 
-const parametrosInicializacao = new URLSearchParams(window.location.search);
-if (parametrosInicializacao.has("id") || parametrosInicializacao.has("pdf")) {
-  carregarPDF();
-} else {
-  telaCarregamento.classList.add("oculta");
-}
+carregarPDF();
 
 </script>
 
@@ -2383,7 +2575,7 @@ if (parametrosInicializacao.has("id") || parametrosInicializacao.has("pdf")) {
 
 
 
-<!-- ADSTERRA — BANNER 160x300 (somente leitor em telas largas) -->
+<!-- ADSTERRA - BANNER 160x300 -->
 <div id="adsterraBanner160x300" aria-label="Publicidade">
   <script>
     atOptions = {
@@ -2397,7 +2589,7 @@ if (parametrosInicializacao.has("id") || parametrosInicializacao.has("pdf")) {
   <script src="https://www.highrevenueformat.com/abba3974ab685a71f5e9a87a287fe98d/invoke.js"></script>
 </div>
 
-<!-- ADSTERRA — BANNER 320x50 (somente leitor em celular) -->
+<!-- ADSTERRA - BANNER 320x50 -->
 <div id="adsterraBanner320x50" aria-label="Publicidade">
   <script>
     atOptions = {
@@ -2411,67 +2603,73 @@ if (parametrosInicializacao.has("id") || parametrosInicializacao.has("pdf")) {
   <script src="https://www.highrevenueformat.com/cba5be04252c2b9e6476640e7a13439d/invoke.js"></script>
 </div>
 
-<!-- ADSTERRA — NATIVE BANNER -->
+<!-- =========================
+     ADSTERRA - NATIVE BANNER 1:4
+     Sidebar apenas no desktop, quando houver espaço lateral livre.
+========================= -->
 <div id="adsterraNativeSidebar" aria-label="Publicidade">
   <script async="async" data-cfasync="false" src="https://pl31646545.profitableratecpmnetwork.com/0b45e944d77e6fda9789af2b5d8f70fc/invoke.js"></script>
   <div id="container-0b45e944d77e6fda9789af2b5d8f70fc"></div>
 </div>
 
-<!-- ADSTERRA — SOCIAL BAR -->
+<!-- =========================
+     ADSTERRA - SOCIAL BAR
+========================= -->
 <script src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js"></script>
 
-<!-- ADSTERRA — SIDEBAR: só aparece se houver espaço livre ao lado da página -->
 <script>
+/* =========================
+   ADSTERRA - POSIÇÃO DO NATIVE BANNER
+========================= */
+
 (function () {
-  const banner = document.getElementById("adsterraBanner160x300");
-  const native = document.getElementById("adsterraNativeSidebar");
-  if (!banner || !native) return;
+  const sidebar = document.getElementById("adsterraNativeSidebar");
 
-  function posicionarAnuncios() {
+  if (!sidebar) return;
+
+  function atualizarSidebarAdsterra() {
     const modoLeitor = document.documentElement.classList.contains("modo-leitor");
-    const mobile = window.innerWidth <= 1100;
-    const canvas = document.querySelector("#leitor canvas");
-    if (!modoLeitor || mobile || !canvas) {
-      banner.style.display = "none";
-      native.style.display = "none";
+
+    if (!modoLeitor || window.innerWidth <= 1100 || window.innerWidth <= 700) {
+      sidebar.style.display = "none";
       return;
     }
 
-    const rect = canvas.getBoundingClientRect();
+    const leitor = document.getElementById("leitor");
+    if (!leitor) {
+      sidebar.style.display = "none";
+      return;
+    }
+
+    const rect = leitor.getBoundingClientRect();
+    const larguraAnuncio = 160;
+    const margem = 18;
     const espacoDireita = window.innerWidth - rect.right;
-    const espacoEsquerda = rect.left;
-    let lado = "";
-    if (espacoDireita >= 178) lado = "direita";
-    else if (espacoEsquerda >= 178) lado = "esquerda";
 
-    if (!lado) {
-      banner.style.display = "none";
-      native.style.display = "none";
-      return;
+    if (espacoDireita >= larguraAnuncio + margem) {
+      sidebar.style.display = "block";
+    } else {
+      sidebar.style.display = "none";
     }
-
-    for (const el of [banner, native]) {
-      el.style.left = lado === "esquerda" ? "12px" : "auto";
-      el.style.right = lado === "direita" ? "12px" : "auto";
-    }
-    banner.style.display = "block";
-    native.style.display = window.innerHeight > 620 ? "block" : "none";
   }
 
-  window.addEventListener("resize", posicionarAnuncios);
-  window.addEventListener("scroll", posicionarAnuncios, {passive:true});
-  document.addEventListener("fullscreenchange", posicionarAnuncios);
-  const observer = new MutationObserver(posicionarAnuncios);
-  const leitor = document.getElementById("leitor");
-  if (leitor) observer.observe(leitor, {childList:true, subtree:true});
-  window.addEventListener("load", posicionarAnuncios);
-  setTimeout(posicionarAnuncios, 500);
-  setTimeout(posicionarAnuncios, 1500);
-})();
-</script>
+  window.atualizarSidebarAdsterra = atualizarSidebarAdsterra;
 
-<!-- ADMAVEN — IN PAGE PUSH (código que já existia na V8) -->
-<script data-cfasync="false" src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524"></script>
+  window.addEventListener("resize", atualizarSidebarAdsterra);
+  window.addEventListener("scroll", atualizarSidebarAdsterra, { passive: true });
+
+  const observer = new MutationObserver(atualizarSidebarAdsterra);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
+
+  setTimeout(atualizarSidebarAdsterra, 300);
+  setTimeout(atualizarSidebarAdsterra, 1000);
+  setTimeout(atualizarSidebarAdsterra, 2500);
+})();
+
+</script>
 
 </body>
 </html>
