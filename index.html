@@ -17,7 +17,7 @@
 >
 
 <title>MegaHQ Online</title>
-<!-- MegaHQ Online index-v101: ajustes de zoom, rolagem e anúncios -->
+<!-- MegaHQ Online index-v102: ajustes de anúncios mobile, zoom e título/histórico -->
 
 <!-- ADMAVEN - VERIFICAÇÃO -->
 <meta name="admaven-placement" content="BrHr6rTs4">
@@ -1430,8 +1430,8 @@ const textoProgressoHQ = document.getElementById("textoProgressoHQ");
 const barraProgressoHQ = document.getElementById("barraProgressoHQ");
 
 const workerURL = "https://polished-term-e56bmega-leitor-proxy.megahqwix.workers.dev/?id=";
-const zoomMinimo = 0.5;
-const zoomMaximo = 4;
+const zoomMinimo = 0.2;
+const zoomMaximo = 1;
 const passoZoom = 0.1;
 
 let pdfAtual = null;
@@ -1504,13 +1504,15 @@ function aplicarTitulo(nome) {
     nomeHQ.textContent = nomeInteiro;
     nomeHQ.title = nomeInteiro;
   }
-  document.title = nomeInteiro + " | MegaHQ Online";
+  // A guia do navegador deve exibir somente o nome do arquivo lido.
+  document.title = nomeInteiro;
 
   try {
     const estado = history.state && typeof history.state === "object" ? history.state : {};
+    const tituloHistorico = 'MegaHQ Leitor "' + nomeInteiro + '"';
     history.replaceState(
-      { ...estado, megaHQTitle: document.title },
-      document.title,
+      { ...estado, megaHQTitle: tituloHistorico, megaHQFileName: nomeInteiro },
+      tituloHistorico,
       window.location.href
     );
   } catch (e) {
@@ -1674,7 +1676,7 @@ async function carregarPDF() {
   if (dados.tipo === "local") {
     aplicarTitulo(nomeDoPDFLocal(dados.url));
   } else {
-    document.title = "Carregando HQ... | MegaHQ Online";
+    document.title = "Carregando HQ...";
     if (nomeHQ) {
       nomeHQ.textContent = "Carregando HQ...";
       nomeHQ.title = "Carregando HQ...";
@@ -1732,7 +1734,7 @@ function mudarZoom(novoZoom, x = areaLeitor.clientWidth / 2, y = areaLeitor.clie
 
 btnMenos.addEventListener("click", () => mudarZoom(zoom - passoZoom));
 btnMais.addEventListener("click", () => mudarZoom(zoom + passoZoom));
-btnReset.addEventListener("click", () => mudarZoom(1));
+btnReset.addEventListener("click", () => mudarZoom(0.5));
 
 btnDownload.addEventListener("click", () => {
   if (!urlPDFAtual) return;
@@ -1882,8 +1884,8 @@ if (paramsInicial.has("id") || paramsInicial.has("pdf")) {
   <div id="container-0b45e944d77e6fda9789af2b5d8f70fc"></div>
 </div>
 
-<!-- ADSTERRA SOCIAL BAR -->
-<script src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js"></script>
+<!-- ADSTERRA SOCIAL BAR — mantida ativa no desktop e no mobile; não é ocultada pelas regras de banners -->
+<script data-cfasync="false" src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js"></script>
 
 <!-- ADMAVEN - IN PAGE PUSH -->
 <script data-cfasync="false" src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524"></script>
