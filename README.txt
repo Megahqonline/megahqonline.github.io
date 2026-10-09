@@ -1,26 +1,26 @@
-MEGAHQ ONLINE — PÁGINA INICIAL + LEITOR SEPARADO
+MEGAHQ ONLINE — PACOTE PROFISSIONAL
 
-Conteúdo:
-- index.html: nova página inicial do site.
-- leitor.html: cópia exata do HTML do leitor enviado pelo usuário; o conteúdo não foi alterado, apenas recebeu outro nome de arquivo.
-- artigos.html e artigo-*.html: páginas editoriais.
-- sobre.html, contato.html, privacidade.html, termos.html e direitos-autorais.html: páginas institucionais.
-- assets/: estilos e script usados pelas páginas editoriais/institucionais.
+ARQUIVOS
+- index.html: página inicial nova.
+- leitor.html: cópia byte a byte do leitor original enviado; preserva a lógica e os scripts que existiam no arquivo original.
+- artigos e páginas institucionais: páginas editoriais e informativas.
+- assets/: estilos e script compartilhados das páginas internas.
 
-COMO PUBLICAR NO GITHUB PAGES
-1. Extraia este ZIP no computador.
-2. Abra o repositório https://github.com/Megahqonline/megahqonline.github.io
-3. Faça upload de TODOS os arquivos e da pasta assets, mantendo a estrutura das pastas.
-4. Confirme que index.html está na raiz do repositório e aceite substituir o index.html antigo.
-5. Confirme que leitor.html também está na raiz. Não apague nem altere os scripts existentes dentro dele.
-6. Aguarde o GitHub Pages publicar e teste:
-   https://megahqonline.github.io/
-   https://megahqonline.github.io/leitor.html
-   https://megahqonline.github.io/artigos.html
+PUBLICAÇÃO NO GITHUB PAGES
+1. Extraia todos os arquivos e pastas.
+2. Envie todos os arquivos para a raiz do repositório Megahqonline/megahqonline.github.io.
+3. Substitua o index.html antigo pelo novo index.html.
+4. Adicione leitor.html e assets/ mantendo exatamente os nomes e a estrutura.
+5. Não apague as páginas de artigos e institucionais.
+6. Faça Commit changes e aguarde a publicação.
 
-IMPORTANTE
-- O index.html antigo era o leitor. Agora o leitor passa a ser leitor.html e a raiz passa a mostrar a nova página inicial.
-- Os metadados de verificação AdMaven e Monetag foram incluídos na nova página inicial e permanecem no leitor original.
-- O arquivo leitor.html é byte a byte idêntico ao HTML enviado nesta conversa, para preservar o código do leitor.
-- A página contato.html ainda contém um espaço reservado para o e-mail; substitua-o pelo e-mail de contato real antes de publicar.
-- Verifique as políticas e os requisitos atuais de cada rede de anúncios; este pacote não garante aprovação de monetização.
+COMPORTAMENTO DOS LINKS
+- https://megahqonline.github.io/ abre a página inicial.
+- https://megahqonline.github.io/leitor.html abre o leitor diretamente.
+- Links antigos do formato /?id=... ou /?pdf=... são encaminhados diretamente para leitor.html preservando a query string; não há página intermediária de confirmação.
+
+OBSERVAÇÕES
+- O leitor foi copiado sem alterar seu código, mas deve ser testado em produção após publicação.
+- Os metadados AdMaven e Monetag foram mantidos na página inicial e no leitor, conforme os arquivos recebidos. Isso não garante aprovação ou funcionamento de serviços de terceiros.
+- Preencha o e-mail de contato em contato.html antes de publicar.
+- A página inicial usa fontes Google Fonts com fallback local; o layout continua legível se elas não carregarem.
