@@ -551,9 +551,6 @@ function obterPDF() {
   const id =
   parametros.get("id");
 
-  const resourcekey =
-  parametros.get("resourcekey");
-
   const pdf =
   parametros.get("pdf");
 
@@ -567,17 +564,11 @@ function obterPDF() {
     return {
       url:
         workerURL +
-        encodeURIComponent(id) +
-        (resourcekey
-          ? "&resourcekey=" + encodeURIComponent(resourcekey)
-          : ""),
+        encodeURIComponent(id),
 
       download:
         workerURL +
-        encodeURIComponent(id) +
-        (resourcekey
-          ? "&resourcekey=" + encodeURIComponent(resourcekey)
-          : ""),
+        encodeURIComponent(id),
 
       tipo:
         "worker"
