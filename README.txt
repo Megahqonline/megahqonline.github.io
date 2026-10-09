@@ -1,16 +1,17 @@
-MEGAHQ ONLINE — PACOTE PROFISSIONAL
+MEGAHQ ONLINE — PACOTE EDITORIAL
 
-ESTRUTURA
-- index.html: nova página inicial profissional.
-- leitor.html: código original do leitor enviado pelo proprietário, preservado sem alterações.
-- artigos.html e artigo-*.html: páginas editoriais.
-- sobre.html, contato.html, privacidade.html, termos.html e direitos-autorais.html: páginas institucionais.
-- assets/: estilos das páginas editoriais.
+O QUE CONTÉM
+- index.html: página inicial com a logo fornecida. Não exibe divulgação nem link para o leitor.
+- leitor.html: cópia byte a byte do leitor original enviado para esta tarefa. Deve ser publicado para manter os links diretos antigos.
+- artigos.html: índice editorial com 10 artigos.
+- 10 páginas de artigos individuais.
+- assets/megahq-logo.png: logo fornecida pelo proprietário.
+- assets/article.css: modelo visual editorial responsivo.
 
 PUBLICAÇÃO
-Envie os arquivos e a pasta assets para a raiz do repositório GitHub Pages, substituindo o index.html existente e adicionando leitor.html. Não coloque os arquivos dentro de uma subpasta.
+Enviar os arquivos e a pasta assets para a raiz do repositório GitHub Pages, substituindo index.html e artigos.html e adicionando as novas páginas. Fazer backup do site antes de publicar.
 
-COMPATIBILIDADE
-A página inicial encaminha automaticamente URLs com ?id=, ?resourcekey= ou ?pdf= para leitor.html, mantendo os parâmetros originais. O link /leitor.html abre o leitor diretamente.
+IMPORTANTE
+Os links legados que incluem ?id=, ?resourcekey= ou ?pdf= são redirecionados pelo index.html para leitor.html mantendo a query string. Não publique apenas o index.html sem leitor.html. A navegação visível de homepage e subpáginas não inclui o leitor, conforme solicitado.
 
-Antes de publicar, revise o e-mail reservado em contato.html e os textos de privacidade para refletirem os serviços realmente usados no site.
+As páginas são editoriais independentes e não afiliadas às editoras citadas. Verifique os textos, e-mail de contato, privacidade e políticas conforme os serviços realmente usados antes de publicar.
