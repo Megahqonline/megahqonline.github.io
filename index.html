@@ -1,53 +1,1495 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MegaHQ Online — Quadrinhos além das páginas</title>
-<meta name="description" content="MegaHQ Online: ensaios, personagens e cultura dos quadrinhos, com artigos editoriais sobre os universos que marcaram gerações.">
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>MegaHQ Online</title>
+<!-- MegaHQ Reader V4 - nome real do Drive + carregamento otimizado -->
+
+<!-- ADMAVEN - VERIFICAÇÃO -->
 <meta name="admaven-placement" content="BrHr6rTs4">
-<meta name="monetag" content="c0572af66e0fb19fa53dc55faaca3da8">
-<script>
-(function(){var q=window.location.search;if(q && /(?:^|[?&])(id|resourcekey|pdf)=/i.test(q)){window.location.replace('leitor.html'+q+window.location.hash);}})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- MONETAG - VERIFICAÇÃO -->
+<meta
+  name="monetag"
+  content="c0572af66e0fb19fa53dc55faaca3da8"
+>
+
 <style>
-:root{--bg:#080b10;--panel:#101720;--panel2:#151f2c;--line:#293543;--text:#f5f7fa;--muted:#a9b3bf;--gold:#f4c35e;--red:#e34b43;--max:1200px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 'DM Sans',Arial,sans-serif}a{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
-.topline{height:4px;background:linear-gradient(90deg,var(--red) 0 25%,var(--gold) 25% 60%,#4e78a7 60% 100%)}header{border-bottom:1px solid #ffffff13;background:#090d13}.head{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.05em;font-size:1.28rem}.brand-logo{height:54px;width:60px;object-fit:contain;display:block;flex:0 0 auto}.brand{gap:14px}.brand small{display:block;color:#8995a4;font-size:.62rem;letter-spacing:.2em;font-weight:700;margin-top:-3px}.nav{display:flex;align-items:center;gap:28px;color:#c4ccd6;font-size:.9rem}.nav a:hover{color:var(--gold)}.nav .navbtn{padding:11px 17px;background:var(--gold);color:#101319;font-weight:800;border-radius:4px}
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 45%,#24364b 0,transparent 37%),linear-gradient(115deg,#0c121b 0%,#0b111a 58%,#111b28 100%)}.hero:after{content:'HQ';position:absolute;right:4%;top:-100px;font:900 clamp(18rem,37vw,34rem)/1 'Barlow Condensed',sans-serif;letter-spacing:-.08em;color:#ffffff05;pointer-events:none}.hero-grid{min-height:480px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:38px;padding-top:46px;padding-bottom:50px;position:relative;z-index:1}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:800;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}.eyebrow:before{content:'';width:25px;height:2px;background:var(--red)}h1,h2,h3,p{margin-top:0}h1{font:900 clamp(3.5rem,7.5vw,6.5rem)/.91 'Barlow Condensed',Impact,sans-serif;letter-spacing:-.025em;text-transform:uppercase;margin:21px 0 22px;max-width:670px}h1 em{font-style:normal;color:var(--gold)}.hero-copy{max-width:535px;color:#b7c2cf;font-size:1.03rem;line-height:1.8}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 19px;border-radius:4px;font-weight:800;font-size:.9rem;transition:transform .18s,background .18s}.btn:hover{transform:translateY(-2px)}.primary{background:var(--gold);color:#101319}.secondary{border:1px solid #455367;color:#f0f3f7;background:#101720}.hero-art{height:340px;position:relative;display:flex;align-items:center;justify-content:center}.art-frame{position:absolute;width:min(100%,430px);height:305px;border:1px solid #61758c;transform:rotate(-5deg);background:linear-gradient(140deg,#293c50,#111923 65%);box-shadow:22px 22px 0 #f4c35e}.art-frame:before{content:'';position:absolute;inset:18px;border:1px solid #8b9db2;opacity:.45}.art-circle{position:absolute;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#ffe2a0 0 3%,#f4c35e 4% 22%,#d88b37 23% 45%,#7c3433 46% 65%,#1c2938 66%);right:14%;top:24px;box-shadow:0 0 65px #f4c35e26}.art-slash{position:absolute;width:270px;height:350px;background:linear-gradient(140deg,transparent 35%,#e34b43 36% 44%,transparent 45%);transform:rotate(19deg);left:12%;top:-7px}.art-type{position:absolute;left:7%;bottom:25px;font:900 clamp(3rem,5vw,5rem)/.8 'Barlow Condensed',sans-serif;text-transform:uppercase;text-shadow:4px 4px 0 #0a0e13;transform:rotate(-5deg)}.art-type span{display:block;color:var(--gold);font-size:.53em;letter-spacing:.12em;margin-top:12px}
-.ticker{border-bottom:1px solid var(--line);background:#0e141d}.ticker-inner{min-height:54px;display:flex;align-items:center;gap:24px;overflow:hidden;white-space:nowrap;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9eabb9}.ticker strong{color:var(--red);letter-spacing:.16em}.ticker span:before{content:'✦';color:var(--gold);margin-right:10px}
-section{padding:72px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:27px}.kicker{color:var(--red);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin-bottom:7px}.section-head h2{font:800 clamp(2.5rem,5vw,3.6rem)/.98 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:-.015em;margin:0}.section-head p{color:var(--muted);max-width:390px;margin:0;font-size:.9rem}.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.story{min-width:0;background:var(--panel);border:1px solid var(--line);transition:transform .2s,border-color .2s;display:flex;flex-direction:column}.story:hover{transform:translateY(-5px);border-color:#687b91}.story-art{height:205px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#172333}.story-art:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0a0e15 0%,transparent 70%)}.story-art .big{font:900 8rem/.8 'Barlow Condensed',sans-serif;letter-spacing:-.08em;position:relative;z-index:1;text-shadow:5px 5px 0 #0b1018}.batman{background:radial-gradient(circle at 50% 36%,#4b5360,#151d2b 50%,#080b10)}.batman .big{color:#e4d7b0}.spider{background:radial-gradient(circle at 50% 45%,#9e2b32,#3a111b 55%,#10131b)}.spider .big{color:#f5e7df}.miles{background:radial-gradient(circle at 50% 35%,#5b2b81,#20152f 54%,#080b10)}.miles .big{color:#f1cf5d}.tag{position:absolute;left:16px;top:15px;z-index:2;background:var(--gold);color:#101319;padding:5px 9px;font-size:.64rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.story-body{padding:22px;display:flex;flex-direction:column;flex:1}.story-meta{color:#8795a7;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}.story h3{font:800 1.85rem/1 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:12px 0}.story p{color:#aeb9c7;font-size:.88rem;line-height:1.75;margin-bottom:20px}.readmore{margin-top:auto;padding-top:14px;border-top:1px solid #ffffff14;color:var(--gold);font-size:.82rem;font-weight:800;display:flex;justify-content:space-between}.readmore span{font-size:1.2rem}
-.reader-band{padding:0 0 78px}.reader-box{display:grid;grid-template-columns:1fr auto;gap:35px;align-items:center;padding:39px 42px;border:1px solid #39495b;background:linear-gradient(110deg,#141e2b,#0e151f);position:relative;overflow:hidden}.reader-box:after{content:'LEITOR';position:absolute;right:130px;top:-33px;font:900 8rem 'Barlow Condensed',sans-serif;color:#ffffff05;pointer-events:none}.reader-box h2{font:800 clamp(2.2rem,4vw,3.2rem)/1 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:0 0 12px}.reader-box p{color:#aab6c4;max-width:650px;margin:0}.reader-box .btn{position:relative;z-index:1;white-space:nowrap}
-footer{border-top:1px solid var(--line);background:#070a0f;padding:32px 0;color:#8793a3;font-size:.8rem}.foot{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}.foot-brand{color:#eef1f5;font-weight:800;letter-spacing:-.03em}.foot-links{display:flex;gap:19px;flex-wrap:wrap}.foot-links a:hover{color:var(--gold)}
-@media(max-width:850px){.nav{gap:15px}.hero-grid{grid-template-columns:1fr .75fr;gap:14px}.hero-art{transform:scale(.86);transform-origin:center}.stories{gap:13px}.story-body{padding:17px}.reader-box{padding:30px;grid-template-columns:1fr auto}}
-@media(max-width:650px){.wrap{width:min(var(--max),calc(100% - 32px))}.head{height:auto;min-height:76px;align-items:flex-start;padding:16px 0;flex-direction:column;gap:14px}.nav{width:100%;gap:16px;flex-wrap:wrap;font-size:.83rem}.nav .navbtn{padding:8px 11px}.hero-grid{grid-template-columns:1fr;padding-top:47px;padding-bottom:38px;gap:0}.hero-art{height:220px;transform:scale(.78);transform-origin:top center;margin-bottom:-45px}.art-frame{height:230px}.art-circle{width:150px;height:150px}.art-slash{height:270px}.art-type{font-size:3.5rem;bottom:10px}.hero-copy{font-size:.94rem}.ticker-inner{gap:15px;min-height:47px}.ticker span:nth-of-type(n+3){display:none}section{padding:52px 0}.section-head{align-items:flex-start;flex-direction:column;gap:12px}.stories{grid-template-columns:1fr}.story{display:grid;grid-template-columns:38% 1fr}.story-art{height:100%;min-height:205px}.story-art .big{font-size:5.5rem}.story-body{padding:17px}.story h3{font-size:1.55rem}.story p{font-size:.82rem;margin-bottom:13px}.reader-box{grid-template-columns:1fr;padding:26px;gap:22px}.reader-box:after{right:0}.reader-box .btn{justify-self:start}.foot{align-items:flex-start;flex-direction:column}}
-@media(max-width:390px){.story{grid-template-columns:1fr}.story-art{height:175px}.hero-art{margin-left:-20px;margin-right:-20px}}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* =========================
+   BARRA DE CONTROLES
+========================= */
+
+#barra {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+
+  background: #181818;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  z-index: 99999;
+
+  border-bottom: 1px solid #333;
+}
+
+.botao {
+  border: none;
+  background: #2a2a2a;
+  color: white;
+
+  min-width: 42px;
+  height: 38px;
+
+  padding: 0 12px;
+
+  border-radius: 6px;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao:hover {
+  background: #3a3a3a;
+}
+
+#zoomTexto {
+  min-width: 62px;
+  text-align: center;
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* =========================
+   ÁREA DO LEITOR
+========================= */
+
+#areaLeitor {
+  position: absolute;
+
+  top: 55px;
+  left: 0;
+
+  width: 100%;
+  height: calc(100% - 55px);
+
+  overflow: auto;
+
+  background: #111;
+
+  text-align: center;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+#mobileStage {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+
+  display: block;
+  padding: 20px 0;
+}
+
+#leitor {
+  transform-origin: center top;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 100%;
+}
+
+/*
+   Cada página possui sua própria linha de centralização.
+   Assim, uma página muito larga não desloca as demais.
+*/
+.paginaLinha {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  margin: 0 0 12px 0;
+}
+
+#leitor canvas {
+  display: block;
+  flex: 0 0 auto;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+
+/* =========================
+   TELA CHEIA
+========================= */
+
+#areaLeitor.fullscreen {
+  top: 0;
+  height: 100%;
+}
+
+#areaLeitor.fullscreen #mobileStage {
+  padding-top: 20px;
+}
+
+#btnSairFullscreen {
+  display: none;
+
+  position: fixed;
+
+  top: 10px;
+  right: 10px;
+
+  z-index: 100000;
+
+  border: none;
+
+  background: rgba(0,0,0,.75);
+
+  color: white;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  #barra {
+    height: 50px;
+    gap: 5px;
+  }
+
+  .botao {
+    min-width: 38px;
+    height: 36px;
+    padding: 0 9px;
+    font-size: 18px;
+  }
+
+  #zoomTexto {
+    min-width: 55px;
+    font-size: 13px;
+  }
+
+  #areaLeitor {
+    top: 50px;
+    height: calc(100% - 50px);
+
+    overflow: auto;
+  }
+
+  #mobileStage {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    padding: 10px;
+  }
+
+  #leitor {
+    transform-origin: 0 0;
+    display: block;
+    width: max-content;
+  }
+
+  .paginaLinha {
+    width: max-content;
+    min-width: 0;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  #leitor canvas {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+}
+
+
+
+/* =========================
+   CARREGAMENTO DA HQ
+========================= */
+#telaCarregamento {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+#telaCarregamento.oculta {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.carregamentoCaixa {
+  width: min(430px, calc(100% - 32px));
+  padding: 28px 26px 24px;
+  border: 1px solid #333;
+  border-radius: 14px;
+  background: #181818;
+  color: #fff;
+  text-align: center;
+}
+
+.carregamentoSpinner {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  border: 4px solid #3a3a3a;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: megaSpinner .8s linear infinite;
+}
+
+@keyframes megaSpinner {
+  to { transform: rotate(360deg); }
+}
+
+#carregamentoTitulo {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+#carregamentoMensagem {
+  margin: 0 0 18px;
+  color: #bbb;
+  font-size: 14px;
+}
+
+.carregamentoBarraFundo {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #333;
+}
+
+#carregamentoBarra {
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  border-radius: inherit;
+  transition: width .12s ease;
+}
+
+#carregamentoPorcentagem {
+  margin-top: 9px;
+  color: #999;
+  font-size: 12px;
+}
+
+/* Espaço reservado para páginas que ainda serão renderizadas. */
+.paginaPlaceholder {
+  display: block;
+  width: var(--pagina-placeholder-width, 612px);
+  height: var(--pagina-placeholder-height, 792px);
+  background: #111;
+  flex: 0 0 auto;
+}
+
+
+
+@media (max-width: 700px) {
+  .paginaPlaceholder {
+    width: var(--pagina-placeholder-width-mobile, calc(100vw - 20px));
+    height: var(--pagina-placeholder-height-mobile, calc((100vw - 20px) * 1.414));
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 </style>
+
 </head>
+
 <body>
-<div class="topline"></div>
-<header><div class="wrap head">
-<a class="brand" href="/" aria-label="MegaHQ Online - início"><img class="brand-logo" src="/assets/megahq-logo.png" alt="Logo MegaHQ Online"><span>MEGAHQ ONLINE<small>QUADRINHOS · CULTURA · HISTÓRIAS</small></span></a>
-<nav class="nav" aria-label="Navegação principal"><a href="/artigos.html">Artigos</a><a href="/sobre.html">Sobre</a><a href="/contato.html">Contato</a></nav>
-</div></header>
-<main>
-<section class="hero"><div class="wrap hero-grid"><div>
-<div class="eyebrow">O universo dos quadrinhos</div>
-<h1>Grandes heróis.<br><em>Histórias sem limites.</em></h1>
-<p class="hero-copy">Explore personagens lendários, descubra novas perspectivas e mergulhe no universo que transforma páginas em aventuras inesquecíveis.</p>
-<div class="actions"><a class="btn primary" href="/artigos.html">Explorar artigos <span>↗</span></a><a class="btn secondary" href="#destaques">Ver destaques <span>↓</span></a></div>
-</div><div class="hero-art" aria-hidden="true"><div class="art-frame"></div><div class="art-circle"></div><div class="art-slash"></div><div class="art-type">O poder<br>da narrativa<span>HERÓIS · ORIGENS · LEGADOS</span></div></div></div></section>
-<div class="ticker"><div class="wrap ticker-inner"><strong>Em destaque</strong><span>Personagens</span><span>Origens</span><span>Universos</span><span>Histórias que marcaram gerações</span></div></div>
-<section id="destaques"><div class="wrap"><div class="section-head"><div><div class="kicker">Leitura em destaque</div><h2>Entre no universo</h2></div><p>Conheça os personagens por trás das máscaras, seus caminhos e os mundos que conquistaram leitores.</p></div>
-<div class="stories">
-<a class="story" href="/artigo-batman.html"><div class="story-art batman"><span class="tag">Lendas</span><span class="big">B</span></div><div class="story-body"><div class="story-meta">DC · Personagem</div><h3>Batman: o cavaleiro das trevas</h3><p>Como a determinação, a inteligência e a cidade de Gotham moldaram um dos heróis mais marcantes dos quadrinhos.</p><div class="readmore">Ler artigo <span>↗</span></div></div></a>
-<a class="story" href="/artigo-homem-aranha.html"><div class="story-art spider"><span class="tag">Ícones</span><span class="big">SP</span></div><div class="story-body"><div class="story-meta">Marvel · Personagem</div><h3>Homem-Aranha: poder e responsabilidade</h3><p>As escolhas de Peter Parker e o equilíbrio entre a vida comum e a responsabilidade de ser herói.</p><div class="readmore">Ler artigo <span>↗</span></div></div></a>
-<a class="story" href="/artigo-miles-morales.html"><div class="story-art miles"><span class="tag">Nova geração</span><span class="big">MM</span></div><div class="story-body"><div class="story-meta">Marvel · Personagem</div><h3>Miles Morales: um legado próprio</h3><p>O jovem herói que encontrou sua voz e mostrou que o símbolo do Aranha pode representar muitas jornadas.</p><div class="readmore">Ler artigo <span>↗</span></div></div></a>
-</div></div></section>
-</main>
-<footer><div class="wrap foot"><div><div class="foot-brand">MEGAHQ ONLINE</div><div>Um espaço independente dedicado à cultura dos quadrinhos.</div></div><nav class="foot-links" aria-label="Links do rodapé"><a href="/artigos.html">Artigos</a><a href="/sobre.html">Sobre</a><a href="/contato.html">Contato</a><a href="/privacidade.html">Privacidade</a><a href="/termos.html">Termos</a><a href="/direitos-autorais.html">Direitos autorais</a></nav><div>© <span id="ano"></span> MegaHQ Online</div></div></footer>
-<script>document.getElementById('ano').textContent=new Date().getFullYear();</script>
-</body></html>
+
+<!-- =========================
+     CARREGAMENTO
+========================= -->
+<div id="telaCarregamento">
+  <div class="carregamentoCaixa">
+    <div class="carregamentoSpinner"></div>
+    <h2 id="carregamentoTitulo">Carregando HQ...</h2>
+    <p id="carregamentoMensagem">Preparando a primeira página para leitura.</p>
+    <div class="carregamentoBarraFundo">
+      <div id="carregamentoBarra"></div>
+    </div>
+    <div id="carregamentoPorcentagem">0%</div>
+  </div>
+</div>
+
+
+<!-- =========================
+     BARRA
+========================= -->
+
+<div id="barra">
+
+  <button
+    id="btnMenos"
+    class="botao"
+    title="Diminuir zoom"
+  >
+    −
+  </button>
+
+  <span id="zoomTexto">
+    50%
+  </span>
+
+  <button
+    id="btnMais"
+    class="botao"
+    title="Aumentar zoom"
+  >
+    +
+  </button>
+
+  <button
+    id="btnReset"
+    class="botao"
+    title="Zoom 100%"
+  >
+    100%
+  </button>
+
+  <button
+    id="btnDownload"
+    class="botao"
+    title="Baixar HQ"
+  >
+    ⇩
+  </button>
+
+  <button
+    id="btnFullscreen"
+    class="botao"
+    title="Tela cheia"
+  >
+    ⛶
+  </button>
+
+</div>
+
+<!-- =========================
+     LEITOR
+========================= -->
+
+<div id="areaLeitor">
+
+  <div id="mobileStage">
+
+    <div id="leitor"></div>
+
+  </div>
+
+</div>
+
+<button
+  id="btnSairFullscreen"
+  title="Sair da tela cheia"
+>
+  ✕
+</button>
+
+<!-- =========================
+     PDF.JS
+========================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+<script type="module">
+
+import * as pdfjsLib from
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const leitor =
+document.getElementById("leitor");
+
+const areaLeitor =
+document.getElementById("areaLeitor");
+
+const mobileStage =
+document.getElementById("mobileStage");
+
+const zoomTexto =
+document.getElementById("zoomTexto");
+
+const btnMenos =
+document.getElementById("btnMenos");
+
+const btnMais =
+document.getElementById("btnMais");
+
+const btnReset =
+document.getElementById("btnReset");
+
+const btnDownload =
+document.getElementById("btnDownload");
+
+const btnFullscreen =
+document.getElementById("btnFullscreen");
+
+const btnSairFullscreen =
+document.getElementById("btnSairFullscreen");
+
+const telaCarregamento =
+document.getElementById("telaCarregamento");
+
+const carregamentoMensagem =
+document.getElementById("carregamentoMensagem");
+
+const carregamentoBarra =
+document.getElementById("carregamentoBarra");
+
+const carregamentoPorcentagem =
+document.getElementById("carregamentoPorcentagem");
+
+
+/* =========================
+   CONFIGURAÇÕES
+========================= */
+
+const zoomMinimo = 0.2;
+
+const zoomMaximo = 3.0;
+
+const passoZoom = 0.10;
+
+let zoom = 0.5;
+
+let pdfAtual = null;
+
+let urlPDFAtual = "";
+
+let totalPaginas = 0;
+let paginasRenderizadas = 0;
+let paginasEmRenderizacao = new Set();
+let observadorPaginas = null;
+let nomeArquivoAtual = "";
+
+
+/* =========================
+   URL DO WORKER
+========================= */
+
+const workerURL =
+"https://polished-term-e56bmega-leitor-proxy.megahqwix.workers.dev/?id=";
+
+
+/* =========================
+   OBTÉM O PDF PELA URL
+========================= */
+
+function obterPDF() {
+
+  const parametros =
+  new URLSearchParams(window.location.search);
+
+  const id =
+  parametros.get("id");
+
+  const resourcekey =
+  parametros.get("resourcekey");
+
+  const pdf =
+  parametros.get("pdf");
+
+  /*
+    ?id=...
+    Google Drive através do Worker
+  */
+
+  if (id) {
+
+    return {
+      url:
+        workerURL +
+        encodeURIComponent(id) +
+        (resourcekey
+          ? "&resourcekey=" + encodeURIComponent(resourcekey)
+          : ""),
+
+      download:
+        workerURL +
+        encodeURIComponent(id) +
+        (resourcekey
+          ? "&resourcekey=" + encodeURIComponent(resourcekey)
+          : ""),
+
+      tipo:
+        "worker"
+    };
+
+  }
+
+
+  /*
+    ?pdf=...
+    PDF armazenado diretamente no GitHub
+  */
+
+  if (pdf) {
+
+    return {
+      url:
+        pdf,
+
+      download:
+        pdf,
+
+      tipo:
+        "local"
+    };
+
+  }
+
+
+  /*
+    Caso não exista parâmetro,
+    abre o PDF padrão.
+  */
+
+  return {
+
+    url:
+      "UBS CIDADE LUZ PREVIAS.pdf",
+
+    download:
+      "UBS CIDADE LUZ PREVIAS.pdf",
+
+    tipo:
+      "local"
+  };
+
+}
+
+
+/* =========================
+   CARREGAMENTO / TÍTULO
+========================= */
+function atualizarProgresso(valor, mensagem) {
+  valor = Math.max(0, Math.min(100, Math.round(valor)));
+  carregamentoBarra.style.width = valor + "%";
+  carregamentoPorcentagem.textContent = valor + "%";
+  if (mensagem) carregamentoMensagem.textContent = mensagem;
+}
+
+function ocultarCarregamento() {
+  telaCarregamento.classList.add("oculta");
+}
+
+function nomeDoPDFLocal(url) {
+  try {
+    return decodeURIComponent(url.split("/").pop().split("?")[0]);
+  } catch (e) {
+    return "";
+  }
+}
+
+async function obterNomeArquivoWorker(dados) {
+  if (!dados || dados.tipo !== "worker") return "";
+
+  try {
+    const separador = dados.url.includes("?") ? "&" : "?";
+    const resposta = await fetch(
+      dados.url + separador + "metadata=1",
+      { method: "GET", cache: "no-store" }
+    );
+
+    if (!resposta.ok) return "";
+
+    const dadosNome = await resposta.json();
+    const nome = dadosNome && dadosNome.name ? String(dadosNome.name).trim() : "";
+
+    if (nome) {
+      aplicarTitulo(nome);
+      return nome;
+    }
+  } catch (e) {
+    console.debug("Não foi possível obter o nome do arquivo no Worker.", e);
+  }
+
+  return "";
+}
+
+function definirTamanhoDosPlaceholders(viewport) {
+  if (!viewport) return;
+
+  const largura = Math.max(1, Number(viewport.width) || 612);
+  const altura = Math.max(1, Number(viewport.height) || 792);
+
+  leitor.style.setProperty("--pagina-placeholder-width", largura + "px");
+  leitor.style.setProperty("--pagina-placeholder-height", altura + "px");
+
+  const larguraMobile = Math.max(1, window.innerWidth - 20);
+  const alturaMobile = larguraMobile * (altura / largura);
+
+  leitor.style.setProperty("--pagina-placeholder-width-mobile", larguraMobile + "px");
+  leitor.style.setProperty("--pagina-placeholder-height-mobile", alturaMobile + "px");
+}
+
+function aplicarTitulo(nome) {
+  if (!nome) return;
+  nome = String(nome).trim();
+  if (!nome) return;
+  nomeArquivoAtual = nome;
+  document.title = nome;
+}
+
+async function tentarTituloDosMetadados() {
+  try {
+    const metadata = await pdfAtual.getMetadata();
+    const info = metadata && metadata.info ? metadata.info : {};
+    const xmp = metadata && metadata.metadata ? metadata.metadata : null;
+
+    let titulo = info.Title ? String(info.Title).trim() : "";
+
+    if (!titulo && xmp) {
+      try {
+        titulo = String(xmp.get("dc:title") || "").trim();
+      } catch (e) {}
+    }
+
+    if (titulo) aplicarTitulo(titulo);
+  } catch (e) {
+    console.debug("Metadados do PDF sem título utilizável.");
+  }
+}
+
+/* =========================
+   CARREGAR PDF — V3
+========================= */
+async function carregarPDF() {
+
+  const dados = obterPDF();
+  urlPDFAtual = dados.url;
+  leitor.innerHTML = "";
+  paginasRenderizadas = 0;
+  totalPaginas = 0;
+  paginasEmRenderizacao = new Set();
+
+  if (observadorPaginas) {
+    observadorPaginas.disconnect();
+    observadorPaginas = null;
+  }
+
+  telaCarregamento.classList.remove("oculta");
+  atualizarProgresso(0, "Preparando a primeira página para leitura.");
+
+  /* Para PDF local, o nome já está disponível na própria URL. */
+  if (dados.tipo === "local") {
+    aplicarTitulo(nomeDoPDFLocal(dados.url));
+  } else {
+    /*
+      Não fazemos HEAD/Range extra aqui.
+      Essas requisições duplicavam o tráfego e podiam deixar
+      o carregamento mais lento. O título será obtido dos
+      metadados do próprio PDF quando disponíveis.
+    */
+    document.title = "MegaHQ Online";
+  }
+
+  try {
+
+    const nomeArquivoPromise =
+      dados.tipo === "worker"
+        ? obterNomeArquivoWorker(dados)
+        : Promise.resolve("");
+
+    const loadingTask = pdfjsLib.getDocument({
+      url: dados.url,
+      withCredentials: false,
+      disableAutoFetch: false,
+      disableStream: false,
+      rangeChunkSize: 262144
+    });
+
+    /*
+      IMPORTANTE: nunca mostramos 100% durante o download.
+      100% só aparece depois que a primeira página está na tela.
+    */
+    loadingTask.onProgress = function(progresso) {
+      if (progresso && progresso.total > 0) {
+        const percentual = Math.min(
+          90,
+          Math.round((progresso.loaded / progresso.total) * 90)
+        );
+        atualizarProgresso(percentual, "Carregando o arquivo...");
+      } else {
+        atualizarProgresso(15, "Carregando o arquivo...");
+      }
+    };
+
+    const resultados = await Promise.all([
+      loadingTask.promise,
+      nomeArquivoPromise
+    ]);
+
+    pdfAtual = resultados[0];
+    totalPaginas = pdfAtual.numPages;
+
+    /* Só usa o título interno se o Worker não forneceu o nome real. */
+    if (!nomeArquivoAtual) {
+      await tentarTituloDosMetadados();
+    }
+
+    atualizarProgresso(93, "Preparando a primeira página...");
+
+    /*
+      A primeira página é prioridade absoluta.
+      Não esperamos nenhuma outra página antes de liberar a leitura.
+    */
+    const paginaModelo = await pdfAtual.getPage(1);
+    const viewportModelo = paginaModelo.getViewport({ scale: 1 });
+    definirTamanhoDosPlaceholders(viewportModelo);
+
+    const primeiraLinha = document.createElement("div");
+    primeiraLinha.className = "paginaLinha";
+    primeiraLinha.dataset.page = "1";
+
+    const primeiraPagina = document.createElement("div");
+    primeiraPagina.className = "paginaPlaceholder";
+    primeiraPagina.dataset.page = "1";
+
+    primeiraLinha.appendChild(primeiraPagina);
+    leitor.appendChild(primeiraLinha);
+
+    await renderizarPagina(1, primeiraPagina);
+    paginasRenderizadas = 1;
+
+    /* Agora, e somente agora, 100% e leitura liberada. */
+    atualizarProgresso(100, "HQ pronta para leitura.");
+    atualizarZoom();
+    ocultarCarregamento();
+
+    /*
+      As demais páginas são criadas como espaços reservados e
+      só viram canvas quando estiverem próximas da área visível.
+      Isso elimina a espera de renderizar a HQ inteira antes de ler.
+    */
+    criarPaginasLazy();
+
+  } catch (erro) {
+
+    console.error(erro);
+    carregamentoMensagem.textContent = "Não foi possível carregar a HQ.";
+    carregamentoPorcentagem.textContent = "";
+
+    leitor.innerHTML = `
+      <div style="color:white;padding:40px;max-width:700px;margin:auto;font-family:Arial;">
+        <h2>Não foi possível carregar a HQ.</h2>
+        <p>Verifique se o arquivo está disponível e se o link do Google Drive está correto.</p>
+      </div>
+    `;
+  }
+}
+
+/* =========================
+   PÁGINAS SOB DEMANDA
+========================= */
+function criarPaginasLazy() {
+
+  if (totalPaginas <= 1) return;
+
+  for (let numero = 2; numero <= totalPaginas; numero++) {
+    const linha = document.createElement("div");
+    linha.className = "paginaLinha";
+    linha.dataset.page = String(numero);
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "paginaPlaceholder";
+    placeholder.dataset.page = String(numero);
+
+    linha.appendChild(placeholder);
+    leitor.appendChild(linha);
+  }
+
+  observadorPaginas = new IntersectionObserver(
+    entradas => {
+      for (const entrada of entradas) {
+        if (!entrada.isIntersecting) continue;
+
+        const elemento = entrada.target;
+        const numero = Number(elemento.dataset.page);
+
+        if (!numero || numero === 1) continue;
+
+        /* Renderiza a página atual e as duas seguintes. */
+        for (let n = numero; n <= Math.min(numero + 2, totalPaginas); n++) {
+          const alvo = leitor.querySelector(
+            `.paginaPlaceholder[data-page="${n}"]`
+          );
+
+          if (alvo) renderizarPaginaSeNecessaria(n, alvo);
+        }
+      }
+    },
+    {
+      root: areaLeitor,
+      rootMargin: "1200px 0px 1200px 0px",
+      threshold: 0
+    }
+  );
+
+  const placeholders = leitor.querySelectorAll(".paginaPlaceholder");
+  placeholders.forEach(p => observadorPaginas.observe(p));
+}
+
+async function renderizarPaginaSeNecessaria(numeroPagina, elemento) {
+
+  if (!elemento || paginasEmRenderizacao.has(numeroPagina)) return;
+  if (elemento.dataset.renderizada === "1") return;
+
+  paginasEmRenderizacao.add(numeroPagina);
+
+  try {
+    await renderizarPagina(numeroPagina, elemento);
+    paginasRenderizadas++;
+    elemento.dataset.renderizada = "1";
+  } catch (erro) {
+    console.error("Erro ao renderizar página", numeroPagina, erro);
+  } finally {
+    paginasEmRenderizacao.delete(numeroPagina);
+  }
+}
+
+/* =========================
+   RENDERIZAR PÁGINA
+========================= */
+async function renderizarPagina(numeroPagina, destino) {
+
+  const pagina = await pdfAtual.getPage(numeroPagina);
+  const viewport = pagina.getViewport({ scale: 1 });
+
+  const canvas = document.createElement("canvas");
+  const contexto = canvas.getContext("2d", { alpha: false });
+
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  canvas.dataset.originalWidth = viewport.width;
+  canvas.dataset.originalHeight = viewport.height;
+
+  if (destino) {
+    destino.style.width = viewport.width + "px";
+    destino.style.height = viewport.height + "px";
+    destino.replaceWith(canvas);
+  } else {
+    leitor.appendChild(canvas);
+  }
+
+  canvas.style.display = "block";
+  canvas.style.margin = "0 auto 12px auto";
+  canvas.style.background = "white";
+  canvas.style.boxShadow = "0 2px 8px rgba(0,0,0,.45)";
+
+  await pagina.render({
+    canvasContext: contexto,
+    viewport: viewport
+  }).promise;
+}
+
+
+/* =========================
+   ZOOM
+========================= */
+
+function atualizarZoom() {
+
+  zoomTexto.textContent =
+    Math.round(zoom * 100) + "%";
+
+
+  if (
+    window.innerWidth <= 700
+  ) {
+
+    atualizarZoomMobile();
+
+  } else {
+
+    atualizarZoomDesktop();
+
+  }
+
+}
+
+
+/* =========================
+   ZOOM DESKTOP
+========================= */
+
+function atualizarZoomDesktop() {
+
+  /*
+    No desktop não usamos transform:scale().
+    O transform mantém o tamanho de layout original do leitor,
+    mesmo quando a imagem visual fica menor, criando uma área
+    vertical vazia depois da última página.
+
+    Aqui o zoom é aplicado diretamente ao tamanho visual de cada
+    canvas e à sua linha. Assim, a área rolável termina exatamente
+    onde termina a última página.
+  */
+
+  leitor.style.transform = "none";
+  leitor.style.marginBottom = "0";
+  leitor.style.height = "auto";
+
+  const linhas = leitor.querySelectorAll(".paginaLinha");
+
+  linhas.forEach(linha => {
+
+    const canvas = linha.querySelector("canvas");
+
+    if (!canvas) {
+      return;
+    }
+
+    const larguraOriginal =
+      Number(canvas.dataset.originalWidth || canvas.width || 0);
+
+    const alturaOriginal =
+      Number(canvas.dataset.originalHeight || canvas.height || 0);
+
+    if (!larguraOriginal || !alturaOriginal) {
+      return;
+    }
+
+    const largura = larguraOriginal * zoom;
+    const altura = alturaOriginal * zoom;
+
+    canvas.style.width = largura + "px";
+    canvas.style.height = altura + "px";
+
+    /*
+      A própria linha passa a ter exatamente a altura da página
+      ampliada/reduzida, mais o espaçamento entre páginas.
+    */
+    linha.style.height = (altura + 12) + "px";
+
+    /*
+      Cada página continua independente horizontalmente.
+      Se ficar maior que a tela, sua própria linha ganha rolagem.
+    */
+    if (largura > areaLeitor.clientWidth + 1) {
+      linha.style.overflowX = "auto";
+      linha.style.justifyContent = "flex-start";
+
+      /* Centraliza inicialmente a página larga. */
+      requestAnimationFrame(() => {
+        linha.scrollLeft =
+          Math.max(0, (largura - linha.clientWidth) / 2);
+      });
+    } else {
+      linha.style.overflowX = "hidden";
+      linha.style.justifyContent = "center";
+      linha.scrollLeft = 0;
+    }
+
+  });
+
+  /*
+    Garante que não exista uma sobra artificial depois da última
+    página. O padding do mobileStage é mantido apenas como margem
+    visual superior/inferior.
+  */
+  mobileStage.style.height = "auto";
+
+}
+
+
+/* =========================
+   ZOOM MOBILE
+========================= */
+
+let escalaMobile = 1;
+
+let toqueInicial = null;
+
+let distanciaInicial = null;
+
+
+function atualizarZoomMobile() {
+
+  leitor.style.transform =
+    `scale(${escalaMobile})`;
+
+  /*
+    Corrige a altura de layout criada pelo transform:
+    a área rolável passa a terminar junto com a última página.
+  */
+  const alturaLayout = leitor.scrollHeight;
+  leitor.style.marginBottom =
+    ((escalaMobile - 1) * alturaLayout) + "px";
+
+}
+
+
+/* =========================
+   BOTÕES DE ZOOM
+========================= */
+
+btnMenos.addEventListener(
+  "click",
+  () => {
+
+    zoom =
+      Math.max(
+        zoomMinimo,
+        Number(
+          (zoom - passoZoom)
+          .toFixed(2)
+        )
+      );
+
+    atualizarZoom();
+
+  }
+);
+
+
+btnMais.addEventListener(
+  "click",
+  () => {
+
+    zoom =
+      Math.min(
+        zoomMaximo,
+        Number(
+          (zoom + passoZoom)
+          .toFixed(2)
+        )
+      );
+
+    atualizarZoom();
+
+  }
+);
+
+
+btnReset.addEventListener(
+  "click",
+  () => {
+
+    zoom = 1;
+
+    if (
+      window.innerWidth <= 700
+    ) {
+
+      escalaMobile = 1;
+
+      atualizarZoom();
+
+    } else {
+
+      atualizarZoom();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   FULLSCREEN
+========================= */
+
+btnFullscreen.addEventListener(
+  "click",
+  async () => {
+
+    try {
+
+      if (
+        areaLeitor.requestFullscreen
+      ) {
+
+        await areaLeitor.requestFullscreen();
+
+      }
+
+    } catch (erro) {
+
+      console.error(
+        "Fullscreen:",
+        erro
+      );
+
+    }
+
+  }
+);
+
+
+btnSairFullscreen.addEventListener(
+  "click",
+  async () => {
+
+    if (
+      document.fullscreenElement
+    ) {
+
+      await document.exitFullscreen();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "fullscreenchange",
+  () => {
+
+    const ativo =
+      document.fullscreenElement ===
+      areaLeitor;
+
+    if (ativo) {
+
+      areaLeitor.classList.add(
+        "fullscreen"
+      );
+
+      btnSairFullscreen.style.display =
+        "flex";
+
+      btnSairFullscreen.style.alignItems =
+        "center";
+
+      btnSairFullscreen.style.justifyContent =
+        "center";
+
+      btnFullscreen.style.display =
+        "none";
+
+      document.body.style.overflow =
+        "hidden";
+
+    } else {
+
+      areaLeitor.classList.remove(
+        "fullscreen"
+      );
+
+      btnSairFullscreen.style.display =
+        "none";
+
+      btnFullscreen.style.display =
+        "flex";
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ESC PARA SAIR
+========================= */
+
+document.addEventListener(
+  "keydown",
+  (evento) => {
+
+    if (
+      evento.key === "Escape" &&
+      document.fullscreenElement
+    ) {
+
+      document.exitFullscreen();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+btnDownload.addEventListener(
+  "click",
+  () => {
+
+    if (!urlPDFAtual) {
+      return;
+    }
+
+
+    /*
+      Arquivo vindo do Google Drive
+      através do Cloudflare Worker.
+    */
+
+    if (
+      urlPDFAtual.includes(
+        "polished-term-e56bmega-leitor-proxy.megahqw.workers.dev"
+      )
+    ) {
+
+      const urlDownload =
+        urlPDFAtual +
+        "&download=1";
+
+      window.location.href =
+        urlDownload;
+
+      return;
+
+    }
+
+
+    /*
+      Arquivo local do GitHub.
+    */
+
+    const link =
+      document.createElement("a");
+
+    link.href =
+      urlPDFAtual;
+
+    link.download =
+      urlPDFAtual
+      .split("/")
+      .pop()
+      .split("?")[0];
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+  }
+);
+
+
+/* =========================
+   PINCH ZOOM MOBILE
+========================= */
+
+function distanciaToque(
+  toque1,
+  toque2
+) {
+
+  const dx =
+    toque1.clientX -
+    toque2.clientX;
+
+  const dy =
+    toque1.clientY -
+    toque2.clientY;
+
+  return Math.sqrt(
+    dx * dx +
+    dy * dy
+  );
+
+}
+
+
+areaLeitor.addEventListener(
+  "touchstart",
+  (evento) => {
+
+    if (
+      evento.touches.length === 2
+    ) {
+
+      distanciaInicial =
+        distanciaToque(
+          evento.touches[0],
+          evento.touches[1]
+        );
+
+      escalaMobileAtual =
+        escalaMobile;
+
+    }
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+let escalaMobileAtual = 1;
+
+
+areaLeitor.addEventListener(
+  "touchmove",
+  (evento) => {
+
+    if (
+      evento.touches.length === 2 &&
+      window.innerWidth <= 700
+    ) {
+
+      const distanciaAtual =
+        distanciaToque(
+          evento.touches[0],
+          evento.touches[1]
+        );
+
+      if (
+        distanciaInicial
+      ) {
+
+        const fator =
+          distanciaAtual /
+          distanciaInicial;
+
+        escalaMobile =
+          Math.min(
+            4,
+            Math.max(
+              1,
+              escalaMobileAtual *
+              fator
+            )
+          );
+
+        atualizarZoomMobile();
+
+      }
+
+      evento.preventDefault();
+
+    }
+
+  },
+  {
+    passive: false
+  }
+);
+
+
+areaLeitor.addEventListener(
+  "touchend",
+  () => {
+
+    distanciaInicial =
+      null;
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+/* =========================
+   REDIMENSIONAMENTO
+========================= */
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    if (pdfAtual) {
+      pdfAtual.getPage(1).then(pagina => {
+        definirTamanhoDosPlaceholders(
+          pagina.getViewport({ scale: 1 })
+        );
+      }).catch(() => {});
+    }
+
+    atualizarZoom();
+
+  }
+);
+
+
+/* =========================
+   INICIAR
+========================= */
+
+carregarPDF();
+
+</script>
+
+
+<!-- =========================
+     ADMAVEN - IN PAGE PUSH
+========================= -->
+
+<script
+  data-cfasync="false"
+  src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524">
+</script>
+
+
+</body>
+</html>
