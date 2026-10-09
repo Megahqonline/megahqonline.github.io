@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3420442790755894"
+     crossorigin="anonymous"></script>
+
 
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  content="width=device-width, initial-scale=1.0"
 >
 
 <title>MegaHQ Online</title>
@@ -239,9 +242,9 @@ body {
   }
 
   .paginaLinha {
-    width: max-content;
-    min-width: 0;
-    display: block;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
     margin-bottom: 12px;
   }
 
@@ -351,11 +354,886 @@ body {
   }
 }
 
+
+
+/* =========================
+   PÁGINA INICIAL
+========================= */
+
+#home {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 0%, #242424 0%, #151515 42%, #0d0d0d 100%);
+  color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+#home .home-conteudo {
+  width: min(1080px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+#home .home-topo {
+  padding: 34px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+#home .home-logo {
+  display: flex;
+  align-items: center;
+  width: 190px;
+  flex: 0 0 auto;
+}
+
+#home .home-logo img {
+  display: block;
+  width: 190px;
+  height: auto;
+  max-width: 100%;
+}
+
+#home .home-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+#home .home-nav a {
+  color: #cfcfcf;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#home .home-nav a:hover {
+  color: #fff;
+}
+
+#home .home-hero {
+  padding: 72px 0 64px;
+  max-width: 820px;
+}
+
+#home .home-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 7px 11px;
+  border: 1px solid #3b3b3b;
+  border-radius: 999px;
+  color: #cfcfcf;
+  font-size: 12px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+#home h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: .98;
+  letter-spacing: -2.5px;
+}
+
+#home .home-hero p {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: #c5c5c5;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+#home .home-acoes {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#home .home-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 19px;
+  border-radius: 8px;
+  border: 1px solid #3c3c3c;
+  background: #242424;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#home .home-botao:hover {
+  background: #303030;
+}
+
+#home .home-botao.secundario {
+  background: transparent;
+  color: #cfcfcf;
+}
+
+#home .home-secao {
+  padding: 58px 0;
+  border-top: 1px solid #252525;
+}
+
+#home .home-secao h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  letter-spacing: -.5px;
+}
+
+#home .home-secao > p {
+  max-width: 760px;
+  margin: 0;
+  color: #bcbcbc;
+  line-height: 1.75;
+}
+
+#home .home-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+#home .home-card {
+  padding: 24px;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  background: rgba(255,255,255,.025);
+}
+
+#home .home-card-icon {
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+
+#home .home-card h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+#home .home-card p {
+  margin: 0;
+  color: #aaa;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+#home .home-passos {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+#home .home-passo {
+  padding: 22px;
+  border-left: 2px solid #555;
+  background: rgba(255,255,255,.02);
+}
+
+#home .home-passo-numero {
+  color: #888;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+#home .home-passo strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+#home .home-passo p {
+  margin: 0;
+  color: #aaa;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+#home .home-nota {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background: rgba(255,255,255,.025);
+  color: #bdbdbd;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+#home .home-rodape {
+  padding: 30px 0 42px;
+  border-top: 1px solid #252525;
+  color: #858585;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+html.modo-leitor #home {
+  display: none;
+}
+
+html:not(.modo-leitor) #barra,
+html:not(.modo-leitor) #areaLeitor,
+html:not(.modo-leitor) #btnSairFullscreen {
+  display: none;
+}
+
+html:not(.modo-leitor) {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html:not(.modo-leitor) body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #0d0d0d;
+}
+
+html.modo-leitor body {
+  overflow: hidden;
+}
+
+html.modo-leitor #barra {
+  display: flex;
+}
+
+html.modo-leitor #areaLeitor {
+  display: block;
+}
+
+
+#home .home-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#home .faq-list {
+  margin-top: 28px;
+  display: grid;
+  gap: 10px;
+  max-width: 900px;
+}
+
+#home .faq-list details {
+  border: 1px solid #2c2c2c;
+  border-radius: 10px;
+  background: rgba(255,255,255,.025);
+  overflow: hidden;
+}
+
+#home .faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 19px 20px;
+  font-weight: 700;
+  color: #eee;
+}
+
+#home .faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+#home .faq-list summary::after {
+  content: "+";
+  float: right;
+  color: #888;
+  font-size: 20px;
+  line-height: 1;
+}
+
+#home .faq-list details[open] summary::after {
+  content: "−";
+}
+
+#home .faq-list details p {
+  margin: 0;
+  padding: 0 20px 20px;
+  color: #aaa;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+#home .home-privacidade {
+  margin-top: 28px;
+  max-width: 900px;
+  padding: 24px;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  background: rgba(255,255,255,.025);
+}
+
+#home .home-privacidade h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+#home .home-privacidade p {
+  margin: 0 0 24px;
+  color: #aaa;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+#home .home-privacidade p:last-child {
+  margin-bottom: 0;
+}
+
+#home .home-contato {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+#home .home-contato p {
+  margin: 0;
+  color: #8f8f8f;
+  font-size: 13px;
+}
+
+#home .home-aviso {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+#home .home-rodape {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px 30px;
+  align-items: center;
+}
+
+#home .home-rodape strong,
+#home .home-rodape span {
+  display: block;
+}
+
+#home .home-rodape span {
+  margin-top: 4px;
+}
+
+#home .home-rodape nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+#home .home-rodape a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#home .home-rodape a:hover {
+  color: #fff;
+}
+
+#home .home-rodape small {
+  grid-column: 1 / -1;
+  color: #666;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+
+  #home .home-conteudo {
+    width: min(100% - 24px, 1080px);
+  }
+
+  #home .home-topo {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 24px;
+  }
+
+  #home .home-logo {
+    width: 180px;
+  }
+
+  #home .home-logo img {
+    width: 180px;
+  }
+
+
+  #home .home-nav {
+    justify-content: flex-start;
+  }
+
+  #home .home-hero {
+    padding: 52px 0 48px;
+  }
+
+  #home .home-hero p {
+    font-size: 16px;
+  }
+
+  #home .home-grid,
+  #home .home-passos,
+  #home .home-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  #home .home-rodape {
+    grid-template-columns: 1fr;
+  }
+
+  #home .home-rodape nav {
+    justify-content: flex-start;
+  }
+
+}
+
+
+
+
+
+
+/* =========================
+   PUBLICIDADE ADSTERRA
+========================= */
+#adsterraBanner300x250 {
+  width: 300px;
+  height: 250px;
+  max-width: 100%;
+  margin: 0 auto 30px;
+  overflow: hidden;
+  text-align: center;
+}
+#adsterraBanner160x300 {
+  position: fixed;
+  top: 70px;
+  right: 12px;
+  width: 160px;
+  height: 300px;
+  overflow: hidden;
+  z-index: 490;
+  display: none;
+}
+#adsterraBanner320x50 {
+  position: fixed;
+  left: 50%;
+  bottom: 6px;
+  width: 320px;
+  height: 50px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  z-index: 490;
+  display: none;
+}
+#adsterraNativeSidebar {
+  position: fixed;
+  top: 390px;
+  right: 12px;
+  width: 160px;
+  max-height: calc(100vh - 400px);
+  overflow: hidden;
+  z-index: 489;
+  display: none;
+  text-align: left;
+}
+#adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc {
+  width: 100%;
+}
+html:not(.modo-leitor) #adsterraBanner300x250 { display: block; }
+html.modo-leitor #adsterraBanner300x250 { display: none; }
+@media (max-width: 1100px) {
+  #adsterraBanner160x300, #adsterraNativeSidebar { display: none !important; }
+}
+@media (max-width: 700px) {
+  html.modo-leitor #adsterraBanner320x50 { display: block; }
+  html.modo-leitor #areaLeitor { padding-bottom: 58px; }
+}
+html:not(.modo-leitor) #adsterraBanner160x300,
+html:not(.modo-leitor) #adsterraBanner320x50,
+html:not(.modo-leitor) #adsterraNativeSidebar { display: none !important; }
+
+
+html:not(.modo-leitor) { height: auto; min-height: 100%; overflow: auto; }
+html:not(.modo-leitor) body { height: auto; min-height: 100%; overflow: auto; background: #0d0d0d; }
+html.modo-leitor body { overflow: hidden; }
+html.modo-leitor #home { display: none; }
+html:not(.modo-leitor) #barra, html:not(.modo-leitor) #areaLeitor, html:not(.modo-leitor) #btnSairFullscreen, html:not(.modo-leitor) #telaCarregamento { display: none !important; }
+html.modo-leitor #barra { display: flex; }
+html.modo-leitor #areaLeitor { display: block; }
+
 </style>
+
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const temHQ = params.has("id") || params.has("pdf");
+  document.documentElement.classList.toggle("modo-leitor", temHQ);
+})();
+</script>
 
 </head>
 
 <body>
+
+<main id="home">
+
+  <div class="home-conteudo">
+
+    <header class="home-topo">
+
+      <a class="home-logo" href="#inicio" aria-label="MegaHQ Online — início">
+        <img
+          src="data:image/png;base64,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"
+          alt="MegaHQ Online"
+        >
+      </a>
+
+      <nav class="home-nav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#projeto">O projeto</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#leitor-info">Leitor</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+    </header>
+
+    <section id="inicio" class="home-hero">
+
+      <span class="home-eyebrow">MegaHQ Online</span>
+
+      <h1>
+        Uma experiência de leitura
+        <br>
+        simples e digital.
+      </h1>
+
+      <p>
+        O MegaHQ Online é um projeto independente dedicado ao desenvolvimento
+        de uma experiência de leitura digital acessível pelo navegador, com
+        foco em praticidade, organização técnica e adaptação para diferentes
+        dispositivos.
+      </p>
+
+      <div class="home-acoes">
+        <a class="home-botao" href="#como-funciona">Conhecer o projeto</a>
+        <a class="home-botao secundario" href="#leitor-info">Conhecer o leitor</a>
+      </div>
+
+    </section>
+
+    
+<div id="adsterraBanner300x250" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : '124c5fc014c8b3ec4e0a6f0f7e034497',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/124c5fc014c8b3ec4e0a6f0f7e034497/invoke.js"></script>
+</div>
+
+<section id="projeto" class="home-secao">
+
+      <h2>Sobre o MegaHQ Online</h2>
+
+      <p>
+        O MegaHQ Online nasceu com uma proposta simples: tornar a leitura
+        digital mais confortável e acessível diretamente pelo navegador. O
+        projeto prioriza uma interface limpa, carregamento organizado das
+        páginas e controles que funcionem tanto em computadores quanto em
+        dispositivos móveis.
+      </p>
+
+      <div class="home-grid">
+
+        <article class="home-card">
+          <div class="home-card-icon">◈</div>
+          <h3>Experiência simples</h3>
+          <p>
+            A interface foi pensada para que o visitante encontre rapidamente
+            o que precisa, sem excesso de elementos na tela.
+          </p>
+        </article>
+
+        <article class="home-card">
+          <div class="home-card-icon">▤</div>
+          <h3>Leitura contínua</h3>
+          <p>
+            As páginas são apresentadas em sequência, permitindo uma leitura
+            contínua sem a necessidade de abrir cada página individualmente.
+          </p>
+        </article>
+
+        <article class="home-card">
+          <div class="home-card-icon">⌁</div>
+          <h3>Compatível com diferentes telas</h3>
+          <p>
+            O leitor foi estruturado para funcionar em telas grandes e
+            pequenas, com controles específicos para cada experiência.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section id="como-funciona" class="home-secao">
+
+      <h2>Como funciona</h2>
+
+      <p>
+        O site utiliza uma arquitetura separada entre a apresentação do
+        projeto e o leitor. Isso permite que a página inicial permaneça leve
+        enquanto o leitor carrega somente quando uma edição é solicitada.
+      </p>
+
+      <div class="home-passos">
+
+        <div class="home-passo">
+          <div class="home-passo-numero">Etapa 01</div>
+          <strong>Acesso ao leitor</strong>
+          <p>
+            Um link específico direciona o visitante para a edição que deseja
+            abrir.
+          </p>
+        </div>
+
+        <div class="home-passo">
+          <div class="home-passo-numero">Etapa 02</div>
+          <strong>Carregamento</strong>
+          <p>
+            O sistema identifica o arquivo solicitado e inicia o carregamento
+            do documento no navegador.
+          </p>
+        </div>
+
+        <div class="home-passo">
+          <div class="home-passo-numero">Etapa 03</div>
+          <strong>Leitura</strong>
+          <p>
+            O conteúdo é apresentado verticalmente, com zoom, tela cheia e
+            outras ferramentas disponíveis no leitor.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="leitor-info" class="home-secao">
+
+      <h2>O leitor MegaHQ</h2>
+
+      <p>
+        O leitor utiliza tecnologia de visualização de documentos diretamente
+        no navegador. As páginas são renderizadas individualmente e exibidas
+        em sequência, proporcionando uma leitura contínua.
+      </p>
+
+      <div class="home-grid home-grid-4">
+
+        <article class="home-card">
+          <h3>Zoom</h3>
+          <p>
+            Ajuste o tamanho da página conforme a tela e a preferência de
+            leitura.
+          </p>
+        </article>
+
+        <article class="home-card">
+          <h3>Tela cheia</h3>
+          <p>
+            Amplie a área de leitura para aproveitar melhor o espaço disponível.
+          </p>
+        </article>
+
+        <article class="home-card">
+          <h3>Celular</h3>
+          <p>
+            O leitor possui suporte a gesto de pinça para ampliar a visualização
+            em dispositivos móveis.
+          </p>
+        </article>
+
+        <article class="home-card">
+          <h3>Download</h3>
+          <p>
+            Quando habilitado para determinada edição, o botão de download
+            permite obter o arquivo disponibilizado pelo sistema.
+          </p>
+        </article>
+
+      </div>
+
+      <div class="home-nota">
+        <strong>Importante:</strong> o leitor não exige a instalação de um
+        aplicativo específico. Basta utilizar um navegador moderno em um
+        dispositivo compatível.
+      </div>
+
+    </section>
+
+    <section id="faq" class="home-secao">
+
+      <h2>Perguntas frequentes</h2>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>Preciso instalar algum programa para usar o leitor?</summary>
+          <p>Não. O leitor funciona diretamente no navegador.</p>
+        </details>
+
+        <details>
+          <summary>O MegaHQ funciona no celular?</summary>
+          <p>Sim. A interface possui adaptação para telas menores e suporte a gesto de pinça para ampliar a leitura.</p>
+        </details>
+
+        <details>
+          <summary>Posso usar o leitor em computador?</summary>
+          <p>Sim. No computador estão disponíveis controles de zoom, tela cheia e download quando essa opção estiver habilitada.</p>
+        </details>
+
+        <details>
+          <summary>Por que uma edição pode demorar para carregar?</summary>
+          <p>O tempo de carregamento depende principalmente do tamanho do arquivo, da quantidade de páginas e da conexão utilizada.</p>
+        </details>
+
+        <details>
+          <summary>O site armazena meus dados pessoais?</summary>
+          <p>O MegaHQ evita solicitar dados pessoais desnecessários. Serviços de hospedagem, segurança e publicidade podem processar dados técnicos conforme suas próprias políticas. Consulte a seção de privacidade abaixo para mais informações.</p>
+        </details>
+
+      </div>
+
+    </section>
+
+    <section id="privacidade" class="home-secao">
+
+      <h2>Privacidade</h2>
+
+      <p>
+        O MegaHQ Online busca limitar a coleta direta de informações pessoais.
+        O funcionamento do site pode envolver serviços de hospedagem, entrega
+        de arquivos, publicidade e segurança que processam informações
+        técnicas necessárias para fornecer seus serviços.
+      </p>
+
+      <div class="home-privacidade">
+        <h3>Informações técnicas</h3>
+        <p>
+          Dependendo do serviço utilizado, podem ser processadas informações
+          técnicas como endereço IP, tipo de navegador, dispositivo, páginas
+          acessadas, data e hora de acesso e informações necessárias para
+          segurança e funcionamento.
+        </p>
+
+        <h3>Publicidade</h3>
+        <p>
+          O MegaHQ Online utiliza serviços de publicidade de terceiros. Esses
+          serviços podem utilizar cookies, identificadores ou tecnologias
+          semelhantes para medir desempenho, personalizar ou fornecer anúncios,
+          conforme as configurações e políticas de cada fornecedor.
+        </p>
+
+        <h3>Cookies</h3>
+        <p>
+          Cookies e tecnologias semelhantes podem ser utilizados para manter
+          preferências, segurança, estatísticas e publicidade. O visitante pode
+          controlar cookies por meio das configurações do próprio navegador.
+        </p>
+
+        <h3>Serviços externos</h3>
+        <p>
+          O site pode utilizar serviços externos para hospedagem, distribuição
+          de arquivos, visualização de documentos e publicidade. O tratamento de
+          dados realizado por esses serviços está sujeito às respectivas
+          políticas de privacidade.
+        </p>
+
+        <h3>Direitos e solicitações</h3>
+        <p>
+          Caso você tenha uma solicitação relacionada à privacidade ou ao uso
+          do site, utilize o canal de contato indicado na seção de contato.
+        </p>
+      </div>
+
+    </section>
+
+    <section id="contato" class="home-secao">
+
+      <h2>Contato</h2>
+
+      <p>
+        O MegaHQ Online é um projeto independente. Para questões relacionadas
+        ao funcionamento do site, sugestões, correções ou solicitações sobre
+        conteúdo, utilize o canal público do projeto no GitHub.
+      </p>
+
+      <div class="home-contato">
+        <a
+          class="home-botao"
+          href="https://github.com/Megahqonline/megahqonline.github.io/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir canal de contato
+        </a>
+        <p>
+          Ao abrir uma solicitação pública, evite publicar dados pessoais ou
+          informações sensíveis.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="home-secao home-aviso">
+
+      <h2>Aviso sobre conteúdo e direitos</h2>
+
+      <p>
+        O MegaHQ Online é uma plataforma técnica de leitura digital. Marcas,
+        personagens, títulos e obras de terceiros pertencem aos respectivos
+        titulares. O site não reivindica propriedade sobre direitos que não
+        lhe pertençam. Solicitações relacionadas a direitos autorais podem ser
+        encaminhadas pelo canal de contato do projeto.
+      </p>
+
+    </section>
+
+    <footer class="home-rodape">
+      <div>
+        <strong>MegaHQ Online</strong>
+        <span>Projeto independente de leitura digital.</span>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <small>© <span id="anoAtual">2026</span> MegaHQ Online. Todos os direitos reservados.</small>
+    </footer>
+
+  </div>
+
+</main>
+
 
 <!-- =========================
      CARREGAMENTO
@@ -806,6 +1684,11 @@ async function carregarPDF() {
     const viewportModelo = paginaModelo.getViewport({ scale: 1 });
     definirTamanhoDosPlaceholders(viewportModelo);
 
+    if (window.innerWidth <= 700) {
+      const larguraDisponivel = Math.max(180, areaLeitor.clientWidth - 20);
+      zoom = Math.min(1, larguraDisponivel / viewportModelo.width);
+    }
+
     const primeiraLinha = document.createElement("div");
     primeiraLinha.className = "paginaLinha";
     primeiraLinha.dataset.page = "1";
@@ -1065,26 +1948,45 @@ function atualizarZoomDesktop() {
    ZOOM MOBILE
 ========================= */
 
-let escalaMobile = 1;
-
-let toqueInicial = null;
-
 let distanciaInicial = null;
+let zoomInicialToque = 1;
 
 
 function atualizarZoomMobile() {
 
-  leitor.style.transform =
-    `scale(${escalaMobile})`;
+  /* Usa o mesmo zoom dos botões, ajustando o tamanho real das páginas. */
+  leitor.style.transform = "none";
+  leitor.style.marginBottom = "0";
+  leitor.style.height = "auto";
 
-  /*
-    Corrige a altura de layout criada pelo transform:
-    a área rolável passa a terminar junto com a última página.
-  */
-  const alturaLayout = leitor.scrollHeight;
-  leitor.style.marginBottom =
-    ((escalaMobile - 1) * alturaLayout) + "px";
+  const linhas = leitor.querySelectorAll(".paginaLinha");
+  linhas.forEach(linha => {
+    const canvas = linha.querySelector("canvas");
+    if (!canvas) return;
 
+    const larguraOriginal = Number(canvas.dataset.originalWidth || canvas.width || 0);
+    const alturaOriginal = Number(canvas.dataset.originalHeight || canvas.height || 0);
+    if (!larguraOriginal || !alturaOriginal) return;
+
+    const largura = larguraOriginal * zoom;
+    const altura = alturaOriginal * zoom;
+    canvas.style.width = largura + "px";
+    canvas.style.height = altura + "px";
+    linha.style.height = (altura + 12) + "px";
+    linha.style.width = "100%";
+    linha.style.minWidth = "100%";
+
+    if (largura > areaLeitor.clientWidth + 1) {
+      linha.style.overflowX = "auto";
+      linha.style.justifyContent = "flex-start";
+    } else {
+      linha.style.overflowX = "hidden";
+      linha.style.justifyContent = "center";
+      linha.scrollLeft = 0;
+    }
+  });
+
+  mobileStage.style.height = "auto";
 }
 
 
@@ -1136,19 +2038,7 @@ btnReset.addEventListener(
 
     zoom = 1;
 
-    if (
-      window.innerWidth <= 700
-    ) {
-
-      escalaMobile = 1;
-
-      atualizarZoom();
-
-    } else {
-
-      atualizarZoom();
-
-    }
+    atualizarZoom();
 
   }
 );
@@ -1373,8 +2263,7 @@ areaLeitor.addEventListener(
           evento.touches[1]
         );
 
-      escalaMobileAtual =
-        escalaMobile;
+      zoomInicialToque = zoom;
 
     }
 
@@ -1383,9 +2272,6 @@ areaLeitor.addEventListener(
     passive: true
   }
 );
-
-
-let escalaMobileAtual = 1;
 
 
 areaLeitor.addEventListener(
@@ -1411,17 +2297,16 @@ areaLeitor.addEventListener(
           distanciaAtual /
           distanciaInicial;
 
-        escalaMobile =
+        zoom =
           Math.min(
-            4,
+            zoomMaximo,
             Math.max(
-              1,
-              escalaMobileAtual *
-              fator
+              zoomMinimo,
+              zoomInicialToque * fator
             )
           );
 
-        atualizarZoomMobile();
+        atualizarZoom();
 
       }
 
@@ -1476,7 +2361,12 @@ window.addEventListener(
    INICIAR
 ========================= */
 
-carregarPDF();
+const parametrosInicializacao = new URLSearchParams(window.location.search);
+if (parametrosInicializacao.has("id") || parametrosInicializacao.has("pdf")) {
+  carregarPDF();
+} else {
+  telaCarregamento.classList.add("oculta");
+}
 
 </script>
 
@@ -1490,6 +2380,98 @@ carregarPDF();
   src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524">
 </script>
 
+
+
+
+<!-- ADSTERRA — BANNER 160x300 (somente leitor em telas largas) -->
+<div id="adsterraBanner160x300" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : 'abba3974ab685a71f5e9a87a287fe98d',
+      'format' : 'iframe',
+      'height' : 300,
+      'width' : 160,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/abba3974ab685a71f5e9a87a287fe98d/invoke.js"></script>
+</div>
+
+<!-- ADSTERRA — BANNER 320x50 (somente leitor em celular) -->
+<div id="adsterraBanner320x50" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : 'cba5be04252c2b9e6476640e7a13439d',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/cba5be04252c2b9e6476640e7a13439d/invoke.js"></script>
+</div>
+
+<!-- ADSTERRA — NATIVE BANNER -->
+<div id="adsterraNativeSidebar" aria-label="Publicidade">
+  <script async="async" data-cfasync="false" src="https://pl31646545.profitableratecpmnetwork.com/0b45e944d77e6fda9789af2b5d8f70fc/invoke.js"></script>
+  <div id="container-0b45e944d77e6fda9789af2b5d8f70fc"></div>
+</div>
+
+<!-- ADSTERRA — SOCIAL BAR -->
+<script src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js"></script>
+
+<!-- ADSTERRA — SIDEBAR: só aparece se houver espaço livre ao lado da página -->
+<script>
+(function () {
+  const banner = document.getElementById("adsterraBanner160x300");
+  const native = document.getElementById("adsterraNativeSidebar");
+  if (!banner || !native) return;
+
+  function posicionarAnuncios() {
+    const modoLeitor = document.documentElement.classList.contains("modo-leitor");
+    const mobile = window.innerWidth <= 1100;
+    const canvas = document.querySelector("#leitor canvas");
+    if (!modoLeitor || mobile || !canvas) {
+      banner.style.display = "none";
+      native.style.display = "none";
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const espacoDireita = window.innerWidth - rect.right;
+    const espacoEsquerda = rect.left;
+    let lado = "";
+    if (espacoDireita >= 178) lado = "direita";
+    else if (espacoEsquerda >= 178) lado = "esquerda";
+
+    if (!lado) {
+      banner.style.display = "none";
+      native.style.display = "none";
+      return;
+    }
+
+    for (const el of [banner, native]) {
+      el.style.left = lado === "esquerda" ? "12px" : "auto";
+      el.style.right = lado === "direita" ? "12px" : "auto";
+    }
+    banner.style.display = "block";
+    native.style.display = window.innerHeight > 620 ? "block" : "none";
+  }
+
+  window.addEventListener("resize", posicionarAnuncios);
+  window.addEventListener("scroll", posicionarAnuncios, {passive:true});
+  document.addEventListener("fullscreenchange", posicionarAnuncios);
+  const observer = new MutationObserver(posicionarAnuncios);
+  const leitor = document.getElementById("leitor");
+  if (leitor) observer.observe(leitor, {childList:true, subtree:true});
+  window.addEventListener("load", posicionarAnuncios);
+  setTimeout(posicionarAnuncios, 500);
+  setTimeout(posicionarAnuncios, 1500);
+})();
+</script>
+
+<!-- ADMAVEN — IN PAGE PUSH (código que já existia na V8) -->
+<script data-cfasync="false" src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524"></script>
 
 </body>
 </html>
