@@ -17,7 +17,7 @@
 >
 
 <title>MegaHQ Online</title>
-<!-- MegaHQ Online index-v103: ajuste de tela mobile e zoom por pinça sem limite superior -->
+<!-- MegaHQ Online index-v104: preserva título da HQ na guia e no histórico -->
 
 <!-- ADMAVEN - VERIFICAÇÃO -->
 <meta name="admaven-placement" content="BrHr6rTs4">
@@ -1438,6 +1438,47 @@ const passoZoom = 0.1;
 let pdfAtual = null;
 let urlPDFAtual = "";
 let nomeArquivoAtual = "";
+let tituloHQDesejado = "";
+let observadorTituloHQ = null;
+
+function definirTituloHQ() {
+  if (!tituloHQDesejado) return;
+  if (document.title !== tituloHQDesejado) {
+    document.title = tituloHQDesejado;
+  }
+}
+
+// Redes de anúncios (incluindo notificações da Social Bar) podem alterar o <title>.
+// No leitor, restaura imediatamente o nome real do PDF sem interferir na página inicial.
+function protegerTituloHQ() {
+  if (!document.documentElement.classList.contains("modo-leitor") || !tituloHQDesejado) return;
+  definirTituloHQ();
+  if (!observadorTituloHQ && document.head) {
+    observadorTituloHQ = new MutationObserver(() => {
+      if (document.documentElement.classList.contains("modo-leitor")) definirTituloHQ();
+    });
+    observadorTituloHQ.observe(document.head, {
+      subtree: true,
+      childList: true,
+      characterData: true
+    });
+  }
+}
+
+// Reaplica o título quando o navegador estiver registrando a saída da página.
+window.addEventListener("pagehide", () => {
+  if (!tituloHQDesejado || !document.documentElement.classList.contains("modo-leitor")) return;
+  definirTituloHQ();
+  try {
+    const estado = history.state && typeof history.state === "object" ? history.state : {};
+    const tituloHistorico = 'MegaHQ Leitor "' + tituloHQDesejado + '"';
+    history.replaceState(
+      { ...estado, title: tituloHistorico, megaHQTitle: tituloHistorico, megaHQFileName: tituloHQDesejado },
+      tituloHistorico,
+      window.location.href
+    );
+  } catch (e) {}
+});
 let zoom = dispositivoMobile() ? 1 : 0.5;
 let escalasBase = [];
 let redimensionamentoTimer = null;
@@ -1510,20 +1551,24 @@ function aplicarTitulo(nome) {
   const nomeInteiro = String(nome).trim();
   if (!nomeInteiro) return;
 
-  // Mantém o nome original, inclusive a extensão .pdf.
+  // Mantém o nome original do Google Drive, inclusive a extensão .pdf.
   nomeArquivoAtual = nomeInteiro;
   if (nomeHQ) {
     nomeHQ.textContent = nomeInteiro;
     nomeHQ.title = nomeInteiro;
   }
-  // A guia do navegador deve exibir somente o nome do arquivo lido.
-  document.title = nomeInteiro;
 
+  // O título da guia deve ser somente o nome do arquivo.
+  tituloHQDesejado = nomeInteiro;
+  definirTituloHQ();
+  protegerTituloHQ();
+
+  // Guarda o nome no estado da entrada atual e reforça o título antes de sair.
   try {
     const estado = history.state && typeof history.state === "object" ? history.state : {};
     const tituloHistorico = 'MegaHQ Leitor "' + nomeInteiro + '"';
     history.replaceState(
-      { ...estado, megaHQTitle: tituloHistorico, megaHQFileName: nomeInteiro },
+      { ...estado, title: tituloHistorico, megaHQTitle: tituloHistorico, megaHQFileName: nomeInteiro },
       tituloHistorico,
       window.location.href
     );
