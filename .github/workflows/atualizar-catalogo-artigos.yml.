@@ -37,3 +37,4 @@ jobs:
             git commit -m "Atualiza catálogo automático de artigos"
             git push
           fi
+ 
