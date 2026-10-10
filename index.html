@@ -920,8 +920,32 @@ html.modo-leitor #areaLeitor {
     overflow-x: auto;
     touch-action: pan-x pan-y;
   }
+  html.modo-leitor #adsterraBanner160x300,
+  html.modo-leitor #adsterraNativeSidebar {
+    display: none !important;
+  }
 }
-/* MegaHQ editorial homepage — V106. Leitor e integrações existentes preservados. */
+@media (max-width: 700px) {
+  html.modo-leitor #adsterraBanner320x50 { display: none !important; }
+}
+
+
+/* Anúncios laterais: nunca sobrepõem a área da HQ e não aparecem no mobile */
+#adsterraBanner160x300 {
+  position: fixed; top: 70px; right: 12px;
+  width: 160px; height: 300px; overflow: hidden;
+  z-index: 490; display: none;
+}
+#adsterraNativeSidebar {
+  position: fixed; top: 390px; right: 12px;
+  width: 160px; max-height: calc(100vh - 400px);
+  overflow: hidden; z-index: 489; display: none; text-align: left;
+}
+#adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc { width: 100%; }
+#adsterraBanner320x50 { display: none !important; }
+
+
+/* MegaHQ editorial homepage — V105. Leitor, integrações e monetização da V104 preservados. */
 #home .blog-privacy{padding:28px 0 34px;border-top:1px solid #292d30;color:#929da0;font-size:12px;line-height:1.85}
 #home .blog-privacy h2{margin:10px 0 12px;color:#e9e6df;font-size:22px;letter-spacing:-.5px}
 #home .blog-privacy p{max-width:900px;margin:8px 0}
@@ -1118,11 +1142,11 @@ html.modo-leitor #areaLeitor {
 
     <div class="blog-section-heading" id="publicacoes">
       <div><span class="blog-kicker">DO BLOG PARA VOCÊ</span><h2>Publicações recentes</h2></div>
-      <span class="post-count">04 artigos publicados</span>
+      <span class="post-count" id="articleCount">04 artigos publicados</span>
     </div>
 
     <section class="blog-content-grid" aria-label="Artigos e informações do blog">
-      <div class="blog-post-list">
+      <div class="blog-post-list" id="articleList">
         <article class="featured-post">
           <a class="featured-image-link" href="artigo-uniformes-batman.html" aria-label="Ler artigo sobre os uniformes do Batman">
             <img class="featured-image" src="https://cdn2.penguin.com.au/covers/original/9781799506744.jpg" alt="Capa da edição Batman: Hush, com arte de Jim Lee" loading="eager">
@@ -1853,8 +1877,195 @@ if (paramsInicial.has("id") || paramsInicial.has("pdf")) {
   document.title = "MegaHQ Online | Artigos e cultura dos quadrinhos";
 }
 </script>
+
+
+<!-- CATÁLOGO AUTOMÁTICO DE ARTIGOS: ordenação e paginação de 10 publicações -->
+<style>
+#home .article-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding:16px;background:#121719;border:1px solid #2b3032;border-radius:5px}
+#home .article-pagination button{border:1px solid #57412e;background:#1b2022;color:#f5f2ec;padding:10px 14px;border-radius:4px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+#home .article-pagination button:hover:not(:disabled){background:#e3a36d;color:#151515}
+#home .article-pagination button:disabled{opacity:.35;cursor:not-allowed}
+#home .article-pagination .page-status{color:#aeb5b7;font-size:12px;text-align:center}
+@media(max-width:520px){#home .article-pagination{gap:8px;padding:12px}#home .article-pagination button{padding:9px 10px;font-size:11px}}
+</style>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("id") || params.has("pdf")) return;
+  const list = document.getElementById("articleList");
+  const count = document.getElementById("articleCount");
+  if (!list || !count) return;
+  const PAGE_SIZE = 10;
+  let currentPage = 1;
+  let allArticles = [];
+  let pagination = document.getElementById("articlePagination");
+
+  const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[char]);
+  const parseDate = (article) => {
+    const raw = article.publishedAt || article.date || "";
+    const parsed = Date.parse(raw);
+    return Number.isFinite(parsed) ? parsed : 0;
+  };
+
+  function ensurePagination() {
+    if (pagination) return pagination;
+    pagination = document.createElement("nav");
+    pagination.id = "articlePagination";
+    pagination.className = "article-pagination";
+    pagination.setAttribute("aria-label", "Navegação entre páginas de artigos");
+    list.insertAdjacentElement("afterend", pagination);
+    return pagination;
+  }
+
+  function renderPage() {
+    const note = list.querySelector(".blog-editorial-note");
+    list.querySelectorAll("article.featured-post").forEach((card) => card.remove());
+    const valid = allArticles.filter((article) => article && article.title && article.url);
+    const totalPages = Math.max(1, Math.ceil(valid.length / PAGE_SIZE));
+    currentPage = Math.min(Math.max(1, currentPage), totalPages);
+    const pageItems = valid.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+    pageItems.forEach((article, index) => {
+      const url = escapeHTML(article.url);
+      const title = escapeHTML(article.title);
+      const description = escapeHTML(article.description || "Leia o artigo completo no MegaHQ Online.");
+      const image = escapeHTML(article.image || "");
+      const imageAlt = escapeHTML(article.imageAlt || article.title);
+      const category = escapeHTML(article.category || "QUADRINHOS");
+      const label = escapeHTML(article.label || "ARTIGO");
+      const date = escapeHTML(article.date || "");
+      const dateLabel = escapeHTML(article.dateLabel || (date ? new Date(date + "T12:00:00").toLocaleDateString("pt-BR", {day:"numeric",month:"long",year:"numeric"}) : "Publicação recente"));
+      const meta = escapeHTML(article.meta || "MegaHQ Online");
+      const card = document.createElement("article");
+      card.className = "featured-post";
+      card.innerHTML = `
+        <a class="featured-image-link" href="${url}" aria-label="Ler ${title}">
+          ${image ? `<img class="featured-image" src="${image}" alt="${imageAlt}" loading="${index < 2 ? "eager" : "lazy"}">` : ""}
+          <span class="featured-image-overlay"></span><span class="featured-label">${label}</span>
+        </a>
+        <div class="featured-body">
+          <div class="post-meta"><span>${category}</span><i></i><time${date ? ` datetime="${date}"` : ""}>${dateLabel}</time><i></i><span>${meta}</span></div>
+          <h3><a href="${url}">${title}</a></h3><p>${description}</p>
+          <a class="read-link" href="${url}">Continuar lendo <span aria-hidden="true">→</span></a>
+        </div>`;
+      if (note) list.insertBefore(card, note); else list.appendChild(card);
+    });
+
+    count.textContent = `${String(valid.length).padStart(2, "0")} ${valid.length === 1 ? "artigo publicado" : "artigos publicados"}`;
+    const nav = ensurePagination();
+    if (valid.length <= PAGE_SIZE) {
+      nav.hidden = true;
+      nav.replaceChildren();
+    } else {
+      nav.hidden = false;
+      nav.innerHTML = `<button type="button" data-page="prev" ${currentPage === 1 ? "disabled" : ""}>← Anterior</button><span class="page-status">Página ${currentPage} de ${totalPages}</span><button type="button" data-page="next" ${currentPage === totalPages ? "disabled" : ""}>Próxima →</button>`;
+      nav.querySelector('[data-page="prev"]').addEventListener("click", () => changePage(currentPage - 1));
+      nav.querySelector('[data-page="next"]').addEventListener("click", () => changePage(currentPage + 1));
+    }
+  }
+  function changePage(page) {
+    currentPage = page;
+    renderPage();
+    const heading = document.getElementById("publicacoes");
+    if (heading) heading.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  fetch("articles.json", { cache: "no-cache" })
+    .then((response) => { if (!response.ok) throw new Error("Não foi possível carregar articles.json"); return response.json(); })
+    .then((articles) => {
+      if (!Array.isArray(articles)) throw new Error("Formato inválido do catálogo");
+      allArticles = articles.slice().sort((a, b) => parseDate(b) - parseDate(a) || String(b.url || "").localeCompare(String(a.url || "")));
+      renderPage();
+    })
+    .catch((error) => console.warn("MegaHQ: catálogo de artigos indisponível; mantendo a lista incorporada à página.", error));
+})();
+</script>
+
+
+<!-- ADSTERRA — BANNER VERTICAL 160x300 (somente desktop com espaço livre) -->
+<div id="adsterraBanner160x300" aria-label="Publicidade">
+  <script>
+    atOptions = {
+      'key' : 'abba3974ab685a71f5e9a87a287fe98d',
+      'format' : 'iframe',
+      'height' : 300,
+      'width' : 160,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/abba3974ab685a71f5e9a87a287fe98d/invoke.js"></script>
 </div>
+
+<!-- Banner horizontal 320x50 desativado no leitor, conforme solicitado -->
+<div id="adsterraBanner320x50" aria-label="Publicidade" style="display:none">
+  <script>
+    atOptions = {
+      'key' : 'cba5be04252c2b9e6476640e7a13439d',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highrevenueformat.com/cba5be04252c2b9e6476640e7a13439d/invoke.js"></script>
+</div>
+
+<!-- ADSTERRA — NATIVE BANNER em coluna lateral, somente desktop -->
+<div id="adsterraNativeSidebar" aria-label="Publicidade">
+  <script async="async" data-cfasync="false" src="https://pl31646545.profitableratecpmnetwork.com/0b45e944d77e6fda9789af2b5d8f70fc/invoke.js"></script>
+  <div id="container-0b45e944d77e6fda9789af2b5d8f70fc"></div>
+</div>
+
+<!-- ADSTERRA SOCIAL BAR — mantida ativa no desktop e no mobile; não é ocultada pelas regras de banners -->
+<script data-cfasync="false" src="https://pl31646546.profitableratecpmnetwork.com/82/15/26/821526e9a3a4078c2cbb3dc36dc81648.js"></script>
+
 <!-- ADMAVEN - IN PAGE PUSH -->
 <script data-cfasync="false" src="//dcbbwymp1bhl.cloudfront.net/?wbbcd=1724524"></script>
+
+<!-- Posiciona anúncios apenas quando há espaço real à direita da HQ. -->
+<script>
+(function () {
+  const banner = document.getElementById("adsterraBanner160x300");
+  const native = document.getElementById("adsterraNativeSidebar");
+  if (!banner || !native) return;
+
+  function posicionarAnuncios() {
+    const modoLeitor = document.documentElement.classList.contains("modo-leitor");
+    const mobile = window.matchMedia("(max-width: 1100px), (pointer: coarse)").matches;
+    const canvas = document.querySelector("#leitor canvas");
+    if (!modoLeitor || mobile || !canvas || document.fullscreenElement) {
+      banner.style.display = "none";
+      native.style.display = "none";
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const espacoDireito = window.innerWidth - rect.right;
+    const larguraAnuncio = 172;
+    if (espacoDireito >= larguraAnuncio + 12) {
+      banner.style.display = "block";
+      banner.style.top = "70px";
+      banner.style.right = "12px";
+      native.style.display = "block";
+      native.style.top = "390px";
+      native.style.right = "12px";
+    } else {
+      banner.style.display = "none";
+      native.style.display = "none";
+    }
+  }
+
+  window.addEventListener("resize", posicionarAnuncios);
+  document.addEventListener("fullscreenchange", posicionarAnuncios);
+  const leitorEl = document.getElementById("leitor");
+  if (leitorEl) new MutationObserver(posicionarAnuncios).observe(leitorEl, {childList:true, subtree:true});
+  window.addEventListener("load", posicionarAnuncios);
+  setTimeout(posicionarAnuncios, 500);
+  setTimeout(posicionarAnuncios, 1500);
+})();
+</script>
+
 </body>
 </html>
