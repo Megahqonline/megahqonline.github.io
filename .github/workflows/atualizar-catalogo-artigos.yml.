@@ -1,0 +1,39 @@
+name: Atualizar catálogo de artigos
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'artigo-*.html'
+      - 'scripts/generate_articles.py'
+      - '.github/workflows/atualizar-catalogo-artigos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gerar-catalogo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Gerar articles.json
+        run: python scripts/generate_articles.py
+      - name: Salvar catálogo atualizado
+        run: |
+          if git diff --quiet -- articles.json; then
+            echo "O catálogo já está atualizado."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add articles.json
+            git commit -m "Atualiza catálogo automático de artigos"
+            git push
+          fi
