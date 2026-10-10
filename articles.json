@@ -1,16 +1,16 @@
 [
   {
-    "title": "Os 5 uniformes mais marcantes do Batman nos quadrinhos",
-    "description": "Uma análise editorial de cinco uniformes marcantes do Batman nos quadrinhos: do traje clássico ao visual de Hush, Zero Year, New 52 e O Cavaleiro das Trevas.",
-    "url": "artigo-uniformes-batman.html",
-    "image": "https://cdn2.penguin.com.au/covers/original/9781799506744.jpg",
-    "imageAlt": "Os 5 uniformes mais marcantes do Batman nos quadrinhos",
+    "title": "As 10 histórias mais marcantes do Batman nos quadrinhos",
+    "description": "De Ano Um a Terra de Ninguém, conheça dez histórias essenciais do Batman e entenda por que elas marcaram a trajetória do Cavaleiro das Trevas.",
+    "url": "artigo-10-historias-mais-marcantes-batman.html",
+    "image": "https://static.dc.com/dc/files/default_images/batman_nomansland_vol1_newed_5b04a1e891c826.16042601.jpg?w=1000",
+    "imageAlt": "Capa de Batman: Terra de Ninguém, uma das histórias analisadas no artigo",
     "category": "QUADRINHOS",
-    "label": "ARTIGO",
+    "label": "LISTA EDITORIAL",
     "date": "2026-10-10",
     "dateLabel": "10 de outubro de 2026",
-    "publishedAt": "2026-10-10T12:50:19+00:00",
-    "meta": "Leia o artigo"
+    "publishedAt": "2026-10-10T10:38:54-03:00",
+    "meta": "Leitura: 12–15 minutos"
   },
   {
     "title": "As 5 melhores sagas do Homem-Aranha nos quadrinhos",
@@ -20,9 +20,9 @@
     "imageAlt": "As 5 melhores sagas do Homem-Aranha nos quadrinhos",
     "category": "QUADRINHOS",
     "label": "ARTIGO",
-    "date": "2026-10-10",
-    "dateLabel": "10 de outubro de 2026",
-    "publishedAt": "2026-10-10T12:50:19+00:00",
+    "date": "2026-10-09",
+    "dateLabel": "9 de outubro de 2026",
+    "publishedAt": "2026-10-09T21:47:03-03:00",
     "meta": "Leia o artigo"
   },
   {
@@ -33,9 +33,9 @@
     "imageAlt": "Os 10 melhores trajes do Homem-Aranha nos quadrinhos",
     "category": "QUADRINHOS",
     "label": "ARTIGO",
-    "date": "2026-10-10",
-    "dateLabel": "10 de outubro de 2026",
-    "publishedAt": "2026-10-10T12:50:19+00:00",
+    "date": "2026-10-09",
+    "dateLabel": "9 de outubro de 2026",
+    "publishedAt": "2026-10-09T21:47:03-03:00",
     "meta": "Leia o artigo"
   },
   {
@@ -46,9 +46,22 @@
     "imageAlt": "Os 10 melhores trajes do Homem de Ferro nos quadrinhos",
     "category": "QUADRINHOS",
     "label": "ARTIGO",
-    "date": "2026-10-10",
-    "dateLabel": "10 de outubro de 2026",
-    "publishedAt": "2026-10-10T12:50:19+00:00",
+    "date": "2026-10-09",
+    "dateLabel": "9 de outubro de 2026",
+    "publishedAt": "2026-10-09T21:47:03-03:00",
+    "meta": "Leia o artigo"
+  },
+  {
+    "title": "Os 5 uniformes mais marcantes do Batman nos quadrinhos",
+    "description": "Uma análise editorial de cinco uniformes marcantes do Batman nos quadrinhos: do traje clássico ao visual de Hush, Zero Year, New 52 e O Cavaleiro das Trevas.",
+    "url": "artigo-uniformes-batman.html",
+    "image": "https://cdn2.penguin.com.au/covers/original/9781799506744.jpg",
+    "imageAlt": "Os 5 uniformes mais marcantes do Batman nos quadrinhos",
+    "category": "QUADRINHOS",
+    "label": "ARTIGO",
+    "date": "2026-10-09",
+    "dateLabel": "9 de outubro de 2026",
+    "publishedAt": "2026-10-09T21:29:15-03:00",
     "meta": "Leia o artigo"
   }
 ]
