@@ -3,6 +3,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="description" content="Artigos originais sobre quadrinhos, personagens, uniformes e cultura pop no MegaHQ Online.">
+<meta name="robots" content="index,follow">
 
 <!-- GOOGLE ADSENSE -->
 <script async
@@ -16,7 +18,7 @@
   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
-<title>MegaHQ Online</title>
+<title>MegaHQ Online | Artigos e cultura dos quadrinhos</title>
 <!-- MegaHQ Online index-v104: preserva título da HQ na guia e no histórico -->
 
 <!-- ADMAVEN - VERIFICAÇÃO -->
@@ -942,6 +944,151 @@ html.modo-leitor #areaLeitor {
 #adsterraNativeSidebar #container-0b45e944d77e6fda9789af2b5d8f70fc { width: 100%; }
 #adsterraBanner320x50 { display: none !important; }
 
+
+/* MegaHQ editorial homepage — V105. Leitor, integrações e monetização da V104 preservados. */
+#home .blog-privacy{padding:28px 0 34px;border-top:1px solid #292d30;color:#929da0;font-size:12px;line-height:1.85}
+#home .blog-privacy h2{margin:10px 0 12px;color:#e9e6df;font-size:22px;letter-spacing:-.5px}
+#home .blog-privacy p{max-width:900px;margin:8px 0}
+#home .blog-privacy a{color:#e3a36d;text-decoration:none}
+#home .blog-privacy a:hover{text-decoration:underline}
+#home {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 82% 0%, rgba(36, 83, 91, .22), transparent 34%),
+    radial-gradient(ellipse at 5% 38%, rgba(117, 63, 35, .10), transparent 30%),
+    #0c0e10;
+  color: #f4f2ee;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+#home .blog-shell { width: min(1200px, calc(100% - 56px)); margin: 0 auto; }
+#home .blog-header {
+  min-height: 94px; display: flex; align-items: center; gap: 30px;
+  border-bottom: 1px solid #292d30;
+}
+#home .home-logo { width: 176px; flex: 0 0 176px; display:flex; align-items:center; }
+#home .home-logo img { width:176px; height:auto; display:block; }
+#home .blog-nav { display:flex; align-items:center; gap:26px; margin-left:auto; }
+#home .blog-nav a { color:#aeb4b7; text-decoration:none; font-size:13px; transition:color .2s; }
+#home .blog-nav a:hover, #home .blog-nav a.active { color:#f5f3ef; }
+#home .blog-nav a.active { position:relative; }
+#home .blog-nav a.active:after { content:""; position:absolute; height:2px; background:#e5a66d; left:0; right:0; bottom:-39px; }
+#home .blog-header-cta { color:#f0c49b; text-decoration:none; border:1px solid #604934; padding:11px 14px; border-radius:4px; font-size:12px; white-space:nowrap; }
+#home .blog-header-cta span { margin-left:8px; }
+#home .blog-kicker { color:#d9a574; font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; }
+#home .blog-intro { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:56px; padding:76px 0 78px; border-bottom:1px solid #292d30; }
+#home .blog-kicker i { display:inline-block; width:18px; height:2px; background:#d9a574; vertical-align:middle; margin-right:8px; }
+#home .blog-intro h1 { margin:22px 0 20px; font-size:clamp(42px, 5.5vw, 72px); line-height:1.02; letter-spacing:-2.8px; font-weight:750; }
+#home .blog-intro h1 em { font-style:normal; color:#d9a574; }
+#home .blog-intro-copy > p { color:#aeb4b7; font-size:16px; line-height:1.85; max-width:580px; margin:0; }
+#home .blog-primary-button { display:inline-flex; align-items:center; justify-content:center; gap:20px; margin-top:28px; padding:14px 18px; background:#e3a36d; color:#151515; border:1px solid #e3a36d; text-decoration:none; font-size:12px; font-weight:800; border-radius:4px; transition:transform .2s, background .2s; }
+#home .blog-primary-button:hover { transform:translateY(-2px); background:#efb783; }
+#home .blog-intro-art { min-height:310px; position:relative; overflow:hidden; border:1px solid #33393b; border-radius:5px; background:linear-gradient(140deg,#1c2b30,#121719 60%,#30251e); display:flex; align-items:center; justify-content:center; isolation:isolate; }
+#home .blog-intro-art:before { content:""; position:absolute; inset:0; opacity:.16; background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px); background-size:28px 28px; mask-image:linear-gradient(135deg,#000,transparent 75%); }
+#home .intro-orbit { position:absolute; border:1px solid rgba(226,164,109,.38); border-radius:50%; transform:rotate(-25deg); }
+#home .orbit-one { width:290px; height:390px; }
+#home .orbit-two { width:205px; height:310px; transform:rotate(25deg); border-color:rgba(232,235,224,.22); }
+#home .intro-sigil { position:relative; color:#f3eee6; font-size:clamp(65px,8vw,108px); font-weight:900; letter-spacing:-10px; text-shadow:0 10px 30px #000; transform:rotate(-8deg); }
+#home .intro-sigil span { color:#e3a36d; font-size:.65em; vertical-align:top; letter-spacing:0; }
+#home .intro-art-caption { position:absolute; bottom:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; border-top:1px solid #394143; background:rgba(8,11,12,.62); }
+#home .intro-art-caption span { font-size:11px; font-weight:900; letter-spacing:2px; }
+#home .intro-art-caption b { color:#9da6a8; font-size:9px; letter-spacing:1px; text-align:right; }
+#home .blog-section-heading { display:flex; justify-content:space-between; align-items:end; gap:20px; padding:48px 0 24px; }
+#home .blog-section-heading h2 { font-size:30px; margin:8px 0 0; letter-spacing:-.8px; }
+#home .post-count { color:#7f898d; font-size:11px; border:1px solid #303639; border-radius:99px; padding:8px 12px; }
+#home .blog-content-grid { display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:28px; align-items:start; }
+#home .blog-post-list { min-width:0; }
+#home .featured-post { display:grid; grid-template-columns: minmax(240px,.82fr) minmax(0,1fr); background:#141719; border:1px solid #2b3032; border-radius:6px; overflow:hidden; }
+#home .featured-image-link { min-height:360px; display:block; position:relative; background:#20272b; overflow:hidden; }
+#home .featured-image { position:absolute; width:100%; height:100%; inset:0; object-fit:cover; object-position:center; transition:transform .5s; }
+#home .featured-post:hover .featured-image { transform:scale(1.04); }
+#home .featured-image-overlay { position:absolute; inset:0; background:linear-gradient(0deg,rgba(8,10,11,.42),transparent 55%); }
+#home .featured-label { position:absolute; top:18px; left:18px; background:#e3a36d; color:#151515; padding:8px 10px; font-size:9px; font-weight:900; letter-spacing:1.3px; }
+#home .featured-body { padding:30px 28px; align-self:center; }
+#home .post-meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px; color:#7f8a8e; font-size:10px; text-transform:uppercase; letter-spacing:.8px; }
+#home .post-meta span:first-child { color:#e1a56f; font-weight:800; }
+#home .post-meta i { width:3px; height:3px; border-radius:50%; background:#687174; }
+#home .featured-body h3 { margin:20px 0 14px; font-size:clamp(24px,2.6vw,34px); line-height:1.15; letter-spacing:-.8px; }
+#home .featured-body h3 a { color:#f5f2ec; text-decoration:none; }
+#home .featured-body h3 a:hover { color:#e9b17f; }
+#home .featured-body > p { color:#aeb5b7; font-size:13px; line-height:1.85; margin:0; }
+#home .read-link { display:inline-flex; gap:16px; align-items:center; color:#e6ad7c; text-decoration:none; font-weight:800; font-size:12px; margin-top:24px; }
+#home .read-link span { font-size:18px; transition:transform .2s; }
+#home .read-link:hover span { transform:translateX(4px); }
+#home .blog-editorial-note { display:flex; gap:18px; margin-top:18px; padding:22px; background:#121719; border:1px solid #2b3032; border-radius:5px; }
+#home .note-icon { flex:0 0 35px; width:35px; height:35px; display:grid; place-items:center; color:#e3a36d; border:1px solid #57412e; border-radius:50%; font-size:17px; }
+#home .blog-editorial-note strong { font-size:13px; }
+#home .blog-editorial-note p { margin:7px 0 0; color:#929da0; font-size:12px; line-height:1.75; }
+#home .blog-sidebar { display:grid; gap:16px; }
+#home .sidebar-card { padding:22px; background:#141719; border:1px solid #2b3032; border-radius:5px; }
+#home .sidebar-label { display:block; color:#d9a574; font-size:9px; font-weight:900; letter-spacing:1.7px; margin-bottom:18px; }
+#home .sidebar-monogram { width:55px; height:55px; display:grid; place-items:center; margin-bottom:16px; color:#f5eee5; font-size:21px; font-weight:900; letter-spacing:-2px; border:1px solid #7d5c40; background:linear-gradient(145deg,#2c3b3e,#161b1d); transform:rotate(-4deg); }
+#home .sidebar-monogram span { color:#e3a36d; }
+#home .about-card h3 { margin:0 0 9px; font-size:18px; }
+#home .about-card p { margin:0; color:#9da6a9; font-size:12px; line-height:1.8; }
+#home .about-card > a { display:inline-block; margin-top:18px; color:#e2aa77; font-size:11px; text-decoration:none; font-weight:800; }
+#home .topics-card { padding-bottom:10px; }
+#home .topics-card > a { display:flex; gap:12px; align-items:center; padding:13px 0; border-top:1px solid #292e30; color:#c7cccd; text-decoration:none; font-size:12px; }
+#home .topics-card > a span { color:#707b7f; font-size:10px; }
+#home .topics-card > a b { margin-left:auto; color:#8f999c; font-size:15px; }
+#home .topics-card > a:hover { color:#e7b180; }
+#home .sidebar-quote { padding:24px; background:linear-gradient(145deg,#29251f,#17191a); border:1px solid #51402f; border-radius:5px; }
+#home .sidebar-quote > span { color:#e3a36d; font-family:Georgia,serif; font-size:50px; line-height:.7; }
+#home .sidebar-quote p { margin:8px 0 18px; font-size:17px; line-height:1.45; color:#eee8df; }
+#home .sidebar-quote small { color:#a48b74; font-size:9px; letter-spacing:1.5px; }
+#home .blog-about-strip { margin-top:70px; padding:36px 0; display:grid; grid-template-columns:.8fr 1.2fr; gap:50px; align-items:center; border-top:1px solid #292d30; border-bottom:1px solid #292d30; }
+#home .blog-about-strip h2, #home .blog-contact h2 { margin:10px 0 0; font-size:26px; letter-spacing:-.7px; line-height:1.2; }
+#home .blog-about-strip > p { color:#a5adaf; font-size:13px; line-height:1.9; margin:0; }
+#home .blog-contact { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:48px 0; }
+#home .blog-contact p { color:#939da0; font-size:12px; margin:10px 0 0; }
+#home .blog-contact .blog-primary-button { margin:0; white-space:nowrap; }
+#home .blog-footer { padding:28px 0 34px; border-top:1px solid #292d30; display:grid; grid-template-columns:1fr auto; gap:20px 30px; }
+#home .footer-brand strong, #home .footer-brand span { display:block; }
+#home .footer-brand strong { font-size:14px; }
+#home .footer-brand span { color:#7e888b; font-size:11px; margin-top:5px; }
+#home .blog-footer nav { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+#home .blog-footer a { color:#9ca5a8; font-size:11px; text-decoration:none; }
+#home .blog-footer a:hover { color:#e3a36d; }
+#home .footer-legal { grid-column:1/-1; display:flex; justify-content:space-between; gap:18px; padding-top:17px; border-top:1px solid #24292b; color:#606a6d; font-size:10px; }
+@media (max-width: 900px) {
+  #home .blog-shell { width:min(100% - 36px, 720px); }
+  #home .blog-header { flex-wrap:wrap; padding:20px 0; gap:18px; }
+  #home .blog-nav { order:3; width:100%; margin:0; gap:22px; flex-wrap:wrap; }
+  #home .blog-nav a.active:after { bottom:-10px; }
+  #home .blog-header-cta { margin-left:auto; }
+  #home .blog-intro { grid-template-columns:1fr .7fr; gap:24px; padding:55px 0; }
+  #home .blog-content-grid { grid-template-columns:1fr; }
+  #home .blog-sidebar { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #home .sidebar-quote { grid-column:1/-1; }
+  #home .featured-image-link { min-height:320px; }
+}
+@media (max-width: 620px) {
+  #home .blog-shell { width:calc(100% - 28px); }
+  #home .blog-header { min-height:0; }
+  #home .home-logo, #home .home-logo img { width:150px; }
+  #home .home-logo { flex-basis:150px; }
+  #home .blog-header-cta { font-size:10px; padding:10px; }
+  #home .blog-nav { gap:16px; }
+  #home .blog-nav a { font-size:11px; }
+  #home .blog-intro { grid-template-columns:1fr; padding:46px 0; gap:30px; }
+  #home .blog-intro h1 { font-size:43px; letter-spacing:-1.8px; }
+  #home .blog-intro-copy > p { font-size:14px; }
+  #home .blog-intro-art { min-height:220px; }
+  #home .blog-section-heading { align-items:start; flex-direction:column; padding-top:35px; }
+  #home .blog-section-heading h2 { font-size:26px; }
+  #home .featured-post { grid-template-columns:1fr; }
+  #home .featured-image-link { min-height:300px; }
+  #home .featured-body { padding:24px 20px; }
+  #home .featured-body h3 { font-size:27px; }
+  #home .blog-sidebar { grid-template-columns:1fr; }
+  #home .sidebar-quote { grid-column:auto; }
+  #home .blog-about-strip { grid-template-columns:1fr; gap:16px; margin-top:45px; }
+  #home .blog-about-strip h2, #home .blog-contact h2 { font-size:23px; }
+  #home .blog-contact { align-items:flex-start; flex-direction:column; padding:36px 0; }
+  #home .blog-footer { grid-template-columns:1fr; }
+  #home .blog-footer nav { justify-content:flex-start; }
+  #home .footer-legal { flex-direction:column; }
+}
+
 </style>
 
 
@@ -962,338 +1109,114 @@ html.modo-leitor #areaLeitor {
 <!-- PÁGINA INICIAL RECUPERADA -->
 
 <main id="home">
-
-  <div class="home-conteudo">
-
-    <header class="home-topo">
-
-      <a class="home-logo" href="#inicio" aria-label="MegaHQ Online — início">
+  <div class="blog-shell">
+    <header class="blog-header">
+      <a class="home-logo" href="index.html" aria-label="MegaHQ Online — início">
         <img
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAA6CAYAAACkliXvAAA+bUlEQVR42u29eZydRZU+/pyqet97by/pdKezsSQkkAQSUTQM4jiYhEXFsDlOgvMd5+s2wogLCiPquCTtKAIOIjo/HXH/uicqjgOIoiQsIjAEhAkxkBCy753e+977vlXn/P6oeu99u9NJOoFxRFOfz03uvf3ed6mqU+ec5zznFOGF0whABIyPgSQCCjHACiUhEAkGFQPVBOhJAKQAXPiNBsZHQGIAFwENChACSIBBB0Qp0JUCSABYHG3/C2M6MRsfDbAK3wugnX/tS8PY5MYUBhgXjq/9Dv742hxI/XlemB1zsO/lj/SeTRgclfve5V7D71sNexEADsfxAX5ztP1hmwnjkp97+TEaaR5QbjyRG9cX/HjSCJ2DXIfIC+QZjgrV0fYnZ0rktRC9kNX/0Xa0/am0zBwshc9J3X4fYiYebUfb0fYHtuuLQUMmAApBIPMaU4LNfhQYOdqOtj+ww51OBko7ABo/fjwxMwGAUkr27NkjOSc7zQnrn6PZLzg8YIz+QPcmz8OzvVDP//ycW+TIxorof2SsDIBkMhBV29pMGwBrLTU2NuqJEyeqKIp49uzZXC6XtTFG2trazIUXXphedtllGUomRMTP18QXET2Kh2IikpH7VtQoBOegHaO1PujvRCT7/yBjLEopxXKwg/4ImoiQUkoOdZ8iQgfq8z/QwvE/e+5lyzSI3B+o0xUOLTOKjjvuuNLg4GDknNPMrESE+vv7UwCDODhcHRYMwh/D/FuyZInq6OjgP8ClCAB9+ctf1pdffnk6wiTWVB9kk5s4I6HHB1pEDoU0D1mmb775Zn3llVdWn8MzRYe4x+Q5CCeN0A/DhYoPNscONoEDJiKHEFx3UKFcvNjhbRc1N580O1a9PQwAPYVBwb5d3AaAirGogR7Zs2eP/03BCBoiAbYDXTsEfWBshqAEQRmEOQCeBFCCYDzUSQDizZA1ayAAUsxbYnBPhw7uoWD/CIgy5XLZOOcUM6tisRiVy2X34Q9/ePKrz7/gNFutilKkSqWCYyKKVCSx1uIANDc369WrH1/9hje8YfVzEQoJJgQR6XXr1n0wiqJG5xwxsyYi5ZxoBkMTKSJqemzNY59efPHi9flrZsLwX//1X/OnTJnygWo1YRGOiEh7W8PbGyJOKaUVIEpy04T8fCQRMkSiQQQIlFJEzExK1XEwBqAVNa7979XvBPDrZcuW6cWLF7twH4aI7G9+89CrZs6cfpOwNLAwEWkCmAAl+fmXPy8JiVBmTh1Y6YeFMDwPuYaGYmHdunWfBvCVYYvCQRexpUuXyq233tr2yle+8udxHI91zmVxQREREBEI5ArFQrRz586fENEHRESN2kJaJhqLyRXWbDtXN4z5N9dbcQBpLQRigJWAYmKKYpXs2LcuPWvqBb7fZTSTRoPIFR7f9nHdNvZvXW/FKoEhqa8sCcAmipV07Xu6+oqpF4ZzD114RAyIbHzHQ6+XE2Z9fqDMRSUMRYQYIhBwv+8UERDHxJL9OrNgFZETBjMRQyCKssHLFjFR20hgGTYuFhRt2fWD6vknfRRzz23Eql8NDls8snsTkzMj1YQJE6Inn3xy8IwzX3nmybNO/kZfbw+MMeDsfsRPGiKgqakRM2aesnXhwoVnr1y5cQsRVY5Qc2oishs3bvzXqVOnXrm3swdGKyit/cQVgbUMkKDUUMLGrRu/AWD9nDlzyC94yzQRudtvv2vmiSfO/HHL2DFt5cEqiAClgkyKv3VFBCIFCQuUIhVkYPiEkNpzZp8UEZIkQalUwKbNmx/+7Oc//9ugRTgzw4nIPvHYE286ceaJX2toaIhTy945V6p2ruFzj56jJ9rV1bVn+fLld5C/wKiEZunSpUREvGnjpk9MmDDhLw51/DHHHPO+O+64498BbBi1cI5f6RcP09BCcdNMiyZA+eXJ+0CAMGAMAJOaw3rolb7HrG08jk3DTLYNIJMtsr5/nQOUBsRW1QGE24DIRvev+QfVPv0rXC0geyqW+rgL58Yo8MWy6ULkj5UgVjXTUvzzZfMue149AJSOb/qI+9HDPfZvzvgMznjtGDx8ZxrO7nKWgzOZ+dogooy1GkCRraXB/n7X29vHRKREJGfjELTW6O8fcC0tY4/70Ic+uuSss15xxfvf/3666aabyofTvytWrDBEZFevXv23kyYdc+WmLdsT9tqSFCmQ8gCxiPfp4v5+aNFlAFi0aJEsWbJELVq0SG666aaxZ5zxsp8WS8W23bv3popIMTOIVCaXICIoRSBQ+JxpyqHayPerkAqjnC02SimO41j6+wcGv/qVr1x22223DQaBDD8lu3bN2g/NmDXj08wiAwNl57mC++MDAqldm/KSGTpZ1e6jfk/DcQYiclGko/vvf+Bj11577bbRCsyyZcu0Uso98MADp06cOOEyADZNLAUl6ScZSXZxEMGVSqXo1FNPvZqIrgh+/KibqzinHRgD7BisQ3f5xZHAnBpFlgaPaFVKbSI9YBl0VgBTNwgFJMK2Gikpu8H9VtwVokFk47tXX80TZv2r3acYiQUJhfH07pmI1LrCSyV5dzw3EJJ7I5lA1oW/tloQAUIklYoSOf6lN+Db923C35+1DGe+ug0P/jIZfo8GAJhZuWJRW2M0gEhFKm5qbtIDgwOkwnJPID+5vSoCgfTg4ICbPn363/34xz/+7Rve8Ib/N1pTKpsgCxYssL+87ZennHDCCbf09PaxIoriYpHqGotqggkAkdFwzmWTj5YuXSpExNu2bvtue3vbKXv27rOFQhzVBEx8r5IiqJyQBr0/RB7y6iz7PSnync0MgUipVDD33ffwZz/5yU8+LiIKBFHkwZMNGzZ8cdq0ae+sVlMHsIoio5nFa30ChGVED9Ib2jTMgqsLLqgOBivyn611Lo5NtGXL1t9cdNEF3zsc/2/RokVYvHgxpp0w7TOFYtFY65xSSrNwGOPQOypoDBECg9vb29/y61//+sbD0ppZRzMUHESJUlk/EClAGGKgxPERxcyVgNhCwYoiKAUWkBAEBGEHUlAQMlJbCeDXygVkzYr1H8PEEz+B3XBSdQpKkVd3VLcMhwwKZSsKas5P3YwMI1YXWsoJa23xJcCxE1jDZtpp39JfuLWn+p7X/xJTX9KCTY+nyIUqVQiNUFFEaa01AI6iCFEcoRAXJIpixFGEOI4RxzGiOEIcGRijEceRcuzkL//yrH+5+uqrT54xY4ahUcDHIkKLFi3CvHlvLr705S/7fqFQbGJmKRSLFEUGURQjMgZaaxhjEEUGhUIB2igQpQ4AVq1apYhI1q/fcOMxxx7zuq7uXlsoxEYpBa0UjNHZOUQrxaSIQcSKiLVSrDQxUXgpYq2100o5pZQjotz/5EhR2tzUqLds2fLQq171qptFRC1duhQQ4Kqrrmrcunnzj6ZNm/bONLXWA7uGvLYmv6yI1Hi8lL2IHBEcQE5EHERq/0PgRMQJss/ihNmxP8YqpWRwYCD98Y9/9M9E1DdadDJbOH/3yCMXTJg44TXOsoOIFgiGj1s2JwlEqXNcLBZLs2bM+mBYAEZvfAtE2MMcZAFy5N+n4qGPFHU1c5ieENtw3lSBwnv/EsARyAFEOU71smUKn/tcIfr1+ht164mf4B2wKDsFJqIU3pR1AjhApSzKClMqTFaYLDOsMCwYlllSZoTvJBVGyixWGJbDscxw2Tn9PUkqABOh6qCSpiJOPfd75t9/OhformDcrHxEQRlm1g0NDUqMoQAqiBJSihSiOKoBFESZBqNgWwsIIBZxzWPGtL7z8nddf+ONNy5asmQJdXR0VEbnV266pb193Ev2dnbZYrFgMtBBJLtDCeYUiVKK0qQqzCYFgNNPPz199NFH55144rSryuWqjYwxNScgaHalFYrFmJ6HeKKuVCr21ltvvYqIegCopUuXyuI5c6Ibf37nbccef/z8JLEpEUVaZ/6k15ZRpLNsiOe1rV+/+cvvf//77z0M7UUA5D3veU9hyvTpNyilxDqX0xDDTO0w1gKBiGjnWNra2/7utrtuuw7As4e87vz54axaxNbxRz+2FHSMn7iSPodASZj0dS0mNeiFHICUvO8mrEDk8NCGV3LztKt4CyzEGcpsE8mDawAKhsh4JciZZSP7Y1OSx1RVPq4GUMX/oP67gG0oUnaQUzWuqc2Nm/NBbNq0CC+5uIjOpzjMFWdEhJhZZb5mkBoVRTGiKIbWCjUNTZTziWqIiu7t7XUnTJ+24L77fvOes8565Q0ZOjliX67wf3vyySffPnXqlLd19/TZKIp8B2k6YExAaY0UkP7+/tp3zc3NLQBEKSJSETJfOLtUFBnq6ureXC4PdhKRYmEikBARE+oQGxEJmAGlxPumxN7HcCJCqSaitU8//fMrr7zyQRGhpUuXoqOjQy677LJSS0vLy7w3wMZoDRX8NGERE2nq7e3d1t3dvR7+OyZNBCjySyc5ECBOhCVISd1+9yuSiBCJY4Y45ySOjVSrqfvUpz71eRmOMh7cn9dEZJ/6/VOXt7a2nmKtcyDSHnzMWcz7+bUEIpCI2FKp1HDqzFM/RESXjdrXdJmmDJNVZChNwwH+0Y/AlGWAuQ68ZJo3E1BxgNhayM/fr4tj7gcjtYqIAnYqQ5AjMQTYPVuMS/odhPw9e4klgYiQ1Lw7RvZEUALlgR+yokiAcbOI4wjMNZcFAogDNIG4DJFKcP3ifg2Mc0BnLc5GIkIiQsYYBQBRIUIhvBSpEfkVeR9ItKjB8qB76UtPu+bGG29cQUQPiogb7vcsW7ZM0wKyK1aseNG0adM+n6bWaaW0UrruTo0AyrAItNIAhMrlsuRitbUe1WqoYhQR1lrpRx5+6JOvfu1rvw+gtT4V9ksL4mGxsRwOhyxX0y1ZsiSTFXR0dKBQKIhjNwhgjCIPE2QoHfvnN7t3775txowZVwIYE85DuVcG5NHwOGkeOg/HZPeVhHFz3/3ud0cllEGA+Vvf+ta4iZMmfiR/zcwHoppCEyEJg15HPnxypGNpb2//+7vuumt0WjMs/4R6j1NOLgV+kh4xLTsjirrg/MlQEA2uHo7LAUYMQJEQk+Sts8wpBKtmpfjnP7uuct0/3A40tuSiF+KnQ6Ryn234TjNKGogI6Kyiod2YHz59B1RhIlIRUkRC3gcGCOxVMQVwgMCW0MoKXeMF2KNMYO/I0Kit0loBURTVEMIhyElmYubWGmFG45im0t/93Zv+9VOf+tQll19+eVcgKeQnh9x0001jX/KSl/yoWCw1DAyU2ZiIKFMzNEzo67EcREaDiNxgV1deE8d5M5uyhUIAZr8QTTnh+LKIDD755JPJmjVr3KJFi2T58uWERYuwKJxk+XJg0aJDGk3791OvUsxsMqAIGdkiN9jt7e1VEUkA9OC5841rAhuYRaNWLkTkNqzf8M8tY1smpKmzBBiBwEeMCI4ZxhhSCpQkdtg4CESIrHW2oaGheMrsU64hon88qNZc6cMlzjmiFBALj1Hnlbx4bQomhSVLFLAUwFJg6VLB0qV0gFiPYBUIImTv2kPkvOasmaCZdcfeTCYMB8V0zYQmySGnddhNyAF0yot3gmgT7u43WHkY5Ic5ICxfDhTuHqcVlM0WI5cHHAUQJnEKYsW7Os4RmFWwAcTkJ1t9dfGTzRhTF8xhU4OGBeAIpAcGK27ixAmn33XXXR+YO3fuR3MmLWV+5bZt225pbW2dVS5XnTFG11DJEUyo2viRQGkCEdnucjmtHxOEAlSfRME00cE3duGO58yZ41784he7N77xjV54Lr0Ul+Ye69JL99MyhxyDKS+eooxHsoeoAaI64mutlaBlebh2CRREOgLhBHMNyXQHQ2SD8PC9d907c+KkiVekqWNm1lmMWEBgYdFaob+vd2t3d9eTU6ZOfW2lkrAipbJ5LSJgFp2mTsa2jH3zbbfddgOAZw9JLhlIPJnD1hWjtxhDEDAFkAijo4OBDn9AR8eBoSD/Nz8HfrnXKQaIqR7ryQcOfVRw6L0xKRX8zyGLqAfqQFBwKSCsqhAB9kDQcRi0UxHC4sWCv7/E1eKbDkNi4iF2EqwIv86CHeUioDB5VW+MH2wTxxoAPJChalhzLtoOYRZFgecQTmmglbXOzZkz513f/OY37yCiFeH8mojs73//9JXHHHPMomo1tcZok0f/IBCqBffysGBOQAW2K6cxnXNRZnJJLmDo/VV/TH9PfyVMXHeYkz976Zz5O6RNmjRJKfJ2uLAfYcpM6hAWYD7wmNIfhp9JRMTbt2+/rqGxoVguV51nVAWVIQRnHcdxUW/esvEbX/3q975x3fUd60gpbZ2rrxr+UEqS1DY2NhZPO+20DxPRO0REdXR0HPjqxZhRAcRJCODnNJR4ZJUhpnTHiuNENRLxgMAVBABKukoAUM5Hx5vHsJAYFTekLqExnAJig+bnelSDJIfa5FuSKFYIqoxq5q+3HuoxbtH03NIeXcrsRDLawNCQWACF/KKiZJh9mDF/MjSWgmUoxsQRABitJQebox76I0SFiJLECmWqzZuT5JyjQqGgL7jgohtnzZr1mne96129X/ziF/sf+e0jfzV16nE3WsuOWTQJASq7YZZCMSLnGMICFhkCQjBzponc4OAgZ/zcNE2L+YgT5bSdMBQgmDZt2qe3bt16jdY6zy7RSmvKrAEiEqV1TRgplKsgpUQrVSiXy3dOmDDhijz9DgCiKCKRbA4IlGS8YQEz1wioB2qPPfbYB1pbW48NPn4cKHuZgaUUkYaCgicQQQVwyjmhKNIgIvPEE0986YILLnhoJH8vC488/vjjr2pvH//6crnqmH14hNmflBRxFEWqs3Pfnq997d+/dfPNX9r47ndf9p8nnTT99T09AxYEw8w1VJFZdJJaaR4z9k0rVvz2UwA2HcrX9AhpYCRmBIbAiZIKQ8ctJ4l6+dM+Q0EgEQkRMOAZHiSlsE4rEnHiGVxVAicq5rKABEbybFPy3ejN1WE+ZqQcZYGr4EJlkGGmQX1w35rkuQhmZEQsCTOgXM6Cp4BHszfvhUeuFFLzMXOaUzLzbKgXmVP1bGXv3q7N48a1T00SK1oFuNaHO1S1krpx41pf9NOf/qzjlFNmveMb3/jGpJNOPul7pVJJJ4llrZVnWDBg2XFDQ0Ht2L7joWKx2Nba1jqjWk2ESBGzAMJgDqAKgyuVisupgsL+pmdgbECRc4zx48efeKR9y+LHDsDULDifb01NTRBhOMdwzGDJgnZ1M9/trzEp6+/Jk4+5cuLECcc+l/HftWvX3QAeWrlypRqBkicA1KSJkz8DUhgYHKj1kxdwBrPIcceOV4+tW/vFz33uSxtEhJYvX37dhIkTLu4bqCjnnGSLT7Y2O8d2woT24kknTfkAEb3roL5m4gg28/fq6CnVjS+galRaNaWa0aOGsmny1EUKFqqTwGAXBtcWRKrDd0K1XKShPaI96YizUEc9xCaZ+ZsCqPARpoGF/22VxRGDvSk7BD8PQclwLW+NRTFDKfGrV0BlmVk1NDTUTh2IBpAcC6Y2oGCO40g9+OCD159++hlvnzRpwtxKJWGtdZ0YrqCTxLoZM0/6h9v+47afz54z529bxrYcPzhYdVorjWAaO+fERBH19vbv/cEPf/D2t77lrcv8pBEBMXntyZl/AxaX9vb2prmMlhgAPPJfB178APulKC3bcAoeym0LlKs8U2t43gOL2KamRpMk6YhUw6amJoAIaZoiSZLctb1AlopF2DQdye/zWltRPwDb319mACqje3kOb52KmJla4oK57MfENTY2aGNM+WBkgvXr17+lpXXcGZu37naRUdo5rp3XWsvFUklt27Z9a0fHP381LM5q8eLFD29Yv+GOse2TLti1e4+LTORnc3g4YdE7du6W1rGNb3v44YdvHBGhzeKYzscxmTN5o6ELvgdCQm5ZEMzgbgnCNKX9SHXBjQzOPEs9nZIAcCBDMgAekgoInSRKFMAub2J5G0moTloFRUeWqZTdX2KJNBOPENHwcWIJaLhiARjlAqOLBNjjlWNjYyOZNCWgguCLcYia1DSGj+nlvFsiaK27nnjid28ZO/ZVv9MmgrWuRgEVEbBjpZ3CgnMXLDMm1r29gyJgnabBD/OD7EpGm1/ff+81V1111VNve/s7GgYGEwwMDNaCtywMdoxKxaK3r1/SNOWc6okyraSIauRiYS90XoOJyniPGQKXCXvmG0qOveoPY7AwrGVFZFSSjgymjhkzhpxj6ukbQJLYGp1PAFjrUIgbDuZjaqVULAKTJCmDMCQuJRBv1rPAOefHII/6p5Yskx4pBJgh4MuWLWtqaxv3L51dPWJtSjWsSQSOGalzcszYZvXAb+6+9s4779kKQC1fvhwiQrfddtsNLz+zdaFSiiRYLZIjnlnrrDGl4uTJk68+qNYULRIAEIHKaU3UedDBjMiTvhH6MT/Za7/jQBmUIEQyNP2QSCBh4sPJfqai1AkyqCX0uIy0zqBEgRA9xxRCpVUPlKsAUhEQM7xuCPOUARQA6Q45yP3RkCwKMzAwIHEcSxOKNbc1ivxBXigAdq4GrjAzlDYolUrNCxYsWL1u3bqPnXTSSdf29vZbZqkBOoG4gDiOtE0rklpLjqUGkoiInTJlsvnvJx7/zsKFC++4/voPlKqVhHttFZVK2Zs7GbLpHEziUKkkQzo4NrEWAarVNExIhmOB91UZzIB1tqYag6AORVxl/zoquWM4iiosQ4iu9TZx4kQ4FgyWE3CmtbMFhR2sY0Ad2Mrr7augmnZJX3+/sGNRWkEr8taB7yfKJlxwOqHygl+s1hK359eYNsDKlSv1ggUL7NbNm99famw5bsfuLVZrZVLraqLvnHNjW1r03s5dv7vmmg/9v0ywFi1aJAD0hRdeeP/GjZvuHNfWfv72HTtd3ooKHaZ37Nwlba2Nb1n1m9/cAGDziL4mSU1n5b09kSGQIvLUUwmhMxrCrMk4FwFo40BvA3m7NtOalDveALDhosszUj1r6gawmSFGZfyjOkJqAWkFYN1zM2XbI+E9ALoDHY9UhsMgsz6kCKB/SGpCzdg1NeYLAKJUAldWswD7unrrWiV0lnOMYiVBT09PdcmSJWrGjBnX7dy567UNTWNftX37ThdFka5TmwT9A2VRSpHKCOEA0mrq2tvHme1btz62cOGrPzN37tzKtGl/UWXmWJHnuoKU11wMECmJjKEqkWzatEmcc0REEhdjVU0ZXT19ULnjOWhHx4w4iskY411uHyIKZPx61kCIHNQAJxYPjrDjeGxLM3p7q8WR4c5BYok9yV3Yk6clSztiOOH9vL5M68ybN4+YnenvH6SkWtVKaYgw0nAfRms46zWlCug4s4AzrSUeBFFKDbnCkiVL1Pz5892q++8/prG55eotW3cws9OZ713LtSSiYqzTu1es/MgTTzwxMIwrywDw4IP3ferVr7noXBHRaZqGbJ8A2xBRmqZWm1JD+5Sp/0RE7xlRayaA9ALU490qyRKbMnUnXnjEEkktbZhqglgXtExow32m4u1Rw1671kJUIa2Pw+yOMNSU7e833A2gRwsKOYeWw42xAFV1eBj+iOZUgzcyXI7OQVKjvIPD8zsepsv9IbVwSbVaZSIPUxujqFxx6O0bDEJSR2NFBMUCY7BapY6ODhYRuvfee99y6qkveSyK4uYkqUoUReTvylvY3pxTGQLLURypNKl2/tu/feGK3t7ytu3bH+156KGHGhcsOJdcyrDWQeBqvlBmltrUSk9Pj+RQUQgLrHWBS1E3udkHzFEqUKd1SZkgQioLI5HUAs8UgtAUesWrIGEIlFG2Wuk3Pd3dm0fq+2pXouNWp1Jra6APgcACWGvhrM36YD8fZNasWaoQa2uiYrUSaY5jz/yyLKIDPy61bHp6ByItAqUEdT8PYPamWhQNFcws13LLpi2fsGxa+vr6XRxHytp0SCRIaaUGy4P2zNP/6qMbNmz6KJEoZog4x06YjTGkjVZJtSoCKOdcPdsiZOwQoLdt2yHjWpvfvGbNmmsB7KzFNZd6ggF6UmO2Acl2eKqbCChAkUQKIgTVkIpuTBKrvX2pPJjoAzSqLmtevZFAIAQhN6gi6Y50wNCxX7ENBsgOpbe6NMwCF4QbnPk/dcQvBVCuPjd+cyUhsuJ5wC4XAqzlT4dnS4NocRoWj/EA9pAhohyjJQEAck5UkiSw1gJGD+HKZoKQ+cjr1q2L582b9+zvV6++Ysr0Gd/duHm7tdYaDlpW1XwFCyKCMYZb25rNPffc9b4bbrjhMRGxPldSKWudShKHNLVU0y0BqLHWIk2tDKvJo61zSJM0FycSECk4YR7f3qpW3n3Hx97//n/6z6lTpxa6u7uJkkQSIqFqVSo1zVeVapWEqCqVSlmoQsyFgokiNr29VVJKlfNxx6WelSK9tk+3cSulSQKWepoYROCchU1tBofnIVkBgFtuuaXc3t7+N1EUxT78nipmLUCqjCmZxijac+75r3vzhElT/nnHzp1Oa6O9tgtanX2fiNQFM8u1fOqp1afFxYa3PLtxMxujlLWpN41zIagkZZQr1XjsmOZXOBCc5RCm0hAInAViHWH77i6kaeqTzl3dTw+xOUqS1AqNbW5qavonIrpaRHSecKAz/qjlGgEgQ3lEmMkYBd33bLrymvcjLUVaWQaTghKGUr7DnQNEEcBGAWAdWUR79qn5N7wX6dRLpDt1UKKRI4pn9wgzzAthIlQAVCRkbUsemQJEgVJAsU8JOuJWHhBJcxkvNZVfBx+hAFQzVNVlrAOVMXzqPnY1Cga3KA+n2/oaGxxmYUElSWCtWAD43YwZNjB8vrd169aFxx83+f8888xGF0V+IrlcYqm1bKdNm2jWP7Xmlr+++K9/fvPNN0Mp5QBg3LhxytpUJ4mFc2kt9S2bhJRaJNaiVnfF51epNLVI0hRaq5xg+t+kqcUxxxy/adu2bVsXLlwY3XLLLTx05IbjfLn35TLNnTtXNTU1yfz58zkE0YfYe1RVVEksJTb1me4h59Ob0Q4hXnjA4l7XXnvtowf4mwFg//vCS/Z498F5L5dDbqnypnKSpJB6fKaWa9nc3HZDueq0s6kDjMplC3qTOyvBQcDezk72HHXJgSc1JJ5IKVVf9DhgBHWkXkT0lm075LjJ497x4IMP3gTAJ20vXZnF2YmqABIOOTZUn1DhRqRCFdz+9Z/DE3KGE/NpGG8dwEQF7CrLvH9b7C8SQg85gK+WJzncU6w4qu9qEqZDFotRQTAZgIr3H7dlIxSLW557PxuCNSAsh0PBiKSQWmpbdp18JCAJgVuPFckQgkFw2H23e+YPK6XFMSNNbUCvvGURQt8kzAHbrxFNnYior371q++55JLXnxXFheMG+vs5LkS1w6x1rnlMi9myZdMDr3vdghvOPfdc+773va/68Y9/XHV0dPCYMWOUtValaQKPgtbL27IItDawSWJDOc1wTpCQDZpDD5GrJHUYHCyjoaEhyarvffnLXx5eEEqG/Q+tNWcC/uijjzoAuPfeezOfeb+CUkklQZq4kB7nkEV7WQIIJQ4iYnz+k4wml1Ey7vcz656Jq0mKJHGIoiAcDFAQzDSHFq9bt87MnDmzum7t2tcqXTxvy6bNzmilrbX1biGCBJQ4o1SysBpC5M5Q+ACDks+28c/PHOKyuRAaEaXWWhbTfMzkY95NRB8a4mtWrHC1nvZVC0aS1Alo2gp8RuTokmV4p4JSDGW8qZhmpAIexmrwBIoh+F6O+B5koL5YsPKWbeprUGHJCoMd6zSWrCBgPmPxKJlaS0Rh3/kgi7opi2FDL+SXXx4+HzoFgDMj8SxJnE6qCapJioiDcU8h6xxAah2qwZ7NzLNly5apd7zjHfv+6swz/29b++S7e/v6OUlSIiJiFgYpJS7d9Y2vfvkK58yeu+66q4+IsHTpUuno6EBjY6NKrdPVaoI0sfVYY3ikKHZIXTrEYrc2UVY00jTnSAQEM7VeYLdv3973spe9zOG5u/MZPa8OvxeLNaAo00QZuMKOUa2mGBgo9wS+8OEQ2B0A/H7178uNjRrVNKlZAiLiDR7rI/bac7IxY8YMd9lll0XFpuYbtm7fg2o1IfbEf+95BYGyzrGXMa5VPWDHuQJSWbCdfdqD8iVeshIqUWTIhx2D5lUKCtAbN26SyZPa3rH2kUf+FUDn3GOazSoAzinn91Gj/RVg5pfrrKQH06iow5ev0hBhw4BNAam6YQkqcuDTMPlKBczeNM+XsSAPxkhVwfX39eJrC2rjVlry7TPtVzZdozo1XCQ6YEUkCUDO62UV6wbq2/W1tIO+hw+9K0I18w5DchDlVLiQ1/I25eF0PABkGhsbyVqrSqWSMqHQswjp1FpUkrRmblDN4SdUqwmstUMm2uLFi10waVdu3rz52pknnfCRx1f/3sZRZBQRTxjfolf91wNX33TTTU+LSDJ8QWht9YnaSZoisWke9YYIEMUW1jIPMb2FlE2tB3+C858VDrPW0mC5glNPffHnnnlmQ5ewaJ9kAx38XwWQYXGKQAoEAyHl5xlUhl1qXxSMtNGII2N6enq2XnLJxa8DkFQq3VFDUwM5Z8W7Qh4hJKUgLGpfVzeaSvHFa36/ZqKwNNSfmXRWq0UN3a0KTgRGaYoiw8Viafbuzi6wc9rmSqP4EFEiIoI49vRJIrKbNm26XJviqTt3rXeFQlGnqa0nCABIUitTpxyjSqUCrC8EAV80MGNLUY3AwOzBN62Uj+k6QV/fIPbu3QtjIlgPf4eyLUTlamInwrQ1T5jwPiL66M13iFoFAFXAZ5fkjZQ6+TmYkeELNbp0mclzpQYdp5kPmk/7o7pw7lfmi31MjVXgyg1JDQCcEFIGJrdegBsenQynFQxTVaotNNB8nhtobeLeHDvJhfWFAFEAxa3zcc3DXbjujDvN+/4lTmuBVhmKMMMRbMQQP37QJc4Jpo87FouispxMAGSZlWMHm6Re4MVn43uFSdBpAjdy1N2JiJ5PtPQHO3bOG9c27q82btyUzDllRrxtyzP/3xvf+MZfLlmyREYibxcK7YqdqCRJkaZ1MKcWYkkcnHOyP22O4dj5+FPNT/LhgJ7efihtzjT1Fb9G2fN+uNQIBTVTz5MjvEYIa5k2GqSAyMTQJE1TpiS0Zg2wc2e3ffFLpkXdPYZ6e/vZGEMZ64iIVF9fH0QaX9rc1PDSWhJuLU8uxIVrAeewqAhgFcDQ2NfdjT1790EbTdbZmknpFwJRkVHoH+zfISJ0//33j1UqWrphw2bRWpF1rpY575lIjk+cNlVpXf3+lo3P3jE4WG4WZ4W0ds4xlIiCVjWt4qxlUWKV0lpEVEMh7p46beZ7k6T5FXs7O0Vp401g52mampTetn2XTJ8y6YpHHnnkc/85F/sIgDhWnv6mggDJUCK3whFXQWeH+k6oIzkJXAdb6xxWjqEVIWWB1hk1uc7fJSgMWKDw4vdSkimkEDatVhnlxNW0f96zUcon1iPSGHPycv2eH7+FhPqh0Faz1SSnzS0xYkRwLmT+dw9R+SFc4vcUSv2KrpwAqU1hrQ2V5bwplMX4CAIHm45AAhURkXuJ3Pbt297U1j7xkTmzZ7X39XaumD9//r/OmzcvDWVH9nMmGhsbDbMzlUrV+0EZmhsEk52DMNc8Cu8PSgs5kTRJIabOS6VajqbCrl27mQJbSYIwZsnfWewx1FD1qenIU+H8s3oTnjiKY9XUYHruvHN9GgpgbXr8scfefsLxx96y5qkNplqtsDGREq7Hqzo7u7izcx/n6XW1Yl+UL9RVi6rmJpgoUkqxtSGNj6CUiNaK55xyot7w9Jp/mn/22b8FgM0bN1/dP5hO2ruv0xaLReOcC0isACCO45jiCHv/6d3v++hPbr99A+rlTkbyu4f74AZA8qtf3VmdefJpt+7ctUsMqDYniBiKiLq7B2332DGtbW1tV3QQfcKntpOOFFDNhIfz5FcfyyN3hGXeq8GFyQApohF23QmSuQgMEcIXfrlKNXft4pbWieitMIxW9fKlXGdC7E5YoMTnjCvxtjjpEMTFMPUXnksB7IS6mxul9dxvWzaeoQNVn8z+Wo5aixHslnXy+xuvx9y5EVatdkBnLcpb05Q5jSlGEXmNwWDn4ALhOU0tkiSFcxacjkzyJSJmZj137txN6WDf+yaMa9p6w3XXXt3W1rbv3nvv7R4ulCH0gObmZgWCsmFBsM6B2XkfzlmkaYLU2iQfqEorlfuaGotUTR2qSRXOWTjnAqncwboUACsW1syiHbMWZu2YtWPRzolmZs2OtXVWW2eVL37tlLBTwqJYWFlnVTVJlWNW4jOwmfzWAuolL33pN5988tG3zD55emqiWA0MDjILw9kUqfWJfX5iiyESoxSMIhgiGIANhA2B/XuIIcXGl3xhA4gSdrCp9X2fJujrH3SzZp2od27d+C/zzz77CyKinly1aiqTunL9hmeZSGlrXdD4nqCQJFWZMmUy7dq57eaf3H77BhHRSmmntXZaaw6v/OchfxORVET0e9971R3WVh8b396uqpWqY2ZPhrcOSZoCAv3sxs0yUE7evWLt2nYroFiTJoFP9A9ZQrVwY5hCwnKE9DeVpY17tSZD/VfJ1+ghJVgKwntf8yxvWn6pOrG7n5oKChZcI8pKLtvPOzUaxBqUGtQKgYewkXNe6LNiW44By4AokjQR7mwqcnehAZIixzsERBwaC1po5zOy8j1vx8NfXo/t2yOgM19Xtl42UCnFWmsGoNI0NVKH7mpoHIsfCK0VIlJ0sDzDJUuWqJmnnPLdd73rXRf84Ac/2HnOOecMSL7e37A2rqGBRAjWOa+mhH1+gLA4Zkmslax2oFLKiYiePmPGD/t7Oz/5khfNMv0Dg9ZaK9amwmyFnRVnU7FpKmnqpJokkqapWOfEWSvWJiLCzM5yNalIkiRsrQ2vlJ1zbF3KNrX+ZVNm5zgNUCjVLQR93nmv/d7a1Y8vnjPrhL621rGqWq04y07YMTMzO+fP68/patdx4VrWWXaOmcPfnHPhN46d8yexznL/QL998aknm96uPZ8748wzPxGAJm4a137t3s6+pmq1aoVZkiTlNLUsYE6SJC01lEjDbrzhho/fEmoWCbMj50b3IiKsXLmS1qxZk/T1dF/bPq4N5UpVRIStdZykllPrmEgksWlqnRp/fEPTO4kgOtZIHftVPuP9eFufPSuE+Uj32BCynt5FKtQrCOcXYUCYwKxMLl+lgwTLRONLl99jdv7sTWbmYErFiJA6F/wZhoTfex+J4Ww9fcgh972vaVoDkmo1ZdgbWjYVJGmm/7yplkpKTQWtzJ6tuPuqt2Pdf/wWk+ca7NiRV78MgEy5rF0ck0mSxDnnHIA4SdJC1YqtVitOJMrSgwI2oFiRFpA76CrX0dEhRITvfOc7T8+bN0+WL19+UFS07dhj0btpuwZARhtiCJy1cCJgJzqODOCiKNO4oWCWJqKPbdm8+fi5p73ozWvWPo1SqQgEpNRzc+v1WHX4P1DZwCLknIMhBUWeNlivrh0C7sEliADV2FiCIlscMjeIXLiP//jF7bdfetrpZ/zgmY3RmL179yEuREO4rrnEFtSzAClbGGuMngyBdc6bxFGkkaYpZp88Q8ENfv1FL3rRNUEok40bN57T0jru/6zfuAttbW1xQFkBRSjEEZIkVdNOOB7r1j5x3a233rUbAB3JdhYLFixwIqLmL53/02+8+VurXzTn5Bft7dwLkIKzPlykNcFaF+/r6kFzc+lDIr/7LH0OZVVUihqLyucCIV/tSJEBoHXpSCRTF+MYLUqxi2Mx9akdcEBligAiE3M+LLaYHJaJThbTf6iPtP89Zs/7Hq1v1HDDAOP8xxw3ADlLXKri/9FEQ0pw1irXBRJBrEEFTdSCCEn3Tv7Vx96Ntd9/GFPnGWy6ZxjpMFDyiAY4TUup1loFjWmN0WNOmD7NNDTEplCIQwFdf1WllC7GEdauaTzU4GZ7YJTvueeeQ3ZyZ2enjB3bVD519knOu7Rc82FA5ErFIu3atWufhyZqMUUWEXU60Tt+8uymY+ecPP3lzFy1zsFZ69inkZA2OmxTQCLZORWxlz0hIiJjlICI2XmxDCE6CeE71oq4oaGkuru7Nww3x3PC+fPvfutbF73q7HP+fVxrU4MicpStClIvNgb4+wjqvzYHlGflwZfqg/jMGEBr5aIo0oODfatmzTr56jypoL+//6+LxdKa445ptdYyyCeHKUBIG8OR1nF3545nXvOa13w/POuRhosEgLqn4x6767W7bpw1a+ZH2sYWK9ZaDWRbwkCcS4UZ3NRQjAaerszHuq079ERaJ8dYKwpafBqHANpX1NVFJdWda4YI7KHaHH9UxPu2yHg8lRbKqVg2Xn+JIkWecBYbYe58PCPz1c69mBxWiOEF9EP1z3ePozmnfQD9qIoLZOeQ0E1eGYWwRk5SGUSGHNAwHVtKsZQTRpQBF0NMRw8gTCZC8zO/os7dD7qHf7oR//3lezB7kcOa5Qq5DNJ6XAVCLS0trc45HcdxYdy4cYW9e/emX/jiF//izL942eyBgUEhImetpcpgJbY2Mc65JE1d309/9rPbvvjFL65/HrZoAwBcdtll0fjx41/e3FwEM6dp2RprrUk4ISKqFgqN1S1btiRf//rX1+ZjgrnrN7/tbW87yQ4OJuVyWVWl6pD4v2ut2SoraUoCJHBOqzRNRaWpJESGKBVm45jZpWkqgCfrUaJEmClNUx5wzooMku13ZvPu3ZtHikvmsiuOedXLX9rSl1QGmWMy1moU/fmqgQJIRCJlv8y6KFIqScSa1BEp0VpxkmjWOjVaa5P0JpzqhDds2GHnzp27Z9WqVXngrRl+8+E4DGzGzsgSp3VgBe06lNUyyliuACgVCoVjqtVqPwBqLRbjChGXy2UuAQqlkpTLZTfrL2cNPPXAHgJwMtDfH5y4XBo0MSAaKFaBvqeP4D4mAY3jgIGsciCFCnZhoqcOviDcxgMSATqIgYkvQgNrkHXe7gQgEQEJgVQO8/WRKcTEGNw1qK740gJ90pu+4H7XVOKehFHI6GdSj4sCAtaiZqRdqvCLj9kPXfwlnHljCU99MkZXVwqMCyBcZz7WnlJLS8tYEVHOOVMoFKIoiuJdu3aVs9Coj0SBw8Cb8H2GjJbx/Lb8dnC5AUS+LEC6X37d0MVBjfD7kdDHkbaDG4kVNAIEd2CyQI5JpZ+DZqKR7mfJkiXo6OjY79pLlixRALBmzRoCFg3hic2ePVuWLl2K53Ef06y/CViCRYvW0PLly0O/hM8AlsyeLd5kXqIwd4fGqnMZeHKYup4jwJOEeQDu6Tj8CoJLlih0rCFg9gjnBTAvXO9g5xYhkBLgVQfY2GiCALtp6GcA864g3LNAqyuu/2vMufxzsrplgnSzg2GN4Er4lL/MPzFEMwF13Lbr3NuO+zAwuwljEKN3GwOagX35rQirBKCppaUlCgWfVUNDg2ptbdUNDQ2I49gVi0XX1NTkurq67Ny5c5PPf/7ziTFGnHv+60iNcnuFg/ycZKRj8+f9I99L9mh7ITWlfTD1zR8+Jzrjqm/yuvbj3I7UIYb2yG5Ym8UB7AQpsZoTazVt+3J731nvwC0bFKacXMTmHWXAOE/HGw9gT0oAGgCo1tZWHfaC3C8bgoiks7PTBu0pI2iZ/4l2II12tB1tfywtVIwmwWvePl9d8omv8KZjTsImZxFn2zIF6IkZ0CSwZNXxUSGateO3ePT9f1/9wg83YdKkVuwsp0BsfQyp01JbW9uYffv2JQB4/PjxcSCJDxeEjDPIR8fiaDvaRhRO4BWvPU3941e/SjuOfZl7NjhmwamqFRNT3gFUxwEyvns32dUX2453/TeifQVsHXBAlwPAxjmnW1tbC11dXZU9e/ZUcsBBfpdbPqq1jraj7QCYQG0nLHqMuy5+h/nAd29UpbYpXEn6kfpS84ATOFeBdYOqgZ3tc10kxiDdexGSLb9HpVnQwgo9sMB4BQB68mQ0tLW1jYHn5mX72msc8aYSf4S954tyGRExK1asMNn7Ya/Dft4lS5aoQ/122bJlesWKFeYI7lkvW7bsedspLNyrlsPkpoa+O2jV+CO91+zcB3s9n33wP6w5M9r8BDRPPRNomAuUXg5MOBc47jVAy3wAZwB4BYDTAcwGMBXNzeMwZkwb0NriXcuW1lpHH3ccSulWqF21Lez323jnhSyUow7pPJfwzyG3C3ih22y5SnRH2wE7KUykjysc94sCysog5QgNFQ1hjwCXrELSEKEpZaQ9Fnv2OCjl0GOcD6KWiyOtgJnGrDEa/xSE8uc///mcCRMmnM1gAcMKiVJQJnB7SSmFrbu23nPx6y5+YjTCmQnhfffd95K2tvbzNmxYf+eFF164Or+rdnaelStXXhRF0fFPJ8nX3rpgQWU0933ZZZdFb33rWy8ql8vdZ5999q+fy4KR/fb++++f1djYeMqWLVvuv+iii/Ye6pzZ31esWPFXzc3N408//fSf5pBuyVsE06dPP6dcLidnnXXWysO5p7vuuuvUSZMmTc2XJWVmRb45Ywx6enqSj370oyvvuece+0IRT9S3/isA47UvGSIEsEIzq1pGjVKMXmIvkF0pMKYINB5yjig8901f/9fasmXLtIjQI488clZfX9+gHKL19/dV1q5dfTYR4VDmU6hKgGeeefbDIiJdXV1bb7311hOy62ZmGgDs3r37tyIiP/7xjydnk/JgEzYIZku5XJHt27c/nj/XEQqmAYDNm7deKyKyatWq12bm56HMTADYsmXbb0RENm3a9JXsfLmkB3zwgx9s6e/vl127dm3KNOuh5k12T+vWrf/OocZlx44dfO7cuS2H6rs/wqbgyR8NABoBNHtztbUFaBkLjGv2341rDiZs9h0O5fe8oLXlokWLiIhkX+e+1zc1NZXWrFnzkZ07d97f2Fg0zoEUs3POUSoikycf+9JZs2Z8tlBovFRE7l60aNGoJoBSqgrAjh079th58+bd8e1vf/ucSy+9dEdekJQy3dVq1ZZKpVGv+AMDA+KcK0dR1Ps8zpIKADe85OWhWhybCgCZMmXKPzz11FP7iOiDQbBCMLsVRDRgjOnOmbyj0u7FYikB4B566KGPNzU1Pe03inIQUSwiEkWR6evr6//V9On9WLUKzwfL7A8KDHm3UNUxm64wL8YTsEeAiQB2JV6zAkDnwGgE80/E7lcAILt37/7ZOeecs3qkQ+596KHts4AbiQ6vOFqhEBEAs2HDhtunT5++8HWve91/XnXVVfPgqWAGAAsT+WLY/aM+b3t7u1JEJiuI9rzMEp9YqgMnetQtiqJCtVqtdHZ2rp05c+Y169ev30dE14tIBCBtnd4KAqmsLnZW93c053bOKQD61lu/953rr//85j85xLbuErowH4KbuCfs4rlLAMRAiwF6+jNl+GchmM6lGgA1tzY3BjNTL1q0yGH5ciwP2+wd297eAr851PAE4oO2NPXFI9auXXtzmqZ3z5o168ZrPvCBHxDRX2dkc21Ia6PR3W0Pwxzt9sXQ+HkE4II4DqsKc8hWGayKUVp95gtf+JuOD3942Yknnnjdo48+vpOIviUi6tOf/rTPH6XDv1cib1m88pXnvuy2217dFiEqiJGKc46JyPT396uBgYEn3/rWt1b+BIQ0z4eN/GucAkoW2Nqbt1DVn4VgBr9EBkXCNnqOiByF94sXL3YDScIBeMg78KMxZQEAU6ZMaTv55JM/u3Hj5q9MmDjxgk0bt3wr29UrTROdJulh3vVYpM7iwNUvD79Ztkfaf2KZCzpNd917770X9/T0bJw9++RvPvzww+cTEY8bNy6uJCnK1eQIbtY7pGeffd6t55+/8LFXL3z1g+ed95rfnXPOa544//zzHz3vvPMe2bp378QMcPsTmI4qpxCrQGc/sLU83G38s9CY1arn41e5qgHQk08+WeP+Z+/TwRSpFVQqh7crYibHvQO9LhDYL3/mmY0t06dP/dtnnnmmh4jeuX7DRmtZMHbs2FGbkKVSidgxia+AkN9Id6SV+LDutWIPW0BVkqZywgkntFx44YXbfnXHrxa+9OVzV8yadcpP77rrrvnnnXfew+cvvFhVK4e/o2S5mnBqGc88+8y/N5YatpMmnabePy0UtOrr6av0Mu8DfI7vC9GRwtDEhCwD6KDtz0IwK5XElasWIiYBIEuXLuVskLP3hULBCYC0VspxdBN+YCAk2DjYLHn7/PPP/79f+cpXW6ZPn/6PDzzw4NPVJO0bM6YZ2m+OO6rW0tKCSuJLiOJ5Yl9Za/32DWl6WOcZHBwQk8aSJEklhDnW3P7T2xe+cv5ZK894+ctv+9GPfvQ3zvHA4VhgK1cGwRwsS0/vAH7yo+XXd3R0bByFOfhCNGHz/uao1eqffGPLMQDX3b2nOaCGGe2Qsszhbdu2NVrLTlDLsx+l/+oEYEe+hAVWrVqlfvGLX1Q/97mb3rDumY0PzJh58mcbioV5SZIOMrMe/WJSoWol4Uq54sJ9mjqyd1ANehDLIWXLh19ft5pYTtOU4zgmIpLVq1fHCy9Z+MjvfvfoYoJqe9npZ3wfwobZHYa97iVTawNm58aOHTsWgD7ppJMKQWEEHwwaf4bthagxh+dT8oFX5ZVhxe9fWyoYfeppc+94at2GLghpv/sYC5EiIrgkdWOU0dqJfTpMm1FNehEpAkrD+VzSuXPnMjMrpdTACSeccNHCCy+5b9rU4095ZsPmw9KYra2tERHF48dPeNXGjZu3g0il1kEYYozmUqlI+7o6937z61/7y8985jN9oyEgkEYx1tCk4sNakBWppqamZlOtVgkA5syZk4YawnesXHnfpSfOPPmHkya0Y+PGZw/jvPODYKrGCe1j9cILLrlz4YWXOALI1/kWIq1dQ7GEzs7Obe959z/Ov+eeeyphLz4Zhel4VDD/QE2H+w2Z6m0ql1w6YvbLggULbCg+9WWlaHzruHHzq9VEq1Cmn0Xgq3MqUkq5xx97/P7NG5++KUzyg2qWLDl4377OJ559dtNP+vr6nslklYh42bJlevHixZ0TJ058rU3mfqa7pxvd3d0Do/a9yuVksDzwn+xcsxMXkZCyzoIFYpwBkeikkuzbsYNH47cKAAz29z+9ZeuO3yaDld2HYxoODg48kLrqYF9fX1KHbCjbs2bZ/Q88NCY2dHVPb9/q0T7fnj2+/3p7un+3Zcv2YwFWlUpqKER1BEKkGCSibZp2Z4vCCOVjswr52YuGoaAWz70K//+a9vljbzHQWgLSCCjEQEGjKISKYiCxQCUF4gTorBWl/6NwLp6nsit/1A5UvZxKhHq87g+5WMdASwFwEVDSKBU0IIRyhYFqCkQJ0FUJ8+IFMxb/P28T1qEBa88GAAAAAElFTkSuQmCC"
           alt="MegaHQ Online"
         >
       </a>
-
-      <nav class="home-nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#projeto">O projeto</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#leitor-info">Leitor</a>
-        <a href="#faq">FAQ</a>
-        <a href="#privacidade">Privacidade</a>
+      <nav class="blog-nav" aria-label="Navegação principal">
+        <a class="active" href="index.html">Início</a>
+        <a href="#publicacoes">Publicações</a>
+        <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </nav>
-
+      <a class="blog-header-cta" href="#publicacoes">Explorar artigos <span aria-hidden="true">↗</span></a>
     </header>
 
-    <section id="inicio" class="home-hero">
-
-      <span class="home-eyebrow">MegaHQ Online</span>
-
-      <h1>
-        Uma experiência de leitura
-        <br>
-        simples e digital.
-      </h1>
-
-      <p>
-        O MegaHQ Online é um projeto independente dedicado ao desenvolvimento
-        de uma experiência de leitura digital acessível pelo navegador, com
-        foco em praticidade, organização técnica e adaptação para diferentes
-        dispositivos.
-      </p>
-
-      <div class="home-acoes">
-        <a class="home-botao" href="#como-funciona">Conhecer o projeto</a>
-        <a class="home-botao secundario" href="#leitor-info">Conhecer o leitor</a>
+    <section class="blog-intro" id="inicio">
+      <div class="blog-intro-copy">
+        <span class="blog-kicker"><i></i> CULTURA POP • QUADRINHOS • UNIVERSOS</span>
+        <h1>Histórias que merecem<br><em>ser exploradas.</em></h1>
+        <p>Artigos, listas e análises para quem gosta de olhar além dos quadros. Descubra personagens, uniformes, sagas e detalhes que fazem dos quadrinhos um universo sem fim.</p>
+        <a class="blog-primary-button" href="#publicacoes">Ler as publicações <span aria-hidden="true">↓</span></a>
       </div>
-
+      <div class="blog-intro-art" aria-label="Ilustração decorativa inspirada em páginas de quadrinhos">
+        <div class="intro-orbit orbit-one"></div><div class="intro-orbit orbit-two"></div>
+        <div class="intro-sigil">MHQ<span>+</span></div>
+        <div class="intro-art-caption"><span>MEGAHQ</span><b>IDEIAS • HISTÓRIAS • CULTURA GEEK</b></div>
+      </div>
     </section>
 
-    <section id="projeto" class="home-secao">
+    <div class="blog-section-heading" id="publicacoes">
+      <div><span class="blog-kicker">DO BLOG PARA VOCÊ</span><h2>Publicações recentes</h2></div>
+      <span class="post-count">01 artigo publicado</span>
+    </div>
 
-      <h2>Sobre o MegaHQ Online</h2>
-
-      <p>
-        O MegaHQ Online nasceu com uma proposta simples: tornar a leitura
-        digital mais confortável e acessível diretamente pelo navegador. O
-        projeto prioriza uma interface limpa, carregamento organizado das
-        páginas e controles que funcionem tanto em computadores quanto em
-        dispositivos móveis.
-      </p>
-
-      <div class="home-grid">
-
-        <article class="home-card">
-          <div class="home-card-icon">◈</div>
-          <h3>Experiência simples</h3>
-          <p>
-            A interface foi pensada para que o visitante encontre rapidamente
-            o que precisa, sem excesso de elementos na tela.
-          </p>
+    <section class="blog-content-grid" aria-label="Artigos e informações do blog">
+      <div class="blog-post-list">
+        <article class="featured-post">
+          <a class="featured-image-link" href="artigo-uniformes-batman.html" aria-label="Ler artigo sobre os uniformes do Batman">
+            <img class="featured-image" src="https://cdn2.penguin.com.au/covers/original/9781799506744.jpg" alt="Capa da edição Batman: Hush, com arte de Jim Lee" loading="eager">
+            <span class="featured-image-overlay"></span>
+            <span class="featured-label">ARTIGO EM DESTAQUE</span>
+          </a>
+          <div class="featured-body">
+            <div class="post-meta"><span>QUADRINHOS</span><i></i><time datetime="2026-10-09">9 de outubro de 2026</time><i></i><span>8 min de leitura</span></div>
+            <h3><a href="artigo-uniformes-batman.html">Os 5 uniformes mais marcantes do Batman nos quadrinhos</a></h3>
+            <p>Do visual clássico em cinza e preto à armadura imponente de <em>O Cavaleiro das Trevas</em>, veja como diferentes versões do traje traduzem fases, estratégias e interpretações do maior detetive de Gotham.</p>
+            <a class="read-link" href="artigo-uniformes-batman.html">Continuar lendo <span aria-hidden="true">→</span></a>
+          </div>
         </article>
 
-        <article class="home-card">
-          <div class="home-card-icon">▤</div>
-          <h3>Leitura contínua</h3>
-          <p>
-            As páginas são apresentadas em sequência, permitindo uma leitura
-            contínua sem a necessidade de abrir cada página individualmente.
-          </p>
-        </article>
-
-        <article class="home-card">
-          <div class="home-card-icon">⌁</div>
-          <h3>Compatível com diferentes telas</h3>
-          <p>
-            O leitor foi estruturado para funcionar em telas grandes e
-            pequenas, com controles específicos para cada experiência.
-          </p>
-        </article>
-
-      </div>
-
-    </section>
-
-    <section id="como-funciona" class="home-secao">
-
-      <h2>Como funciona</h2>
-
-      <p>
-        O site utiliza uma arquitetura separada entre a apresentação do
-        projeto e o leitor. Isso permite que a página inicial permaneça leve
-        enquanto o leitor carrega somente quando uma edição é solicitada.
-      </p>
-
-      <div class="home-passos">
-
-        <div class="home-passo">
-          <div class="home-passo-numero">Etapa 01</div>
-          <strong>Acesso ao leitor</strong>
-          <p>
-            Um link específico direciona o visitante para a edição que deseja
-            abrir.
-          </p>
+        <div class="blog-editorial-note">
+          <span class="note-icon">✦</span>
+          <div><strong>Mais do que listas</strong><p>Nosso objetivo é publicar textos próprios, com contexto, referências e opinião editorial — sempre valorizando as histórias e os artistas que dão vida aos quadrinhos.</p></div>
         </div>
-
-        <div class="home-passo">
-          <div class="home-passo-numero">Etapa 02</div>
-          <strong>Carregamento</strong>
-          <p>
-            O sistema identifica o arquivo solicitado e inicia o carregamento
-            do documento no navegador.
-          </p>
-        </div>
-
-        <div class="home-passo">
-          <div class="home-passo-numero">Etapa 03</div>
-          <strong>Leitura</strong>
-          <p>
-            O conteúdo é apresentado verticalmente, com zoom, tela cheia e
-            outras ferramentas disponíveis no leitor.
-          </p>
-        </div>
-
       </div>
 
+      <aside class="blog-sidebar">
+        <section class="sidebar-card about-card" id="sobre">
+          <span class="sidebar-label">POR TRÁS DO BLOG</span>
+          <div class="sidebar-monogram">M<span>H</span></div>
+          <h3>Bem-vindo ao MegaHQ</h3>
+          <p>Um espaço independente para explorar quadrinhos e cultura pop com curiosidade, contexto e paixão por boas histórias.</p>
+          <a href="#contato">Fale com o projeto <span aria-hidden="true">↗</span></a>
+        </section>
+
+        <section class="sidebar-card topics-card">
+          <span class="sidebar-label">EXPLORE POR TEMA</span>
+          <a href="#publicacoes"><span>01</span> Quadrinhos <b>↗</b></a>
+          <a href="#publicacoes"><span>02</span> Personagens <b>↗</b></a>
+          <a href="#publicacoes"><span>03</span> Uniformes e design <b>↗</b></a>
+          <a href="#publicacoes"><span>04</span> Cultura geek <b>↗</b></a>
+        </section>
+
+        <section class="sidebar-quote">
+          <span>“</span>
+          <p>Todo grande herói também é uma grande ideia visual.</p>
+          <small>NOTAS DO EDITOR</small>
+        </section>
+      </aside>
     </section>
 
-    <section id="leitor-info" class="home-secao">
-
-      <h2>O leitor MegaHQ</h2>
-
-      <p>
-        O leitor utiliza tecnologia de visualização de documentos diretamente
-        no navegador. As páginas são renderizadas individualmente e exibidas
-        em sequência, proporcionando uma leitura contínua.
-      </p>
-
-      <div class="home-grid home-grid-4">
-
-        <article class="home-card">
-          <h3>Zoom</h3>
-          <p>
-            Ajuste o tamanho da página conforme a tela e a preferência de
-            leitura.
-          </p>
-        </article>
-
-        <article class="home-card">
-          <h3>Tela cheia</h3>
-          <p>
-            Amplie a área de leitura para aproveitar melhor o espaço disponível.
-          </p>
-        </article>
-
-        <article class="home-card">
-          <h3>Celular</h3>
-          <p>
-            O leitor possui suporte a gesto de pinça para ampliar a visualização
-            em dispositivos móveis.
-          </p>
-        </article>
-
-        <article class="home-card">
-          <h3>Download</h3>
-          <p>
-            Quando habilitado para determinada edição, o botão de download
-            permite obter o arquivo disponibilizado pelo sistema.
-          </p>
-        </article>
-
-      </div>
-
-      <div class="home-nota">
-        <strong>Importante:</strong> o leitor não exige a instalação de um
-        aplicativo específico. Basta utilizar um navegador moderno em um
-        dispositivo compatível.
-      </div>
-
+    <section class="blog-about-strip">
+      <div><span class="blog-kicker">NOSSA PROPOSTA</span><h2>Conteúdo feito para quem gosta de descobrir.</h2></div>
+      <p>O MegaHQ Online reúne leitura digital e conteúdo editorial sobre quadrinhos. Queremos que cada publicação entregue informação útil, uma perspectiva própria e caminhos para o leitor conhecer melhor as obras e seus criadores.</p>
     </section>
 
-    <section id="faq" class="home-secao">
-
-      <h2>Perguntas frequentes</h2>
-
-      <div class="faq-list">
-
-        <details>
-          <summary>Preciso instalar algum programa para usar o leitor?</summary>
-          <p>Não. O leitor funciona diretamente no navegador.</p>
-        </details>
-
-        <details>
-          <summary>O MegaHQ funciona no celular?</summary>
-          <p>Sim. A interface possui adaptação para telas menores e suporte a gesto de pinça para ampliar a leitura.</p>
-        </details>
-
-        <details>
-          <summary>Posso usar o leitor em computador?</summary>
-          <p>Sim. No computador estão disponíveis controles de zoom, tela cheia e download quando essa opção estiver habilitada.</p>
-        </details>
-
-        <details>
-          <summary>Por que uma edição pode demorar para carregar?</summary>
-          <p>O tempo de carregamento depende principalmente do tamanho do arquivo, da quantidade de páginas e da conexão utilizada.</p>
-        </details>
-
-        <details>
-          <summary>O site armazena meus dados pessoais?</summary>
-          <p>O MegaHQ evita solicitar dados pessoais desnecessários. Serviços de hospedagem, segurança e publicidade podem processar dados técnicos conforme suas próprias políticas. Consulte a seção de privacidade abaixo para mais informações.</p>
-        </details>
-
-      </div>
-
+    <section class="blog-contact" id="contato">
+      <div><span class="blog-kicker">CONVERSA ABERTA</span><h2>Tem uma sugestão de pauta?</h2><p>Envie ideias, correções ou comentários pelo canal público do projeto.</p></div>
+      <a class="blog-primary-button" href="https://github.com/Megahqonline/megahqonline.github.io/issues" target="_blank" rel="noopener noreferrer">Entrar em contato <span aria-hidden="true">↗</span></a>
     </section>
 
-    <section id="privacidade" class="home-secao">
 
-      <h2>Privacidade</h2>
-
-      <p>
-        O MegaHQ Online busca limitar a coleta direta de informações pessoais.
-        O funcionamento do site pode envolver serviços de hospedagem, entrega
-        de arquivos, publicidade e segurança que processam informações
-        técnicas necessárias para fornecer seus serviços.
-      </p>
-
-      <div class="home-privacidade">
-        <h3>Informações técnicas</h3>
-        <p>
-          Dependendo do serviço utilizado, podem ser processadas informações
-          técnicas como endereço IP, tipo de navegador, dispositivo, páginas
-          acessadas, data e hora de acesso e informações necessárias para
-          segurança e funcionamento.
-        </p>
-
-        <h3>Publicidade</h3>
-        <p>
-          O MegaHQ Online utiliza serviços de publicidade de terceiros. Esses
-          serviços podem utilizar cookies, identificadores ou tecnologias
-          semelhantes para medir desempenho, personalizar ou fornecer anúncios,
-          conforme as configurações e políticas de cada fornecedor.
-        </p>
-
-        <h3>Cookies</h3>
-        <p>
-          Cookies e tecnologias semelhantes podem ser utilizados para manter
-          preferências, segurança, estatísticas e publicidade. O visitante pode
-          controlar cookies por meio das configurações do próprio navegador.
-        </p>
-
-        <h3>Serviços externos</h3>
-        <p>
-          O site pode utilizar serviços externos para hospedagem, distribuição
-          de arquivos, visualização de documentos e publicidade. O tratamento de
-          dados realizado por esses serviços está sujeito às respectivas
-          políticas de privacidade.
-        </p>
-
-        <h3>Direitos e solicitações</h3>
-        <p>
-          Caso você tenha uma solicitação relacionada à privacidade ou ao uso
-          do site, utilize o canal de contato indicado na seção de contato.
-        </p>
-      </div>
-
+    <section class="blog-privacy" id="privacidade">
+      <span class="blog-kicker">TRANSPARÊNCIA</span>
+      <h2>Privacidade e uso do site</h2>
+      <p>O MegaHQ Online procura não solicitar dados pessoais desnecessários. Ao acessar o site, serviços de hospedagem, segurança, análise e publicidade de terceiros podem processar dados técnicos, como endereço IP, navegador, dispositivo, páginas visitadas e horário de acesso, de acordo com suas próprias políticas.</p>
+      <p>Cookies e tecnologias semelhantes podem ser usados para manter preferências, medir desempenho e fornecer anúncios. O visitante pode gerenciar cookies nas configurações do navegador. A disponibilidade e a personalização dos anúncios dependem dos fornecedores e das configurações aplicáveis.</p>
+      <p>Para dúvidas, correções ou solicitações relacionadas ao conteúdo e à privacidade, utilize o <a href="https://github.com/Megahqonline/megahqonline.github.io/issues" target="_blank" rel="noopener noreferrer">canal público de contato do projeto</a>. Evite publicar informações pessoais em solicitações públicas.</p>
     </section>
 
-    <section id="contato" class="home-secao">
-
-      <h2>Contato</h2>
-
-      <p>
-        O MegaHQ Online é um projeto independente. Para questões relacionadas
-        ao funcionamento do site, sugestões, correções ou solicitações sobre
-        conteúdo, utilize o canal público do projeto no GitHub.
-      </p>
-
-      <div class="home-contato">
-        <a
-          class="home-botao"
-          href="https://github.com/Megahqonline/megahqonline.github.io/issues"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Abrir canal de contato
-        </a>
-        <p>
-          Ao abrir uma solicitação pública, evite publicar dados pessoais ou
-          informações sensíveis.
-        </p>
-      </div>
-
-    </section>
-
-    <section class="home-secao home-aviso">
-
-      <h2>Aviso sobre conteúdo e direitos</h2>
-
-      <p>
-        O MegaHQ Online é uma plataforma técnica de leitura digital. Marcas,
-        personagens, títulos e obras de terceiros pertencem aos respectivos
-        titulares. O site não reivindica propriedade sobre direitos que não
-        lhe pertençam. Solicitações relacionadas a direitos autorais podem ser
-        encaminhadas pelo canal de contato do projeto.
-      </p>
-
-    </section>
-
-    <footer class="home-rodape">
-      <div>
-        <strong>MegaHQ Online</strong>
-        <span>Projeto independente de leitura digital.</span>
-      </div>
-      <nav aria-label="Navegação do rodapé">
-        <a href="#inicio">Início</a>
-        <a href="#privacidade">Privacidade</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <small>© <span id="anoAtual">2026</span> MegaHQ Online. Todos os direitos reservados.</small>
+    <footer class="blog-footer">
+      <div class="footer-brand"><strong>MegaHQ Online</strong><span>Quadrinhos, histórias e cultura pop.</span></div>
+      <nav aria-label="Links do rodapé"><a href="index.html">Início</a><a href="artigo-uniformes-batman.html">Artigos</a><a href="https://github.com/Megahqonline/megahqonline.github.io/issues" target="_blank" rel="noopener noreferrer">Contato</a></nav>
+      <div class="footer-legal"><a href="#privacidade">Privacidade</a><span>© 2026 MegaHQ Online. Personagens e marcas pertencem a seus respectivos titulares.</span></div>
     </footer>
-
   </div>
-
 </main>
 
 
@@ -1909,7 +1832,7 @@ if (paramsInicial.has("id") || paramsInicial.has("pdf")) {
 } else {
   ocultarCarregamento();
   document.getElementById("anoAtual")?.replaceChildren(String(new Date().getFullYear()));
-  document.title = "MegaHQ Online";
+  document.title = "MegaHQ Online | Artigos e cultura dos quadrinhos";
 }
 </script>
 
