@@ -1,18 +1,5 @@
 [
   {
-    "title": "A Noite Mais Densa: por que os Lanternas Negros são tão perigosos?",
-    "description": "Entenda o contexto de A Noite Mais Densa, o poder dos Lanternas Negros e os momentos que marcaram a saga da DC.",
-    "url": "artigo-noite-mais-densa-lanternas-negros.html",
-    "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkEgTk9JVEUgTUFJUyBERU5TQTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPklsdXN0cmHDp8OjbyBlZGl0b3JpYWwgb3JpZ2luYWwgZW0gZXN0aWxvIGRlIHF1YWRyaW5ob3MgcGFyYSBhIG5vaXRlIG1haXMgZGVuc2EuPC9kZXNjPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxNzFhMjUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwOTBiMTEiLz48L2xpbmVhckdyYWRpZW50PjxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjQiIGN5PSI0IiByPSIyIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMTAiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0idXJsKCNiZykiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIyNjUiIHI9IjIxMCIgZmlsbD0iIzExMTMxYiIgc3Ryb2tlPSIjNmI1Yjg3IiBzdHJva2Utd2lkdGg9IjgiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIyNjUiIHI9IjE0MCIgZmlsbD0iIzI5MjQzZCIvPjxwYXRoIGQ9Ik01MDAgMTAwIEw1NDAgMjEwIDY1MCAyMjUgNTY1IDMwMCA1OTAgNDEwIDUwMCAzNTAgNDEwIDQxMCA0MzUgMzAwIDM1MCAyMjUgNDYwIDIxMFoiIGZpbGw9IiMwODA5MGQiIHN0cm9rZT0iIzhhN2RhOCIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHBhdGggZD0iTTAgNDUwIFExNTAgMzMwIDI4MCA0NzAgVDU2MCA0NTAgVDEwMDAgNDYwVjYwMEgwWiIgZmlsbD0iIzA4MDkwZCIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEzMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjgzMCIgY3k9IjEwMCIgcj0iNCIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9Ijc2MCIgY3k9IjMwMCIgcj0iNiIgZmlsbD0iI2ZmZiIvPjxyZWN0IHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0idXJsKCNkb3RzKSIvPjxwYXRoIGQ9Ik0wIDUwMCBMMTAwMCAzOTAgVjYwMCBIMFoiIGZpbGw9IiMwOTBiMTEiIG9wYWNpdHk9Ii44MiIvPjx0ZXh0IHg9IjU1IiB5PSI1MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ1IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBsZXR0ZXItc3BhY2luZz0iMiI+QSBOT0lURSBNQUlTIERFTlNBPC90ZXh0Pjx0ZXh0IHg9IjU4IiB5PSI1NTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZTdhZDcwIiBsZXR0ZXItc3BhY2luZz0iNSI+TyBVTklWRVJTTyBFU0NVUkVDRTwvdGV4dD48dGV4dCB4PSI5NDUiIHk9IjUwIiB0ZXh0LWFuY2hvcj0iZW5kIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjgiPk1FR0FIUSBPTkxJTkU8L3RleHQ+PC9zdmc+",
-    "imageAlt": "A Noite Mais Densa: por que os Lanternas Negros são tão perigosos?",
-    "category": "QUADRINHOS",
-    "label": "ARTIGO",
-    "date": "2026-10-12",
-    "dateLabel": "12 de outubro de 2026",
-    "publishedAt": "2026-10-12T22:08:02-03:00",
-    "meta": "Leia o artigo"
-  },
-  {
     "title": "Quem venceria: Flash ou Superman? O que as HQs mostram",
     "description": "Uma comparação baseada em histórias publicadas: velocidade, resistência e as corridas entre Flash e Superman nos quadrinhos.",
     "url": "artigo-flash-ou-superman-quem-venceria.html",
