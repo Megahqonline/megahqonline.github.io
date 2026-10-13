@@ -1416,6 +1416,53 @@ let nomeArquivoAtual = "";
 let tituloHQDesejado = "";
 let observadorTituloHQ = null;
 
+// Analytics do leitor: registra a HQ aberta e cada página que realmente entra
+// na área visível do leitor, sem contar todas as páginas apenas renderizadas.
+let observadorPaginasAnalytics = null;
+let paginasRegistradasAnalytics = new Set();
+let aberturaHQRegistradaAnalytics = false;
+
+function registrarEventoAnalytics(nomeEvento, parametros = {}) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", nomeEvento, parametros);
+}
+
+function iniciarAnalyticsHQ() {
+  if (observadorPaginasAnalytics) observadorPaginasAnalytics.disconnect();
+  observadorPaginasAnalytics = null;
+  paginasRegistradasAnalytics = new Set();
+  aberturaHQRegistradaAnalytics = false;
+
+  registrarEventoAnalytics("comic_open", {
+    comic_title: nomeArquivoAtual || "HQ sem título",
+    comic_page_count: pdfAtual ? pdfAtual.numPages : 0,
+    reader_type: parametrosURL().has("id") ? "google_drive" : "pdf_url"
+  });
+  aberturaHQRegistradaAnalytics = true;
+
+  if ("IntersectionObserver" in window) {
+    observadorPaginasAnalytics = new IntersectionObserver((entradas) => {
+      // 20% da página visível é suficiente; páginas longas em telas pequenas
+      // nem sempre conseguem atingir uma proporção de visibilidade maior.
+      entradas.forEach((entrada) => {
+        if (!entrada.isIntersecting || entrada.intersectionRatio < 0.2) return;
+        const numeroPagina = Number(entrada.target.dataset.page);
+        if (!Number.isInteger(numeroPagina) || paginasRegistradasAnalytics.has(numeroPagina)) return;
+        paginasRegistradasAnalytics.add(numeroPagina);
+        registrarEventoAnalytics("comic_page_view", {
+          comic_title: nomeArquivoAtual || "HQ sem título",
+          comic_page_number: numeroPagina,
+          comic_page_count: pdfAtual ? pdfAtual.numPages : 0,
+          reader_type: parametrosURL().has("id") ? "google_drive" : "pdf_url"
+        });
+      });
+    }, {
+      root: areaLeitor,
+      threshold: [0, 0.2, 0.35]
+    });
+  }
+}
+
 function definirTituloHQ() {
   if (!tituloHQDesejado) return;
   if (document.title !== tituloHQDesejado) {
@@ -1673,6 +1720,7 @@ async function renderizarPagina(numeroPagina) {
 
   linha.appendChild(canvas);
   leitor.appendChild(linha);
+  if (observadorPaginasAnalytics) observadorPaginasAnalytics.observe(linha);
 
   await pagina.render({
     canvasContext: contexto,
@@ -1701,6 +1749,10 @@ async function carregarPDF() {
   const dados = obterPDF();
   urlPDFAtual = dados.url;
   leitor.innerHTML = "";
+  if (observadorPaginasAnalytics) observadorPaginasAnalytics.disconnect();
+  observadorPaginasAnalytics = null;
+  paginasRegistradasAnalytics = new Set();
+  aberturaHQRegistradaAnalytics = false;
   zoom = zoomInicial();
   mostrarCarregamento();
   atualizarProgresso(3, "Preparando o arquivo para leitura...");
@@ -1737,6 +1789,10 @@ async function carregarPDF() {
     pdfAtual = documento;
 
     if (!nomeArquivoAtual) await tentarTituloDosMetadados();
+
+    // Registra a abertura uma única vez, depois de identificar o arquivo e
+    // conhecer a quantidade total de páginas do PDF.
+    if (!aberturaHQRegistradaAnalytics) iniciarAnalyticsHQ();
 
     atualizarProgresso(90, "Preparando as páginas...");
     for (let n = 1; n <= pdfAtual.numPages; n++) {
