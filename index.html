@@ -1420,6 +1420,10 @@ const indicadorPagina = document.getElementById("indicadorPagina");
 let timerIndicadorPagina = null;
 let paginaIndicada = 1;
 let observadorPaginaAtual = null;
+const estadosCanvasPDF = new WeakMap();
+let timerReRenderZoom = null;
+let filaRenderizacaoZoom = Promise.resolve();
+let larguraReferenciaPDF = 0;
 const mobileStage = document.getElementById("mobileStage");
 const zoomTexto = document.getElementById("zoomTexto");
 const nomeHQ = document.getElementById("nomeHQ");
@@ -1671,7 +1675,10 @@ function calcularEscalaBase(canvas) {
     const larguraDisponivel = Math.max(1, areaLeitor.clientWidth - 16);
     return Math.max(0.01, larguraDisponivel / larguraOriginal);
   }
-  return 1;
+  // Alguns PDFs misturam páginas com dimensões diferentes. Usa a maior largura
+  // do documento como referência para que todas as páginas tenham largura visual
+  // uniforme, em vez de deixar certas páginas minúsculas e borradas ao ampliar.
+  return larguraReferenciaPDF > 0 ? larguraReferenciaPDF / larguraOriginal : 1;
 }
 
 function ancorarRolagem(zoomAnterior, x, y) {
@@ -1724,6 +1731,7 @@ function atualizarZoom(opcoes = {}) {
   leitor.style.transform = "none";
 
   atualizarTextoZoom();
+  agendarReRenderZoom();
 
   if (ancorar && zoomAnterior > 0) {
     requestAnimationFrame(() => {
@@ -1733,41 +1741,94 @@ function atualizarZoom(opcoes = {}) {
   }
 }
 
+function escalaRenderizacaoNecessaria(canvas) {
+  const escalaBase = calcularEscalaBase(canvas);
+  const dpr = Math.max(1, Number(window.devicePixelRatio) || 1);
+  // Renderiza de acordo com o tamanho efetivamente exibido, com pequena
+  // margem de qualidade e limite de segurança para evitar canvases gigantes.
+  return Math.min(8, Math.max(2, Math.ceil(dpr * escalaBase * zoom * 1.25)));
+}
+
+async function renderizarCanvasEmEscala(canvas, forcar = false) {
+  const estado = estadosCanvasPDF.get(canvas);
+  if (!estado || !estado.pagina) return;
+  const escala = escalaRenderizacaoNecessaria(canvas);
+  if (!forcar && Number(canvas.dataset.outputScale || 0) >= escala) return;
+  if (estado.tarefa) {
+    const tarefaAnterior = estado.tarefa;
+    try { tarefaAnterior.cancel(); } catch (e) {}
+    try { await tarefaAnterior.promise; } catch (e) {}
+    if (estado.tarefa === tarefaAnterior) estado.tarefa = null;
+  }
+
+  const viewport = estado.pagina.getViewport({ scale: 1 });
+  canvas.width = Math.ceil(viewport.width * escala);
+  canvas.height = Math.ceil(viewport.height * escala);
+  canvas.dataset.outputScale = String(escala);
+  const contexto = canvas.getContext('2d', { alpha: false });
+  const tarefa = estado.pagina.render({
+    canvasContext: contexto,
+    viewport,
+    transform: [escala, 0, 0, escala, 0, 0]
+  });
+  estado.tarefa = tarefa;
+  try {
+    await tarefa.promise;
+  } catch (erro) {
+    if (!erro || erro.name !== 'RenderingCancelledException') throw erro;
+  } finally {
+    if (estado.tarefa === tarefa) estado.tarefa = null;
+  }
+}
+
+function agendarReRenderZoom() {
+  clearTimeout(timerReRenderZoom);
+  timerReRenderZoom = setTimeout(() => {
+    if (!pdfAtual) return;
+    const linhas = Array.from(leitor.querySelectorAll('.paginaLinha'));
+    const topo = areaLeitor.getBoundingClientRect().top;
+    const fundo = areaLeitor.getBoundingClientRect().bottom;
+    const visiveis = new Set();
+    linhas.forEach((linha, i) => {
+      const rect = linha.getBoundingClientRect();
+      // Renderiza páginas visíveis e uma página de margem em cada direção.
+      if (rect.bottom >= topo - areaLeitor.clientHeight && rect.top <= fundo + areaLeitor.clientHeight) {
+        for (let j = Math.max(0, i - 1); j <= Math.min(linhas.length - 1, i + 1); j++) {
+          const canvas = linhas[j].querySelector('canvas');
+          if (canvas) visiveis.add(canvas);
+        }
+      }
+    });
+    filaRenderizacaoZoom = filaRenderizacaoZoom.then(async () => {
+      for (const canvas of visiveis) {
+        try { await renderizarCanvasEmEscala(canvas); }
+        catch (erro) { console.error('Falha ao atualizar resolução da página:', erro); }
+      }
+    });
+  }, 180);
+}
+
 async function renderizarPagina(numeroPagina) {
   const pagina = await pdfAtual.getPage(numeroPagina);
   const viewport = pagina.getViewport({ scale: 1 });
-  const linha = document.createElement("div");
-  linha.className = "paginaLinha";
+  larguraReferenciaPDF = Math.max(larguraReferenciaPDF, viewport.width);
+  const linha = document.createElement('div');
+  linha.className = 'paginaLinha';
   linha.dataset.page = String(numeroPagina);
 
-  const canvas = document.createElement("canvas");
-  const contexto = canvas.getContext("2d", { alpha: false });
-  /*
-   * Renderiza o conteúdo PDF com resolução interna superior à dimensão CSS.
-   * O tamanho visual continua sendo controlado por atualizarZoom(), mantendo
-   * a largura máxima já existente; o fator de saída evita que o canvas fique
-   * limitado à resolução 1:1 quando exibido em telas de alta densidade.
-   */
-  const dpr = Math.max(1, Number(window.devicePixelRatio) || 1);
-  const outputScale = Math.min(3, Math.max(2, dpr));
-  canvas.width = Math.ceil(viewport.width * outputScale);
-  canvas.height = Math.ceil(viewport.height * outputScale);
+  const canvas = document.createElement('canvas');
   canvas.dataset.originalWidth = String(viewport.width);
   canvas.dataset.originalHeight = String(viewport.height);
-  canvas.dataset.outputScale = String(outputScale);
-  canvas.setAttribute("aria-label", "Página " + numeroPagina);
-
+  canvas.setAttribute('aria-label', 'Página ' + numeroPagina);
+  estadosCanvasPDF.set(canvas, { pagina, tarefa: null });
   linha.appendChild(canvas);
   leitor.appendChild(linha);
   if (observadorPaginasAnalytics) observadorPaginasAnalytics.observe(linha);
   if (observadorPaginaAtual) observadorPaginaAtual.observe(linha);
 
-  await pagina.render({
-    canvasContext: contexto,
-    viewport,
-    transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
-  }).promise;
-
+  // A renderização inicial é nítida; quando o usuário amplia, as páginas
+  // visíveis são renderizadas novamente com mais pixels, como um leitor moderno.
+  await renderizarCanvasEmEscala(canvas, true);
   atualizarZoom();
 }
 
@@ -1823,6 +1884,7 @@ function tocarParaMostrarPagina(evento) {
 }
 
 areaLeitor.addEventListener("click", tocarParaMostrarPagina);
+areaLeitor.addEventListener("scroll", agendarReRenderZoom, { passive: true });
 areaLeitor.addEventListener("touchend", evento => {
   if (evento.changedTouches && evento.changedTouches.length === 1) {
     tocarParaMostrarPagina({ target: evento.target });
@@ -1833,6 +1895,7 @@ async function carregarPDF() {
   const dados = obterPDF();
   urlPDFAtual = dados.url;
   leitor.innerHTML = "";
+  larguraReferenciaPDF = 0;
   if (observadorPaginasAnalytics) observadorPaginasAnalytics.disconnect();
   observadorPaginasAnalytics = null;
   paginasRegistradasAnalytics = new Set();
