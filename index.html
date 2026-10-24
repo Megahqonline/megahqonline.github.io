@@ -1099,6 +1099,30 @@ html.modo-leitor #areaLeitor {
   #home .footer-legal { flex-direction:column; }
 }
 
+
+/* Indicador temporário da página atual, inspirado no visualizador do Google Drive. */
+#indicadorPagina {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 10px);
+  z-index: 150000;
+  padding: 9px 15px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 8px;
+  background: rgba(25,25,25,.88);
+  color: #fff;
+  font: 13px/1.2 Arial, sans-serif;
+  letter-spacing: .2px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+#indicadorPagina.visivel { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 700px) {
+  #indicadorPagina { bottom: 18px; padding: 8px 13px; font-size: 12px; }
+}
 </style>
 
 
@@ -1378,6 +1402,8 @@ html.modo-leitor #areaLeitor {
   ✕
 </button>
 
+<div id="indicadorPagina" role="status" aria-live="polite">Página 1 de 1</div>
+
 <!-- =========================
      PDF.JS
 ========================= -->
@@ -1390,6 +1416,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
 const leitor = document.getElementById("leitor");
 const areaLeitor = document.getElementById("areaLeitor");
+const indicadorPagina = document.getElementById("indicadorPagina");
+let timerIndicadorPagina = null;
+let paginaIndicada = 1;
+let observadorPaginaAtual = null;
 const mobileStage = document.getElementById("mobileStage");
 const zoomTexto = document.getElementById("zoomTexto");
 const nomeHQ = document.getElementById("nomeHQ");
@@ -1712,19 +1742,30 @@ async function renderizarPagina(numeroPagina) {
 
   const canvas = document.createElement("canvas");
   const contexto = canvas.getContext("2d", { alpha: false });
-  canvas.width = Math.ceil(viewport.width);
-  canvas.height = Math.ceil(viewport.height);
+  /*
+   * Renderiza o conteúdo PDF com resolução interna superior à dimensão CSS.
+   * O tamanho visual continua sendo controlado por atualizarZoom(), mantendo
+   * a largura máxima já existente; o fator de saída evita que o canvas fique
+   * limitado à resolução 1:1 quando exibido em telas de alta densidade.
+   */
+  const dpr = Math.max(1, Number(window.devicePixelRatio) || 1);
+  const outputScale = Math.min(3, Math.max(2, dpr));
+  canvas.width = Math.ceil(viewport.width * outputScale);
+  canvas.height = Math.ceil(viewport.height * outputScale);
   canvas.dataset.originalWidth = String(viewport.width);
   canvas.dataset.originalHeight = String(viewport.height);
+  canvas.dataset.outputScale = String(outputScale);
   canvas.setAttribute("aria-label", "Página " + numeroPagina);
 
   linha.appendChild(canvas);
   leitor.appendChild(linha);
   if (observadorPaginasAnalytics) observadorPaginasAnalytics.observe(linha);
+  if (observadorPaginaAtual) observadorPaginaAtual.observe(linha);
 
   await pagina.render({
     canvasContext: contexto,
-    viewport
+    viewport,
+    transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
   }).promise;
 
   atualizarZoom();
@@ -1745,6 +1786,49 @@ async function tentarTituloDosMetadados() {
   }
 }
 
+function mostrarIndicadorPagina(numero) {
+  if (!indicadorPagina || !pdfAtual) return;
+  paginaIndicada = Math.min(pdfAtual.numPages, Math.max(1, Number(numero) || 1));
+  indicadorPagina.textContent = "Página " + paginaIndicada + " de " + pdfAtual.numPages;
+  indicadorPagina.classList.add("visivel");
+  clearTimeout(timerIndicadorPagina);
+  timerIndicadorPagina = setTimeout(() => indicadorPagina.classList.remove("visivel"), 2200);
+}
+
+function configurarIndicadorPagina() {
+  if (observadorPaginaAtual) observadorPaginaAtual.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  observadorPaginaAtual = new IntersectionObserver(entradas => {
+    let melhor = null;
+    for (const entrada of entradas) {
+      if (!entrada.isIntersecting) continue;
+      if (!melhor || entrada.intersectionRatio > melhor.intersectionRatio) melhor = entrada;
+    }
+    if (melhor) {
+      const numero = Number(melhor.target.dataset.page);
+      if (Number.isInteger(numero) && numero !== paginaIndicada) {
+        paginaIndicada = numero;
+        if (indicadorPagina && indicadorPagina.classList.contains("visivel")) {
+          mostrarIndicadorPagina(numero);
+        }
+      }
+    }
+  }, { root: areaLeitor, threshold: [0, 0.15, 0.35, 0.6, 0.85] });
+}
+
+function tocarParaMostrarPagina(evento) {
+  if (!document.documentElement.classList.contains("modo-leitor")) return;
+  if (evento.target.closest("button, a, input, select, textarea")) return;
+  mostrarIndicadorPagina(paginaIndicada);
+}
+
+areaLeitor.addEventListener("click", tocarParaMostrarPagina);
+areaLeitor.addEventListener("touchend", evento => {
+  if (evento.changedTouches && evento.changedTouches.length === 1) {
+    tocarParaMostrarPagina({ target: evento.target });
+  }
+}, { passive: true });
+
 async function carregarPDF() {
   const dados = obterPDF();
   urlPDFAtual = dados.url;
@@ -1753,6 +1837,9 @@ async function carregarPDF() {
   observadorPaginasAnalytics = null;
   paginasRegistradasAnalytics = new Set();
   aberturaHQRegistradaAnalytics = false;
+  configurarIndicadorPagina();
+  paginaIndicada = 1;
+  if (indicadorPagina) indicadorPagina.classList.remove("visivel");
   zoom = zoomInicial();
   mostrarCarregamento();
   atualizarProgresso(3, "Preparando o arquivo para leitura...");
